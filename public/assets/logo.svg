@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" fill="none">
+  <!-- Compact Architectural KM Monogram -->
+  <rect x="1" y="5" width="38" height="38" rx="6" fill="#09151B" stroke="#1E333D" stroke-width="1.2"/>
+  <path d="M10 32V16" stroke="#F1F5F4" stroke-width="2.4" stroke-linecap="square"/>
+  <path d="M18.5 16L11.5 23.8L19 32" stroke="#F1F5F4" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M22.5 32V17.5L28 26.5L33.5 17.5V32" stroke="#C8A45D" stroke-width="2.4" stroke-linecap="square" stroke-linejoin="miter"/>
+  <rect x="27" y="12" width="2.2" height="2.2" fill="#C8A45D"/>
+  <!-- Wordmark -->
+  <text x="50" y="29" fill="#09151B" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="18" font-weight="700" letter-spacing="-0.02em">Khans Marketing</text>
+</svg>

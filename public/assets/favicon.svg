@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <rect width="64" height="64" rx="12" fill="#09151B"/>
+  <rect x="6" y="6" width="52" height="52" rx="8" stroke="#1E333D" stroke-width="1.5"/>
+  <!-- K vertical stem and angled arms interlocking with M structural peaks -->
+  <path d="M16 44V20" stroke="#F1F5F4" stroke-width="3.2" stroke-linecap="square"/>
+  <path d="M27 20L17.5 31.5L28 44" stroke="#F1F5F4" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/>
+  <path d="M32 44V22L40.5 35L49 22V44" stroke="#C8A45D" stroke-width="3.2" stroke-linecap="square" stroke-linejoin="miter"/>
+  <rect x="39" y="16" width="3" height="3" fill="#C8A45D"/>
+</svg>

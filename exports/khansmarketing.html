@@ -1,0 +1,761 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Khans Marketing (KM) — Web Development, SEO & Social Media Marketing</title>
+  <meta name="description" content="Khans Marketing builds content-integrated websites and grows business visibility through technical SEO and structured social media marketing." />
+  <meta property="og:title" content="Khans Marketing (KM) — Web Development, SEO & Social Media Marketing" />
+  <meta property="og:description" content="Khans Marketing builds content-integrated websites and grows business visibility through technical SEO and structured social media marketing." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://khansmarketing.com" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Crect width='64' height='64' rx='12' fill='%23111C18'/%3E%3Crect x='6' y='6' width='52' height='52' rx='8' stroke='%23253A32' stroke-width='1.5'/%3E%3Cpath d='M16 44V20' stroke='%23F7F4EE' stroke-width='3.2' stroke-linecap='square'/%3E%3Cpath d='M27 20L17.5 31.5L28 44' stroke='%23F7F4EE' stroke-width='3.2' stroke-linecap='square'/%3E%3Cpath d='M32 44V22L40.5 35L49 22V44' stroke='%23C58F38' stroke-width='3.2' stroke-linecap='square'/%3E%3Crect x='39' y='16' width='3' height='3' fill='%23C58F38'/%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=JetBrains+Mono:wght@400;500&family=Noto+Naskh+Arabic:wght@400;600;700&family=Noto+Nastaliq+Urdu:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --canvas: #FAF8F5;
+      --surface: #FFFFFF;
+      --subtle: #F1EDE6;
+      --ink: #111C18;
+      --muted: #4B5954;
+      --line: #E2DDD3;
+      --deep: #111C18;
+      --deep-card: #16241F;
+      --deep-line: #253A32;
+      --on-deep: #F7F4EE;
+      --on-deep-muted: #A6B5AF;
+      --accent: #C58F38;
+      --accent-hover: #D4A14E;
+      --accent-ink: #8A5E1B;
+      --emerald: #164237;
+      --emerald-hover: #1D5547;
+      --font-display: "Fraunces", Georgia, serif;
+      --font-body: "Plus Jakarta Sans", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, monospace;
+      --font-ur-display: "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif;
+      --font-ur-ui: "Noto Naskh Arabic", "Noto Nastaliq Urdu", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { background: var(--deep); scroll-behavior: smooth; }
+    body { margin: 0; background: var(--canvas); color: var(--ink); font: 400 1rem/1.65 var(--font-body); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    html[lang="ur"] body { font-family: var(--font-ur-ui); line-height: 1.85; }
+    html[lang="ur"] h1, html[lang="ur"] h2 { font-family: var(--font-ur-display); font-weight: 400; line-height: 2.1 !important; letter-spacing: 0 !important; }
+    html[lang="ur"] h3, html[lang="ur"] h4, html[lang="ur"] button, html[lang="ur"] a, html[lang="ur"] input, html[lang="ur"] select, html[lang="ur"] textarea, html[lang="ur"] label { font-family: var(--font-ur-ui); letter-spacing: 0 !important; }
+    h1, h2, h3, p { margin: 0; }
+    a { color: inherit; text-decoration: none; }
+    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+    .wrap { width: min(1200px, 100% - 2rem); margin-inline: auto; }
+    .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+
+    /* Scroll reveal */
+    .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.in { opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+    }
+
+    /* Header & Utility Bar */
+    .site-header { position: sticky; top: 0; z-index: 40; background: rgba(17,28,24,0.96); backdrop-filter: blur(8px); border-bottom: 1px solid var(--deep-line); }
+    .utility-bar { background: #0B1310; border-bottom: 1px solid #1D2E27; font-size: 0.75rem; color: var(--on-deep-muted); }
+    .utility-inner { height: 2rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .lang-group { display: inline-flex; background: #16241F; border: 1px solid var(--deep-line); border-radius: 4px; padding: 2px; }
+    .lang-btn { border: 0; background: transparent; color: var(--on-deep-muted); padding: 2px 10px; font-size: 11px; font-weight: 600; border-radius: 3px; cursor: pointer; white-space: nowrap; }
+    .lang-btn.active { background: var(--accent); color: var(--deep); }
+    .nav-bar { height: 3.75rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .brand { display: inline-flex; align-items: center; gap: 0.65rem; font-family: var(--font-body); font-weight: 600; color: var(--on-deep); white-space: nowrap; }
+    .desktop-nav { display: flex; align-items: center; gap: 1.5rem; font-size: 0.875rem; font-weight: 500; }
+    .nav-link { color: var(--on-deep-muted); padding: 0.25rem 0; white-space: nowrap; cursor: pointer; background: none; border: 0; font: inherit; }
+    .nav-link:hover, .nav-link.active { color: var(--on-deep); }
+    .nav-link.active { border-bottom: 1px solid var(--accent); }
+    .dropdown { position: relative; }
+    .dropdown-menu { position: absolute; top: calc(100% + 0.75rem); inset-inline-start: 0; width: 16rem; background: var(--deep-card); border: 1px solid var(--deep-line); border-radius: 8px; padding: 0.5rem 0; box-shadow: 0 18px 40px rgba(0,0,0,0.35); display: none; }
+    .dropdown-menu.open { display: block; }
+    .dropdown-item { display: block; width: 100%; text-align: start; padding: 0.65rem 1rem; font-size: 0.875rem; color: #E3DFD6; background: none; border: 0; cursor: pointer; }
+    .dropdown-item:hover { background: #1A2B24; color: var(--on-deep); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; padding: 0.65rem 1.25rem; border-radius: 6px; font-size: 0.875rem; font-weight: 600; cursor: pointer; border: 1px solid transparent; white-space: nowrap; transition: background-color 0.15s ease, border-color 0.15s ease; }
+    .btn-accent { background: var(--accent); color: var(--deep); }
+    .btn-accent:hover { background: var(--accent-hover); }
+    .btn-emerald { background: var(--emerald); color: var(--on-deep); }
+    .btn-emerald:hover { background: var(--emerald-hover); }
+    .btn-dark { background: var(--deep); color: var(--on-deep); }
+    .btn-dark:hover { background: #1D3029; }
+    .btn-outline-dark { background: transparent; border-color: #2B4239; color: var(--on-deep); }
+    .btn-outline-dark:hover { border-color: var(--accent); }
+    .btn-outline-light { background: var(--surface); border-color: var(--line); color: var(--ink); }
+    .btn-outline-light:hover { border-color: var(--ink); }
+    .mobile-toggle { display: none; width: 40px; height: 40px; border-radius: 6px; border: 1px solid var(--deep-line); background: transparent; color: var(--on-deep); cursor: pointer; }
+    .mobile-drawer { display: none; background: var(--deep); border-top: 1px solid var(--deep-line); padding: 1rem; }
+    .mobile-drawer.open { display: block; }
+    .mobile-drawer button.drawer-link { display: block; width: 100%; text-align: start; padding: 0.65rem 0.75rem; color: var(--on-deep); background: none; border: 0; font-size: 0.95rem; cursor: pointer; }
+    @media (max-width: 860px) {
+      .desktop-nav, .header-cta { display: none; }
+      .mobile-toggle { display: inline-flex; align-items: center; justify-content: center; }
+    }
+
+    /* Sections & Cards */
+    .section { padding: 4.5rem 0; }
+    .section-dark { background: var(--deep); color: var(--on-deep); border-bottom: 1px solid var(--deep-line); }
+    .section-light { background: var(--surface); border-bottom: 1px solid var(--line); }
+    .section-canvas { background: var(--canvas); border-bottom: 1px solid var(--line); }
+    .eyebrow { font-size: 0.75rem; font-weight: 600; color: var(--accent-ink); margin-bottom: 0.75rem; }
+    .section-dark .eyebrow { color: var(--accent); }
+    h1 { font-family: var(--font-display); font-size: clamp(2.15rem, 4.6vw, 3.55rem); font-weight: 500; line-height: 1.08; letter-spacing: -0.02em; }
+    h2 { font-family: var(--font-display); font-size: clamp(1.65rem, 3vw, 2.35rem); font-weight: 500; line-height: 1.15; letter-spacing: -0.015em; }
+    h3 { font-family: var(--font-body); font-size: 1.15rem; font-weight: 600; line-height: 1.35; }
+    .lead { font-size: 1.0625rem; color: var(--muted); max-width: 62ch; }
+    .section-dark .lead { color: var(--on-deep-muted); }
+    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+    .grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 2rem; }
+    .col-7 { grid-column: span 7; }
+    .col-5 { grid-column: span 5; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: span 12; }
+    @media (max-width: 900px) {
+      .grid-2, .grid-3, .grid-12 { grid-template-columns: 1fr; }
+      .col-7, .col-5, .col-6, .col-12 { grid-column: span 1; }
+    }
+    .card { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; padding: 1.75rem; }
+    .card-dark { border: 1px solid var(--deep-line); background: var(--deep-card); border-radius: 16px; padding: 1.75rem; color: var(--on-deep); }
+    .list-dash { list-style: none; padding: 0; margin: 0; }
+    .list-dash li { position: relative; padding-inline-start: 1.1rem; margin-bottom: 0.55rem; font-size: 0.92rem; }
+    .list-dash li::before { content: ""; position: absolute; inset-inline-start: 0; top: 0.68em; width: 0.55rem; height: 1px; background: var(--accent); }
+    .tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; padding: 4px; background: var(--subtle); border: 1px solid var(--line); border-radius: 8px; }
+    .tab-btn { border: 0; background: transparent; padding: 0.5rem 0.9rem; font-size: 0.85rem; font-weight: 500; border-radius: 6px; color: var(--muted); cursor: pointer; white-space: nowrap; }
+    .tab-btn.active { background: var(--deep); color: var(--on-deep); }
+    .faq-item { border-bottom: 1px solid var(--line); }
+    .faq-btn { width: 100%; text-align: start; background: none; border: 0; padding: 1.25rem 0; font-size: 1.05rem; font-weight: 600; color: var(--ink); display: flex; justify-content: space-between; align-items: center; gap: 1rem; cursor: pointer; }
+    .faq-ans { padding-bottom: 1.25rem; color: var(--muted); font-size: 0.95rem; }
+
+    /* Form */
+    .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+    label { display: block; font-size: 0.875rem; font-weight: 500; margin-bottom: 0.35rem; }
+    input, select, textarea { width: 100%; padding: 0.65rem 0.85rem; border: 1px solid var(--line); border-radius: 6px; font: inherit; font-size: 0.95rem; background: #fff; color: var(--ink); }
+    input.invalid, textarea.invalid { border-color: #B91C1C; }
+    .err-msg { color: #B91C1C; font-size: 0.78rem; margin-top: 0.3rem; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); }
+
+    /* Portfolio Miniature Frame */
+    .p-card { border: 1px solid var(--line); background: var(--surface); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+    .p-head { border-bottom: 1px solid var(--line); background: var(--subtle); padding: 0.75rem 1rem; display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; }
+    .p-dots { display: inline-flex; gap: 6px; }
+    .p-dot { width: 10px; height: 10px; border-radius: 999px; background: #D6CFC2; }
+    .p-foot { padding: 0.95rem 1.4rem; background: var(--canvas); border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; }
+
+    /* Footer */
+    footer { background: var(--deep); color: var(--on-deep-muted); border-top: 1px solid var(--deep-line); padding: 3.5rem 0 2.5rem; font-size: 0.875rem; }
+    .footer-grid { display: grid; grid-template-columns: 1.8fr 1fr 1.2fr 1.3fr; gap: 2rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--deep-line); }
+    @media (max-width: 820px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-bottom { padding-top: 1.5rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; font-size: 0.8rem; color: #80928B; }
+
+    /* Modal */
+    .modal-backdrop { position: fixed; inset: 0; background: rgba(11,19,16,0.8); backdrop-filter: blur(4px); display: none; align-items: center; justify-content: center; padding: 1rem; z-index: 60; }
+    .modal-backdrop.open { display: flex; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="utility-bar">
+      <div class="wrap utility-inner">
+        <span id="utility-note">khansmarketing.com — Websites · Search · Social</span>
+        <div class="lang-group" role="group" aria-label="Language toggle">
+          <button type="button" class="lang-btn active" data-lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="ur">اردو</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap nav-bar">
+      <a href="#home" class="brand" data-route="home">
+        <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+          <rect x="1" y="1" width="46" height="46" rx="8" fill="#16241F" stroke="#253A32" stroke-width="1.5"/>
+          <path d="M11 33V15" stroke="#F7F4EE" stroke-width="2.6" stroke-linecap="square"/>
+          <path d="M21 15L12.8 23.8L21.5 33" stroke="#F7F4EE" stroke-width="2.6" stroke-linecap="square"/>
+          <path d="M25.5 33V16.5L31.75 26.5L38 16.5V33" stroke="#C58F38" stroke-width="2.6" stroke-linecap="square"/>
+          <rect x="30.6" y="10.8" width="2.4" height="2.4" fill="#C58F38"/>
+        </svg>
+        <span id="brand-wordmark">Khans Marketing</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <button type="button" class="nav-link active" data-route="home" id="nav-home">Home</button>
+        <div class="dropdown">
+          <button type="button" class="nav-link" id="nav-services-btn" aria-expanded="false">Services ▾</button>
+          <div class="dropdown-menu" id="services-dropdown">
+            <button type="button" class="dropdown-item" data-route="website-development" id="nav-web">Website Development</button>
+            <button type="button" class="dropdown-item" data-route="seo" id="nav-seo">Search Engine Optimization</button>
+            <button type="button" class="dropdown-item" data-route="social-media-marketing" id="nav-social">Social Media Marketing</button>
+          </div>
+        </div>
+        <button type="button" class="nav-link" data-route="portfolio" id="nav-portfolio">Portfolio</button>
+        <button type="button" class="nav-link" data-route="about" id="nav-about">About</button>
+        <button type="button" class="nav-link" data-route="contact" id="nav-contact">Contact</button>
+      </nav>
+
+      <div style="display:flex;align-items:center;gap:0.75rem;">
+        <button type="button" class="btn btn-accent header-cta" id="header-book-btn">Book a Call</button>
+        <button type="button" class="mobile-toggle" id="mobile-menu-btn" aria-expanded="false" aria-label="Toggle menu">☰</button>
+      </div>
+    </div>
+
+    <div class="mobile-drawer" id="mobile-drawer">
+      <button type="button" class="drawer-link" data-route="home" id="m-home">Home</button>
+      <button type="button" class="drawer-link" data-route="website-development" id="m-web">Website Development</button>
+      <button type="button" class="drawer-link" data-route="seo" id="m-seo">Search Engine Optimization</button>
+      <button type="button" class="drawer-link" data-route="social-media-marketing" id="m-social">Social Media Marketing</button>
+      <button type="button" class="drawer-link" data-route="portfolio" id="m-portfolio">Portfolio</button>
+      <button type="button" class="drawer-link" data-route="about" id="m-about">About</button>
+      <button type="button" class="drawer-link" data-route="contact" id="m-contact">Contact</button>
+      <div style="padding-top:0.75rem;">
+        <button type="button" class="btn btn-accent" style="width:100%;" id="mobile-book-btn">Book a Call</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="app-main"></main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-grid" id="footer-grid"></div>
+      <div class="footer-bottom">
+        <span id="footer-copy"></span>
+        <span class="mono">khansmarketing.com</span>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal-backdrop" id="book-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="card" style="max-width:32rem;width:100%;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+        <span class="mono" style="font-size:0.75rem;color:var(--accent-ink);">khansmarketing.com</span>
+        <button type="button" id="modal-close-x" class="btn btn-outline-light" style="padding:0.25rem 0.6rem;">✕</button>
+      </div>
+      <h2 id="modal-title" style="font-size:1.55rem;margin-bottom:0.5rem;"></h2>
+      <p id="modal-desc" style="color:var(--muted);font-size:0.95rem;margin-bottom:1.25rem;"></p>
+      <div style="background:var(--canvas);border:1px solid var(--line);border-radius:12px;padding:1.25rem;margin-bottom:1.25rem;">
+        <div id="modal-phone-label" style="font-size:0.75rem;font-weight:600;color:var(--accent-ink);margin-bottom:0.35rem;"></div>
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:0.75rem;flex-wrap:wrap;margin-bottom:1rem;">
+          <a href="tel:03212995766" dir="ltr" class="mono" style="font-size:1.7rem;font-weight:600;color:var(--ink);">03212995766</a>
+          <button type="button" id="modal-copy-btn" class="btn btn-outline-light" style="padding:0.35rem 0.75rem;font-size:0.78rem;"></button>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:0.65rem;">
+          <a href="tel:03212995766" id="modal-call-btn" class="btn btn-emerald"></a>
+          <a href="https://wa.me/923212995766" target="_blank" rel="noopener noreferrer" id="modal-wa-btn" class="btn btn-accent"></a>
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:0.75rem;padding-top:0.85rem;border-top:1px solid var(--subtle);">
+        <button type="button" id="modal-contact-btn" style="background:none;border:0;padding:0;color:var(--emerald);font-weight:600;font-size:0.875rem;text-decoration:underline;cursor:pointer;"></button>
+        <button type="button" id="modal-close-btn" class="btn btn-outline-light"></button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const KM_CONFIG = {"brandName":"Khans Marketing","brandShort":"KM","domain":"khansmarketing.com","recipientEmail":"hello@khansmarketing.com","phoneRaw":"03212995766","phoneDisplay":"0321-2995766","phoneHref":"tel:03212995766","whatsappHref":"https://wa.me/923212995766","formEndpointUrl":null,"bookingUrl":null};
+    const DICT = {"en":{"meta":{"home":{"title":"Khans Marketing (KM) — Web Development, SEO & Social Media Marketing","description":"Khans Marketing builds content-integrated websites and grows business visibility through technical SEO and structured social media marketing."},"website-development":{"title":"Website Design & Development | Khans Marketing (KM)","description":"Custom responsive websites with integrated copy, clear user architecture, fast performance, and search-ready structure."},"seo":{"title":"Search Engine Optimization (SEO) | Khans Marketing (KM)","description":"Technical SEO, on-page optimization, keyword research, and transparent search reporting built for long-term organic discovery."},"social-media-marketing":{"title":"Social Media Marketing | Khans Marketing (KM)","description":"Strategic content planning, consistent publishing, brand alignment, and paid social campaigns that connect audiences to your website."},"portfolio":{"title":"Pakistani Niche Websites Showcase | Khans Marketing (KM)","description":"Browse real-world examples of modest Pakistani school, teacher, and neighborhood business websites — practical digital models we build for local clients."},"about":{"title":"About Us | Khans Marketing (KM)","description":"Meet Khans Marketing — a focused digital growth partner uniting website development, content, search optimization, and social media."},"contact":{"title":"Contact & Project Enquiry | Khans Marketing (KM)","description":"Discuss your website, SEO, or social media project with Khans Marketing. Call 03212995766 or submit your enquiry online."}},"utilityBar":{"domainNote":"khansmarketing.com — Websites · Search · Social","langEnglish":"EN","langUrdu":"اردو","languageLabel":"Select language"},"nav":{"home":"Home","services":"Services","websiteDev":"Website Development","seo":"Search Engine Optimization","socialMedia":"Social Media Marketing","portfolio":"Portfolio","about":"About","contact":"Contact","bookCall":"Book a Call","openMenu":"Open navigation menu","closeMenu":"Close navigation menu"},"bookModal":{"title":"Call Khans Marketing Directly","description":"Speak directly about your website, search visibility, or social media goals — or reach out on WhatsApp for a quick review.","phonePromptLabel":"Direct Phone & WhatsApp Number","callNowAction":"Call Now","copyNumberAction":"Copy Number","copiedLabel":"Copied","whatsappAction":"Message on WhatsApp","primaryAction":"Send Project Enquiry Form","secondaryAction":"Close","closeLabel":"Close call prompt dialog","externalAction":"Continue to Booking Calendar"},"home":{"hero":{"eyebrow":"Khans Marketing · Digital Growth Agency","headlinePart1":"Websites built to be ","headlineHighlight1":"found","headlinePart2":", with content that earns ","headlineHighlight2":"trust","subheadline":"We design and build complete business websites with the words in place, then grow your reach through structured SEO and consistent social media marketing.","primaryCta":"Book a Call","secondaryCta":"Explore Our Services","blueprintLabel":"Integrated Digital Architecture","blueprintNodes":["Website & Content","Search Foundations","Social Distribution"]},"positioning":{"label":"Why Integrated Execution Matters","statement":"Most businesses end up with a designer who ignores search, a writer who does not understand web structure, and a social team disconnected from the website. Khans Marketing brings all three together.","pillars":[{"title":"Built Complete From Day One","text":"Your website is designed alongside real copy and structured headings, never handed over as an empty shell."},{"title":"Structured for Search Intent","text":"Clean code, logical page hierarchy, and fast mobile loading give search engines clear signals from launch."},{"title":"Connected to Audience Channels","text":"Social content and paid campaigns reinforce the same message and guide qualified visitors back to your site."}]},"servicesOverview":{"eyebrow":"Core Capabilities","heading":"Three disciplines working as one system.","subheading":"Every engagement focuses on clarity, technical soundness, and measurable business visibility.","exploreLink":"View service details","cards":[{"number":"01","route":"website-development","title":"Website Design & Development","summary":"Custom responsive business websites and landing pages built with integrated copy, intuitive navigation, and strong page speed.","deliverables":["Custom layout & responsive UI architecture","Website copywriting & content placement","Mobile usability & speed optimization","Search-ready technical structure at launch"]},{"number":"02","route":"seo","title":"Search Engine Optimization (SEO)","summary":"Technical and on-page improvements grounded in search intent and competitor analysis so customers searching for your services find you.","deliverables":["Technical site audits & crawl structure fixes","Keyword & search-intent mapping","On-page copy & metadata optimization","Plain-language monthly SEO reporting"]},{"number":"03","route":"social-media-marketing","title":"Social Media Marketing","summary":"Disciplined content planning, brand-consistent visuals, active publishing, and targeted paid social campaigns aligned with your business goals.","deliverables":["Channel strategy & editorial content calendars","Consistent post creation & scheduling","Community engagement & brand voice control","Targeted paid social traffic campaigns"]}]},"systemShowcase":{"eyebrow":"How Each Discipline Solves a Real Gap","heading":"Inspect what goes into the work.","subheading":"Select a discipline below to see the problem businesses typically face, how Khans Marketing addresses it, and what changes after implementation.","tabs":[{"id":"web","label":"01. Web & Content","problemTitle":"The Common Problem","problem":"Websites often launch late because copy is missing, or launch with generic filler text that fails to explain what the business actually offers.","solutionTitle":"What Khans Marketing Delivers","solution":"We plan page structure and write clear, persuasive service copy in parallel with design and responsive front-end development.","outcomeTitle":"Resulting Foundation","outcome":"A fast, mobile-ready website where every heading, button, and page guides visitors toward making an enquiry.","ctaLabel":"Get Your Website Built","route":"website-development"},{"id":"seo","label":"02. Search Visibility","problemTitle":"The Common Problem","problem":"Even well-designed websites stay invisible when page titles, internal linking, site speed, and search intent are treated as an afterthought.","solutionTitle":"What Khans Marketing Delivers","solution":"We pair technical cleanup with thorough keyword and competitor research, aligning each service page with how real buyers search.","outcomeTitle":"Resulting Foundation","outcome":"Clear indexing, stronger topical relevance, and steady visibility improvements backed by honest monthly reporting.","ctaLabel":"Improve Your Search Visibility","route":"seo"},{"id":"social","label":"03. Social Presence","problemTitle":"The Common Problem","problem":"Sporadic posting without a plan wastes effort, fragments brand identity, and rarely brings relevant traffic back to the business.","solutionTitle":"What Khans Marketing Delivers","solution":"We build an editorial calendar, maintain consistent visual and written standards, and run focused campaigns when reach needs acceleration.","outcomeTitle":"Resulting Foundation","outcome":"A credible, active brand presence that builds familiarity with your audience and supports website enquiries.","ctaLabel":"Grow Your Online Presence","route":"social-media-marketing"}]},"process":{"eyebrow":"Our Working Process","heading":"A disciplined path from first conversation to ongoing growth.","subheading":"No opaque retainers or vague deliverables. Every stage has clear inputs, reviews, and next steps.","steps":[{"step":"01","title":"Discover & Audit","description":"We study your business, customers, current website, and search landscape to define clear priorities before any design or campaign begins."},{"step":"02","title":"Architect & Build","description":"We structure the pages, write and integrate your content, build responsive templates, and configure technical SEO foundations."},{"step":"03","title":"Launch & Grow","description":"After quality checks across devices, we manage ongoing SEO refinements and social media execution with clear reporting."}]},"whyKm":{"eyebrow":"Why Choose Khans Marketing","heading":"Built on accountability, clarity, and craft.","items":[{"title":"One Partner, Unified Strategy","description":"Your website structure, written messaging, search optimization, and social channels operate from one coherent plan."},{"title":"Substance Over Noise","description":"We focus on clear communication, clean engineering, and realistic expectations instead of inflated promises."},{"title":"Transparent Reporting","description":"You always know what work was completed, why it matters, and what we recommend for the month ahead."}]},"faq":{"eyebrow":"Frequently Asked Questions","heading":"Practical answers before we begin.","items":[{"question":"Do we need to have all our website text ready before contacting you?","answer":"No. Content integration and copywriting are core parts of our website development service. We interview you about your business, structure each page, write the copy, and place it directly into the finished build."},{"question":"Can we start with just a website, or only SEO or social media?","answer":"Yes. While many clients combine services so every channel reinforces the others, you can engage us specifically for website development, SEO, or social media marketing depending on your current priority."},{"question":"Do you guarantee first-page rankings on Google?","answer":"No ethical SEO partner can guarantee a specific ranking position because search engines control their own algorithms. What we guarantee is sound technical structure, thorough keyword and intent research, disciplined on-page optimization, and honest progress reporting."},{"question":"Will our website work properly on mobile phones and in both English and Urdu?","answer":"Every website we build is engineered mobile-first, tested across screen sizes, and structured cleanly for multilingual or RTL requirements whenever your audience needs both languages."},{"question":"How do we get started on a project?","answer":"Send us an enquiry through the contact page or book a discovery call. We will review your current online presence and respond with practical next steps and scope options."}]},"closingCta":{"eyebrow":"Ready When You Are","heading":"Make your business easier to find and easier to trust.","description":"Tell us what you are building or trying to improve. We will respond with clear recommendations tailored to your goals.","primaryCta":"Start Your Project","secondaryCta":"Book a Call"}},"webDevPage":{"eyebrow":"Service 01 · Website Design & Development","headline":"Custom websites engineered for clarity, speed, and conversion.","subheadline":"A business website should never launch as an empty template waiting for words. Khans Marketing designs, writes, integrates, and optimizes your entire web presence.","primaryCta":"Get Your Website Built","secondaryCta":"Book a Call","problemSection":{"eyebrow":"The Difference Between a Template and a Business Asset","heading":"Content integration is built into the development process.","body":"Many web projects stall between design approval and launch because nobody took responsibility for organizing the actual content. We handle structure, copy placement, and technical optimization together so your website launches ready to convert.","comparisonLeftTitle":"Typical Template Builds","comparisonLeftItems":["Generic layouts disconnected from your actual offer","Placeholder text left for your team to figure out later","Heavy scripts that slow down mobile browsing","Missing heading hierarchy and search metadata"],"comparisonRightTitle":"Khans Marketing Builds","comparisonRightItems":["Purpose-built page architecture mapped to buyer questions","Structured copywriting written and placed before launch","Lean, responsive code optimized for mobile and desktop","Clean URLs, semantic HTML, and technical SEO readiness"]},"capabilities":{"eyebrow":"What Is Included","heading":"Every element required for a dependable business website.","items":[{"number":"01","title":"Custom Website Design","description":"Refined visual systems tailored to your brand credibility — clean typography, structured spacing, and deliberate conversion hierarchy."},{"number":"02","title":"Responsive Website Development","description":"Clean front-end implementation tested across desktop monitors, laptops, tablets, and mobile screens with zero horizontal overflow."},{"number":"03","title":"Business Websites & Landing Pages","description":"Multi-page company sites for service credibility alongside focused landing pages built for specific campaigns or lead generation."},{"number":"04","title":"Website Content Integration & Copywriting","description":"Clear headlines, service explanations, calls to action, and FAQs formatted directly into the layout so nothing looks unfinished."},{"number":"05","title":"Information Architecture & UX","description":"Logical navigation menus, scannable sections, and accessible forms that help visitors find answers and contact you without friction."},{"number":"06","title":"Speed & Mobile Optimization","description":"Lean asset delivery, optimized markup, and responsive touch targets so mobile visitors experience fast, reliable page loads."}]},"launchProcess":{"eyebrow":"Website Launch Process","heading":"How we take your site from brief to live domain.","steps":[{"step":"01","title":"Sitemap & Content Blueprint","description":"We define every page, its core purpose, and the key messages visitors need to see first."},{"step":"02","title":"Design & Copywriting","description":"Visual layout and page copy are crafted together so headlines, visuals, and CTAs fit naturally."},{"step":"03","title":"Responsive Build & Integration","description":"Clean code, accessible forms, metadata, and mobile layouts are assembled and verified."},{"step":"04","title":"Pre-Launch QA & Deployment","description":"Cross-device testing, link verification, speed checks, and clean launch to your hosting."}]},"ctaBand":{"heading":"Need a website that represents your business properly?","description":"Share what your business offers and what pages you need. We will prepare a clear project scope.","buttonLabel":"Let’s Discuss Your Project"}},"seoPage":{"eyebrow":"Service 02 · Search Engine Optimization","headline":"Make your business discoverable when customers search.","subheadline":"We align your website’s technical structure, page hierarchy, and written content with real customer search intent — clearly, methodically, and without empty promises.","primaryCta":"Improve Your Search Visibility","secondaryCta":"Request a Consultation","businessValue":{"eyebrow":"SEO Explained Plainly","heading":"Search visibility is earned through structure, clarity, and relevance.","lead":"When a prospective customer searches for what you offer, search engines decide which businesses deserve to appear based on how clearly your site communicates, how reliably it performs technically, and how well your pages answer the searcher’s question.","honestyNoteTitle":"Our Standard on SEO Claims","honestyNoteBody":"We never promise overnight results or guaranteed #1 Google rankings. Search algorithms evolve constantly. Instead, we focus on durable fundamentals — clean architecture, accurate search-intent targeting, and measurable improvements over time."},"pillars":{"eyebrow":"Scope of SEO Work","heading":"Technical foundations paired with strategic content optimization.","items":[{"number":"01","title":"Technical SEO","description":"Resolving crawlability, indexing issues, canonical tags, XML sitemaps, mobile usability, and core loading bottlenecks."},{"number":"02","title":"On-Page SEO","description":"Optimizing title tags, meta descriptions, heading hierarchy (H1–H3), internal link paths, and image alt attributes."},{"number":"03","title":"Keyword Research & Search Intent","description":"Identifying the exact terms buyers use at each stage — informational vs. commercial — so pages match real demand."},{"number":"04","title":"Competitor Analysis","description":"Evaluating how competing businesses structure their content and capture search visibility to find practical gaps."},{"number":"05","title":"Website Structure & Architecture","description":"Organizing service pages and supporting topics logically so authority flows cleanly and visitors navigate effortlessly."},{"number":"06","title":"Content Optimization","description":"Refining existing pages and planning new service content so every URL serves a clear topic without keyword stuffing."}]},"intentExplorer":{"eyebrow":"Interactive Inspection","heading":"What we audit and optimize across every engagement.","description":"Switch tabs to review the core checklists behind our SEO work.","tabs":[{"id":"technical","label":"Technical Health","focus":"Ensuring search engines can crawl, render, and index your website cleanly.","checks":["Clean semantic HTML & single H1 hierarchy per page","Mobile viewport responsiveness & fast Core Web Vitals","Broken link, redirect chain, and duplicate URL resolution","Structured metadata, canonical links, and sitemap hygiene"]},{"id":"onpage","label":"On-Page Structure","focus":"Making every page unmistakable to both human readers and search crawlers.","checks":["Search-aligned page titles and compelling meta descriptions","Topic-focused subheadings that answer buyer questions directly","Intentional internal linking between core service and contact pages","Descriptive alt text and clean, human-readable URL slugs"]},{"id":"research","label":"Intent & Competitors","focus":"Prioritizing terms that attract qualified business enquiries, not vanity clicks.","checks":["Mapping commercial keywords to dedicated service landing pages","Analyzing search intent (researching vs. ready to enquire)","Reviewing competitor page depth and content coverage gaps","Tracking organic visibility trends in plain-language reports"]}]},"reporting":{"eyebrow":"Transparent SEO Reporting","heading":"Reports written for business owners, not spreadsheets full of noise.","body":"Every monthly update explains what changed on your site, how search visibility and organic enquiries are trending, and what priorities come next.","metricsList":["Summary of technical and on-page work completed","Search impression and click trends by key service topic","Page-level engagement and enquiry conversion observations","Clear action plan for the upcoming cycle"]},"ctaBand":{"heading":"Want to know what is holding your search visibility back?","description":"Send us your website URL and business goals. We will review your current structure and suggest practical next steps.","buttonLabel":"Make Your Business Discoverable"}},"socialPage":{"eyebrow":"Service 03 · Social Media Marketing","headline":"Consistent brand presence that turns attention into website visits.","subheadline":"Effective social media is not random posting. It is disciplined content planning, recognizable brand voice, and targeted distribution that supports real business growth.","primaryCta":"Grow Your Online Presence","secondaryCta":"Book a Call","strategyIntro":{"eyebrow":"Editorial Discipline for Social Channels","heading":"Structured planning instead of last-minute posting.","body":"Businesses lose momentum on social platforms when posts are rushed, off-brand, or disconnected from what they sell. We establish clear content pillars, maintain visual consistency, and link social activity back to your core website pages."},"cadenceVisual":{"title":"Structured Content Rhythm","subtitle":"Balanced weekly pillars keep your channels informative, credible, and active.","columns":["Educational Insight","Service Clarity","Audience Engagement","Campaign Promotion"]},"capabilities":{"eyebrow":"Social Media Capabilities","heading":"Strategy, execution, and paid amplification under one roof.","items":[{"number":"01","title":"Social Media Strategy","description":"Selecting the right platforms for your audience, defining tone of voice, and setting realistic channel objectives."},{"number":"02","title":"Content Planning & Calendars","description":"Structured monthly content schedules mapped to your services, seasonal priorities, and customer questions."},{"number":"03","title":"Content Creation & Publishing","description":"Cohesive captions, editorial graphics, and scheduled publishing that keep your brand dependable and recognizable."},{"number":"04","title":"Brand Consistency","description":"Keeping typography, visual tone, and written messaging aligned with your website across every profile."},{"number":"05","title":"Audience Engagement & Management","description":"Active profile stewardship, comment and message responsiveness standards, and steady community building."},{"number":"06","title":"Paid Social Campaigns","description":"Focused ad campaigns structured to reach defined audience segments and drive qualified traffic to landing pages."}]},"bridgeSection":{"eyebrow":"Connected to Your Website","heading":"Social media works best when it leads somewhere purposeful.","points":[{"title":"Clear Destination Pages","body":"Campaigns point visitors to focused service or enquiry pages built to answer their questions immediately."},{"title":"Unified Messaging","body":"What prospects read on your social feed matches what they experience when they arrive on khansmarketing.com or your site."},{"title":"Steady Compounding Reach","body":"Consistent organic publishing builds trust while targeted paid campaigns accelerate specific offers."}]},"ctaBand":{"heading":"Ready for social channels that reflect the quality of your business?","description":"Tell us which platforms matter most to your customers and we will outline a practical content plan.","buttonLabel":"Start Your Project"}},"portfolioPage":{"eyebrow":"Pakistani Niche Directory & Showcase","headline":"Everyday Pakistani businesses, schools, and teachers built clearly online.","subheadline":"Good business websites do not need bloated animations or unrealistic enterprise hype. Browse a randomized selection of real Pakistani school, tutoring, clinic, and local retail websites.","honestyBanner":"Reference showcase: These live Pakistani niche websites represent the practical, accessible level of digital presence we benchmark and build for everyday schools, teachers, and local businesses.","filters":{"all":"All Categories","education":"Schools & Teachers","localServices":"Clinics & Local Retail"},"fetchRandomBtn":"Fetch Random Websites","fetchingBtn":"Loading Selection…","visitSiteLabel":"Visit Live Website","buildSimilarLabel":"Request Similar Build","ctaBand":{"heading":"Want a clean, dependable website like these for your school or business?","description":"Call 0321-2995766 directly or share your requirements so we can plan a clear, affordable build.","primaryCta":"Start Your Project","secondaryCta":"Book a Call"}},"aboutPage":{"eyebrow":"About Khans Marketing","headline":"A digital growth partner built around clarity, integration, and reliable execution.","subheadline":"Khans Marketing (KM) helps businesses establish a credible online presence and grow it steadily through coordinated websites, content, search, and social media.","philosophy":{"eyebrow":"Our Philosophy","heading":"Websites, content, search, and social media belong under one strategy.","paragraphs":["Too often, businesses are forced to coordinate separate vendors for web design, copywriting, SEO, and social media. Each piece gets built in isolation, leaving the business owner to stitch together conflicting advice.","Khans Marketing exists to solve that disconnect. When the team designing your website also structures your content, aligns your technical SEO, and plans your social communication, every channel strengthens the others.","We keep our work grounded in what actually serves your customers: clear explanations, fast and accessible pages, honest communication, and consistent execution."]},"pillars":{"eyebrow":"How We Work","heading":"Four commitments that guide every engagement.","items":[{"number":"01","title":"Clarity Before Aesthetics","body":"Visual design only succeeds when visitors immediately understand who you are, what you offer, and how to work with you."},{"number":"02","title":"Content-First Architecture","body":"We treat words and structure as foundational. Every page is organized around real customer questions and clear actions."},{"number":"03","title":"Technical Reliability","body":"Clean markup, responsive layouts, accessible forms, and sound search foundations are standard — never optional extras."},{"number":"04","title":"Plain-Spoken Partnership","body":"We avoid jargon and inflated promises. You receive direct communication, transparent progress, and practical guidance."}]},"integrationNote":{"eyebrow":"Work With Us","heading":"Looking for a dependable partner for your next stage of growth?","body":"Whether you need a complete website from scratch or stronger search and social momentum for an existing business, let us review your goals together.","ctaLabel":"Get in Touch"}},"contactPage":{"eyebrow":"Contact Khans Marketing","headline":"Tell us about your project.","subheadline":"Share what your business needs — a new website, stronger search visibility, or structured social media marketing — and we will respond with clear next steps.","directInfo":{"title":"Direct Contact & Phone","emailLabel":"Official Email (Configurable)","emailHint":"Replace this placeholder in siteConfig.ts once your company mailbox is active.","phoneLabel":"Phone & WhatsApp","phoneHint":"Call or message directly for project enquiries and consultations.","bookingTitle":"Prefer a quick phone call?","bookingBody":"Tap Book a Call to view our direct number (0321-2995766) for voice or WhatsApp.","bookingCta":"Book a Call"},"afterSubmit":{"title":"What happens after you submit an enquiry","steps":[{"step":"01","title":"We Review Your Details","description":"We look over your business context, website (if applicable), and requested services."},{"step":"02","title":"Initial Assessment & Questions","description":"We follow up with targeted observations and any clarifying questions on scope."},{"step":"03","title":"Clear Scope & Next Steps","description":"You receive a straightforward recommendation covering deliverables, structure, and how to proceed."}]},"form":{"title":"Project Enquiry Form","subtitle":"Fields marked with * are required so we can reply accurately.","fields":{"fullName":{"label":"Full Name *","placeholder":"e.g. Tariq Mahmood"},"email":{"label":"Business Email *","placeholder":"name@company.com"},"phone":{"label":"Phone Number / WhatsApp *","placeholder":"+92 300 000 0000"},"company":{"label":"Company or Business Name *","placeholder":"Your Business Name"},"websiteUrl":{"label":"Website URL","placeholder":"https://yourbusiness.com","optional":"Optional"},"serviceRequired":{"label":"Service Required *"},"budget":{"label":"Approximate Project Budget","optional":"Optional"},"projectDetails":{"label":"Tell Us About Your Project *","placeholder":"Briefly describe your business, what you want to improve, and your ideal timeline."}},"serviceOptions":{"website-development":"Website Design & Development","seo":"Search Engine Optimization (SEO)","social-media-marketing":"Social Media Marketing","multiple-services":"Multiple Services (Website + SEO + Social)","other":"Other Digital Marketing Enquiry"},"budgetOptions":{"":"Prefer to discuss later","under-1000":"Starter Scope (Under $1,000)","1000-2500":"Growth Scope ($1,000 – $2,500)","2500-5000":"Comprehensive Scope ($2,500 – $5,000)","5000-plus":"Full-Scale Retainer ($5,000+)","discuss":"Custom / Flexible Budget"},"submitLabel":"Send Enquiry","submittingLabel":"Validating Enquiry…","privacyNote":"Your details are only used to review and respond to your project enquiry.","errors":{"required_name":"Please enter your full name (at least 2 characters).","required_email":"Please enter your business email address.","invalid_email":"Please enter a valid email address (for example, name@company.com).","required_phone":"Please enter your phone or WhatsApp number.","invalid_phone":"Please enter a valid phone number with 7 to 16 digits.","required_company":"Please enter your company or business name.","invalid_url":"Please enter a valid website URL (for example, https://example.com) or leave it blank.","required_service":"Please choose the service you require.","required_details":"Please tell us briefly about your project.","short_details":"Please share at least 15 characters so we understand your goals.","spam_detected":"Submission blocked by spam protection."},"devConfirmation":{"badge":"Frontend Validation Complete · Endpoint Not Connected Yet","title":"Your enquiry is validated and ready for email integration.","body":"No backend mail server is connected in this build yet, so this form has not transmitted an email automatically. Once the official Khans Marketing endpoint is connected in siteConfig.ts, submissions will deliver directly.","configHint":"Configured destination placeholder:","summaryTitle":"Prepared Enquiry Summary","mailtoButton":"Open in Email App Instead","resetButton":"Edit or Submit Another Enquiry"},"liveSuccess":{"title":"Thank you — your enquiry has been received.","body":"We have recorded your project details and will reply to your email shortly with suggested next steps.","resetButton":"Submit Another Enquiry"},"liveFailure":{"title":"We could not send your enquiry automatically right now.","body":"Please try sending directly via your email application using the pre-filled link below.","mailtoButton":"Send via Email App"}}},"footer":{"tagline":"Digital growth partner focused on content-ready websites, search engine optimization, and social media marketing.","navigationHeading":"Company","servicesHeading":"Services","contactHeading":"Enquiries","emailConfigNote":"Configurable official email placeholder","copyright":"© 2026 Khans Marketing (KM). All rights reserved.","domainText":"khansmarketing.com"},"chatWidget":{"launcherLabel":"Ask KM Advisor","closeLabel":"Close chat","clearLabel":"New chat","title":"KM Project Advisor","subtitle":"Websites, SEO & Social Media Guidance","roleLabel":"Assistant Mode","roles":{"strategist":"Project Strategist","quickGuide":"Quick Answer"},"welcomeMessage":"Hello — ask anything about website structure, content writing, SEO priorities, or social media planning for your business.","starterPrompts":["How do you build a school or teacher website with content?","What does a technical & on-page SEO audit cover?","Should we start with a website or social media first?"],"inputPlaceholder":"Ask about your website, SEO, or social media goals…","sendLabel":"Send","thinkingLabel":"Preparing reply…","callShortcutLabel":"Call 03212995766","errorFallback":"Unable to reach the advisor right now. You can call or WhatsApp 03212995766 directly."}},"ur":{"meta":{"home":{"title":"خانز مارکیٹنگ (KM) — ویب ڈیولپمنٹ، SEO اور سوشل میڈیا مارکیٹنگ","description":"خانز مارکیٹنگ کاروباری ویب سائٹس مکمل مواد کے ساتھ تیار کرتی ہے اور سرچ انجن آپٹیمائزیشن (SEO) اور سوشل میڈیا مارکیٹنگ کے ذریعے آپ کی آن لائن موجودگی کو مستحکم کرتی ہے۔"},"website-development":{"title":"ویب سائٹ ڈیزائن اور ڈیولپمنٹ | خانز مارکیٹنگ (KM)","description":"مکمل مواد، بہترین یوزر ایکسپیرینس، تیز رفتار کارکردگی اور ریسپانسیو ڈیزائن کے ساتھ کسٹم بزنس ویب سائٹس۔"},"seo":{"title":"سرچ انجن آپٹیمائزیشن (SEO) | خانز مارکیٹنگ (KM)","description":"ٹیکنیکل SEO، آن پیج آپٹیمائزیشن، کی ورڈ ریسرچ اور واضح ماہانہ رپورٹس تاکہ درست صارفین آپ کے کاروبار کو آسانی سے تلاش کر سکیں۔"},"social-media-marketing":{"title":"سوشل میڈیا مارکیٹنگ | خانز مارکیٹنگ (KM)","description":"منظم سوشل میڈیا حکمتِ عملی، مستقل مواد کی منصوبہ بندی، برانڈ کی یکسانیت اور بامقصد اشتہاری مہمات۔"},"portfolio":{"title":"پاکستانی نِش ویب سائٹس پورٹ فولیو | خانز مارکیٹنگ (KM)","description":"پاکستانی اسکولوں، اساتذہ اور مقامی کاروباروں کی سادہ اور عملی ویب سائٹس کی مثالیں دیکھیں۔"},"about":{"title":"ہمارے بارے میں | خانز مارکیٹنگ (KM)","description":"خانز مارکیٹنگ — ویب سائٹس، تحریری مواد، سرچ آپٹیمائزیشن اور سوشل میڈیا کو ایک مربوط نظام کے تحت چلانے والا ڈیجیٹل پارٹنر۔"},"contact":{"title":"رابطہ کریں اور پروجیکٹ کی تفصیلات بھیجیں | خانز مارکیٹنگ (KM)","description":"اپنی ویب سائٹ، SEO یا سوشل میڈیا پروجیکٹ کے لیے 03212995766 پر کال کریں یا آن لائن فارم پُر کریں۔"}},"utilityBar":{"domainNote":"khansmarketing.com — ویب سائٹس · سرچ · سوشل میڈیا","langEnglish":"EN","langUrdu":"اردو","languageLabel":"زبان منتخب کریں"},"nav":{"home":"ہوم","services":"سروسز","websiteDev":"ویب سائٹ ڈیولپمنٹ","seo":"سرچ انجن آپٹیمائزیشن (SEO)","socialMedia":"سوشل میڈیا مارکیٹنگ","portfolio":"پورٹ فولیو","about":"ہمارے بارے میں","contact":"رابطہ","bookCall":"کال بُک کریں","openMenu":"نیویگیشن مینو کھولیں","closeMenu":"نیویگیشن مینو بند کریں"},"bookModal":{"title":"خانز مارکیٹنگ سے براہِ راست بات کریں","description":"اپنی ویب سائٹ، سرچ رینکنگ یا سوشل میڈیا کی ضروریات پر گفتگو کرنے کے لیے نیچے دیے گئے نمبر پر براہِ راست کال یا واٹس ایپ کریں۔","phonePromptLabel":"براہِ راست فون اور واٹس ایپ نمبر","callNowAction":"ابھی کال کریں","copyNumberAction":"نمبر کاپی کریں","copiedLabel":"کاپی ہو گیا","whatsappAction":"واٹس ایپ پر پیغام بھیجیں","primaryAction":"انکوائری فارم پُر کریں","secondaryAction":"بند کریں","closeLabel":"ڈائیلاگ بند کریں","externalAction":"بکنگ کیلنڈر پر جائیں"},"home":{"hero":{"eyebrow":"خانز مارکیٹنگ · ڈیجیٹل گروتھ ایجنسی","headlinePart1":"ایسی ویب سائٹس جو ","headlineHighlight1":"تلاش","headlinePart2":" میں آئیں، اور ایسا مواد جو ","headlineHighlight2":"اعتماد","subheadline":"ہم آپ کے کاروبار کے لیے مکمل مواد کے ساتھ جدید ویب سائٹ تیار کرتے ہیں، اور پھر منظم SEO اور مؤثر سوشل میڈیا مارکیٹنگ کے ذریعے آپ کی رسائی کو بڑھاتے ہیں۔","primaryCta":"کال بُک کریں","secondaryCta":"ہماری سروسز دیکھیں","blueprintLabel":"مربوط ڈیجیٹل ڈھانچہ","blueprintNodes":["ویب سائٹ اور مواد","سرچ کی مضبوط بنیاد","سوشل میڈیا رسائی"]},"positioning":{"label":"مربوط حکمتِ عملی کی اہمیت","statement":"اکثر کاروباروں کو ایسے ڈیزائنر ملتے ہیں جو سرچ کی پروا نہیں کرتے، ایسے رائٹر جو ویب سائٹ کے ڈھانچے سے ناواقف ہوتے ہیں، اور ایسی سوشل میڈیا ٹیم جس کا ویب سائٹ سے کوئی ربط نہیں ہوتا۔ خانز مارکیٹنگ ان تمام شعبوں کو یکجا کرتی ہے۔","pillars":[{"title":"پہلے دن سے مکمل تیاری","text":"آپ کی ویب سائٹ حقیقی کاروباری مواد اور واضح سرخیوں کے ساتھ تیار کی جاتی ہے، نہ کہ ایک خالی ٹیمپلیٹ کی صورت میں۔"},{"title":"سرچ انجن کے اصولوں کے مطابق","text":"صاف کوڈ، منطقی ترتیب اور موبائل پر تیز رفتار لوڈنگ لانچ کے وقت ہی سرچ انجنز کو واضح پیغام دیتی ہے۔"},{"title":"سوشل چینلز سے براہِ راست ربط","text":"سوشل میڈیا پر شائع ہونے والا مواد اور اشتہاری مہمات ایک ہی برانڈ پیغام کو آگے بڑھاتی ہیں اور صارفین کو ویب سائٹ تک لاتی ہیں۔"}]},"servicesOverview":{"eyebrow":"بنیادی خدمات","heading":"تین شعبے جو ایک مربوط نظام کے طور پر کام کرتے ہیں۔","subheading":"ہمارا ہر پروجیکٹ وضاحت، تکنیکی پختگی اور کاروبار کی حقیقی آن لائن پہچان پر مرکوز ہوتا ہے۔","exploreLink":"مکمل تفصیل دیکھیں","cards":[{"number":"01","route":"website-development","title":"ویب سائٹ ڈیزائن اور ڈیولپمنٹ","summary":"مکمل مواد، آسان نیویگیشن، ریسپانسیو لے آؤٹ اور تیز رفتار کارکردگی کے ساتھ کسٹم بزنس ویب سائٹس اور لینڈنگ پیجز۔","deliverables":["کسٹم ڈیزائن اور ریسپانسیو ویب ڈھانچہ","تحریری مواد کی تیاری اور مکمل شمولیت","موبائل کی موزونیت اور اسپیڈ آپٹیمائزیشن","لانچ کے وقت SEO کے لیے موزوں تکنیکی ساخت"]},{"number":"02","route":"seo","title":"سرچ انجن آپٹیمائزیشن (SEO)","summary":"ٹیکنیکل اور آن پیج بہتری، کی ورڈ ریسرچ اور حریفوں کے تجزیے کی مدد سے آپ کے کاروبار کو درست صارفین تک پہنچانا۔","deliverables":["ٹیکنیکل آڈٹ اور کرالنگ کی خامیوں کی درستگی","کی ورڈ اور سرچ انٹینٹ کی منصوبہ بندی","آن پیج مواد اور میٹا ڈیٹا کی بہتری","آسان اور قابلِ فہم ماہانہ SEO رپورٹس"]},{"number":"03","route":"social-media-marketing","title":"سوشل میڈیا مارکیٹنگ","summary":"کاروباری اہداف سے ہم آہنگ سوشل میڈیا حکمتِ عملی، باقاعدہ مواد کی اشاعت، برانڈ کی یکسانیت اور ہدف پر مبنی پیڈ مہمات۔","deliverables":["پلیٹ فارم حکمتِ عملی اور ماہانہ مواد کیلنڈر","باقاعدہ پوسٹس کی تیاری اور پبلشنگ","صارفین سے رابطہ اور برانڈ کی مستقل شناخت","ویب سائٹ ٹریفک کے لیے ٹارگٹڈ پیڈ مہمات"]}]},"systemShowcase":{"eyebrow":"ہر شعبہ کس کاروباری مسئلے کو حل کرتا ہے","heading":"ہمارے کام کے طریقۂ کار کا جائزہ لیں۔","subheading":"نیچے دیے گئے کسی بھی شعبے کو منتخب کریں اور دیکھیں کہ کاروبار کو عموماً کس رکاوٹ کا سامنا ہوتا ہے اور خانز مارکیٹنگ اسے کیسے حل کرتی ہے۔","tabs":[{"id":"web","label":"01. ویب سائٹ اور مواد","problemTitle":"عام مسئلہ","problem":"اکثر ویب سائٹس مواد کی کمی کی وجہ سے تاخیر کا شکار ہو جاتی ہیں، یا بے معنی ڈمی عبارت کے ساتھ لانچ ہو کر کاروبار کا اصل پیغام واضح نہیں کر پاتیں۔","solutionTitle":"خانز مارکیٹنگ کا حل","solution":"ہم ڈیزائن اور ڈیولپمنٹ کے ساتھ ساتھ صفحات کا ڈھانچہ بناتے ہیں اور واضح، مؤثر کاروباری تحریر شامل کرتے ہیں۔","outcomeTitle":"عملی نتیجہ","outcome":"ایک تیز رفتار اور موبائل فرینڈلی ویب سائٹ جہاں ہر سرخی اور بٹن وزٹر کو رابطے کی طرف رہنمائی کرتا ہے۔","ctaLabel":"اپنی ویب سائٹ بنوائیں","route":"website-development"},{"id":"seo","label":"02. سرچ میں موجودگی","problemTitle":"عام مسئلہ","problem":"بہترین ڈیزائن والی ویب سائٹ بھی گمنام رہتی ہے اگر اس کے عنوانات، اندرونی لنکس، اسپیڈ اور سرچ انٹینٹ پر توجہ نہ دی جائے۔","solutionTitle":"خانز مارکیٹنگ کا حل","solution":"ہم تکنیکی اصلاح کے ساتھ کی ورڈ اور حریفوں کا باریک بینی سے تجزیہ کرتے ہیں تاکہ ہر صفحہ صارف کی حقیقی تلاش سے مطابقت رکھے۔","outcomeTitle":"عملی نتیجہ","outcome":"بہتر انڈیکسنگ، مضبوط موضوعاتی مطابقت اور شفاف ماہانہ رپورٹس کے ساتھ سرچ میں بتدریج بہتری۔","ctaLabel":"اپنی سرچ ویزیبلٹی بہتر بنائیں","route":"seo"},{"id":"social","label":"03. سوشل میڈیا موجودگی","problemTitle":"عام مسئلہ","problem":"بغیر کسی منصوبے کے کبھی کبھار پوسٹ کرنا محنت ضائع کرتا ہے، برانڈ کی پہچان بکھیرتا ہے اور ویب سائٹ پر موزوں ٹریفک نہیں لاتا۔","solutionTitle":"خانز مارکیٹنگ کا حل","solution":"ہم باقاعدہ ایڈیٹوریل کیلنڈر بناتے ہیں، ڈیزائن اور تحریر کا معیار برقرار رکھتے ہیں اور ضرورت کے مطابق پیڈ مہمات چلاتے ہیں۔","outcomeTitle":"عملی نتیجہ","outcome":"ایک قابلِ اعتماد اور فعال سوشل موجودگی جو صارفین میں آشنائی پیدا کرتی ہے اور کاروباری رابطوں کو سہارا دیتی ہے۔","ctaLabel":"اپنی آن لائن موجودگی بڑھائیں","route":"social-media-marketing"}]},"process":{"eyebrow":"ہمارا طریقۂ کار","heading":"پہلی گفتگو سے مستقل ترقی تک ایک واضح راستہ۔","subheading":"کوئی مبہم وعدے یا الجھے ہوئے مراحل نہیں۔ ہر مرحلے کے مقاصد اور نتائج واضح ہوتے ہیں۔","steps":[{"step":"01","title":"تحقیق اور جائزہ","description":"ہم آپ کے کاروبار، صارفین، موجودہ ویب سائٹ اور مارکیٹ کے حالات کو سمجھ کر واضح ترجیحات طے کرتے ہیں۔"},{"step":"02","title":"ڈھانچہ اور تعمیر","description":"ہم صفحات ترتیب دیتے ہیں، مواد تحریر کر کے شامل کرتے ہیں، ریسپانسیو ویب سائٹ بناتے ہیں اور بنیادی SEO سیٹ اپ مکمل کرتے ہیں۔"},{"step":"03","title":"لانچ اور مسلسل ترقی","description":"تمام ڈیوائسز پر جانچ کے بعد ہم SEO کی بہتری اور سوشل میڈیا مہمات کو جاری رکھتے ہیں اور سادہ زبان میں رپورٹس پیش کرتے ہیں۔"}]},"whyKm":{"eyebrow":"خانز مارکیٹنگ کا انتخاب کیوں؟","heading":"ذمہ داری، وضاحت اور معیاری کام کی بنیاد پر۔","items":[{"title":"ایک ٹیم، ایک مربوط منصوبہ","description":"آپ کی ویب سائٹ، تحریری مواد، سرچ آپٹیمائزیشن اور سوشل میڈیا ایک ہی حکمتِ عملی کے تحت چلتے ہیں۔"},{"title":"بے جا دعوؤں کے بجائے ٹھوس کام","description":"ہم مبالغہ آمیز وعدوں کی بجائے واضح پیغام، معیاری کوڈ اور حقیقت پسندانہ نتائج پر توجہ دیتے ہیں۔"},{"title":"شفاف اور قابلِ فہم رپورٹس","description":"آپ ہمیشہ دیکھ سکتے ہیں کہ کیا کام مکمل ہوا، اس کا کیا اثر ہوا اور اگلے مرحلے میں کیا بہتر بنایا جا رہا ہے۔"}]},"faq":{"eyebrow":"اکثر پوچھے جانے والے سوالات","heading":"آغاز سے پہلے چند ضروری وضاحتیں۔","items":[{"question":"کیا رابطہ کرنے سے پہلے ویب سائٹ کا تمام تحریری مواد ہمارے پاس تیار ہونا ضروری ہے؟","answer":"نہیں۔ مواد کی تیاری اور ویب سائٹ میں اس کی شمولیت ہماری سروس کا لازمی حصہ ہے۔ ہم آپ سے کاروبار کی تفصیلات حاصل کر کے ہر صفحے کا ڈھانچہ اور تحریر خود تیار کرتے ہیں۔"},{"question":"کیا ہم صرف ویب سائٹ، صرف SEO یا صرف سوشل میڈیا سروس لے سکتے ہیں؟","answer":"جی ہاں۔ اگرچہ تمام سروسز کو یکجا کرنے سے بہتر ہم آہنگی پیدا ہوتی ہے، لیکن آپ اپنی فوری ضرورت کے مطابق صرف ویب ڈیولپمنٹ، SEO یا سوشل میڈیا مارکیٹنگ سے بھی آغاز کر سکتے ہیں۔"},{"question":"کیا آپ گوگل کے پہلے صفحے پر آنے کی گارنٹی دیتے ہیں؟","answer":"کوئی بھی پیشہ ور SEO ماہر مخصوص رینکنگ کی گارنٹی نہیں دے سکتا کیونکہ سرچ انجن کے الگورتھم ان کے اپنے اختیار میں ہوتے ہیں۔ البتہ ہم مضبوط تکنیکی ڈھانچے، درست کی ورڈ ریسرچ، آن پیج آپٹیمائزیشن اور دیانت دارانہ رپورٹنگ کی یقین دہانی کراتے ہیں۔"},{"question":"کیا ہماری ویب سائٹ موبائل فون پر اور انگریزی و اردو دونوں زبانوں میں درست کام کرے گی؟","answer":"ہماری تیار کردہ ہر ویب سائٹ موبائل فرسٹ اصولوں پر بنائی جاتی ہے اور اگر آپ کے صارفین کو انگریزی اور اردو دونوں کی ضرورت ہو تو بائیں سے دائیں (LTR) اور دائیں سے بائیں (RTL) دونوں لے آؤٹ مکمل طور پر سپورٹ کیے جاتے ہیں۔"},{"question":"پروجیکٹ کا آغاز کیسے کیا جائے؟","answer":"رابطہ صفحے پر اپنا فارم پُر کریں یا مشاورتی کال بُک کریں۔ ہم آپ کی موجودہ آن لائن حیثیت کا جائزہ لے کر عملی تجاویز کے ساتھ جواب دیں گے۔"}]},"closingCta":{"eyebrow":"آغاز کے لیے تیار ہیں؟","heading":"اپنے کاروبار کو تلاش میں آسان اور صارفین کے لیے قابلِ اعتماد بنائیں۔","description":"ہمیں بتائیں کہ آپ کیا بنانا یا بہتر کرنا چاہتے ہیں۔ ہم آپ کے مقاصد کے مطابق واضح لائحۂ عمل پیش کریں گے۔","primaryCta":"اپنا پروجیکٹ شروع کریں","secondaryCta":"کال بُک کریں"}},"webDevPage":{"eyebrow":"سروس 01 · ویب سائٹ ڈیزائن اور ڈیولپمنٹ","headline":"وضاحت، تیز رفتاری اور کاروباری نتائج کے لیے تیار کردہ کسٹم ویب سائٹس۔","subheadline":"ایک کاروباری ویب سائٹ کو خالی ٹیمپلیٹ کی صورت میں لانچ نہیں ہونا چاہیے۔ خانز مارکیٹنگ ڈیزائن، تحریری مواد، انضمام اور تکنیکی بہتری سب ایک ساتھ فراہم کرتی ہے۔","primaryCta":"اپنی ویب سائٹ بنوائیں","secondaryCta":"کال بُک کریں","problemSection":{"eyebrow":"عام ٹیمپلیٹ اور کاروباری ویب سائٹ میں فرق","heading":"مواد کی شمولیت ہمارے ڈیولپمنٹ عمل کا بنیادی حصہ ہے۔","body":"بہت سے ویب پروجیکٹس ڈیزائن کے بعد اس لیے رک جاتے ہیں کیونکہ اصل تحریری مواد کو ترتیب دینے کی ذمہ داری کوئی نہیں لیتا۔ ہم ڈھانچہ، تحریر اور تکنیکی تیاری ایک ساتھ مکمل کرتے ہیں تاکہ آپ کی ویب سائٹ لانچ کے دن سے کارآمد ہو۔","comparisonLeftTitle":"عام ٹیمپلیٹ ویب سائٹس","comparisonLeftItems":["غیر متعلقہ لے آؤٹ جو آپ کے اصل کاروبار کی عکاسی نہیں کرتے","ادھورا یا ڈمی متن جسے کلائنٹ پر چھوڑ دیا جاتا ہے","بھاری اسکرپٹس جو موبائل پر ویب سائٹ کو سست کر دیتے ہیں","سرخیوں کی غلط ترتیب اور بنیادی SEO میٹا ڈیٹا کی کمی"],"comparisonRightTitle":"خانز مارکیٹنگ کا معیار","comparisonRightItems":["صارفین کے سوالات کے مطابق سوچا سمجھا صفحات کا ڈھانچہ","لانچ سے پہلے مکمل اور مرتب شدہ کاروباری تحریری مواد","موبائل اور ڈیسک ٹاپ کے لیے ہلکا اور تیز رفتار کوڈ","صاف URLs، سیمینٹک HTML اور سرچ انجن کے لیے مکمل تیاری"]},"capabilities":{"eyebrow":"اس سروس میں کیا شامل ہے","heading":"ایک قابلِ اعتماد کاروباری ویب سائٹ کے تمام ضروری اجزاء۔","items":[{"number":"01","title":"کسٹم ویب سائٹ ڈیزائن","description":"آپ کے برانڈ کے وقار کے مطابق متوازن رنگ، معیاری ٹائپوگرافی اور واضح بصری ترتیب۔"},{"number":"02","title":"ریسپانسیو ویب ڈیولپمنٹ","description":"ڈیسک ٹاپ، لیپ ٹاپ، ٹیبلیٹ اور موبائل اسکرینز پر بغیر کسی کٹاؤ یا بگاڑ کے بہترین کارکردگی۔"},{"number":"03","title":"بزنس ویب سائٹس اور لینڈنگ پیجز","description":"مکمل کمپنی ویب سائٹس اور خاص مہمات یا لیڈ جنریشن کے لیے تیار کردہ فوکسڈ لینڈنگ پیجز۔"},{"number":"04","title":"مواد کی تیاری اور انضمام","description":"مؤثر سرخیاں، سروسز کی تفصیل، کال ٹو ایکشن بٹن اور سوالات کو براہِ راست ڈیزائن میں ڈھالنا۔"},{"number":"05","title":"ویب سائٹ کا ڈھانچہ اور UX","description":"آسان نیویگیشن، واضح حصے اور قابلِ رسائی فارمز تاکہ وزٹرز بغیر الجھن کے رابطہ کر سکیں۔"},{"number":"06","title":"رفتار اور موبائل آپٹیمائزیشن","description":"بہترین اسپیڈ، ہلکا کوڈ اور موبائل پر آسان ٹچ بٹن تاکہ ہر صارف کو تیز تجربہ ملے۔"}]},"launchProcess":{"eyebrow":"ویب سائٹ لانچ کا عمل","heading":"آپ کی ویب سائٹ کو تصور سے لائیو ڈومین تک پہنچانے کے مراحل۔","steps":[{"step":"01","title":"سائٹ میپ اور مواد کا خاکہ","description":"ہم ہر صفحے کا مقصد اور وہ بنیادی پیغام طے کرتے ہیں جو صارف کو سب سے پہلے نظر آنا چاہیے۔"},{"step":"02","title":"ڈیزائن اور تحریری مواد","description":"بصری لے آؤٹ اور صفحات کی تحریر ساتھ ساتھ تیار کی جاتی ہے تاکہ دونوں میں مکمل ہم آہنگی رہے۔"},{"step":"03","title":"ریسپانسیو کوڈنگ اور انضمام","description":"صاف HTML/CSS، فارمز کی تصدیق، میٹا ڈیٹا اور موبائل لے آؤٹس کو یکجا کیا جاتا ہے۔"},{"step":"04","title":"جانچ پڑتال اور لانچ","description":"مختلف اسکرینز پر مکمل ٹیسٹنگ، لنکس کی جانچ اور آپ کی ہوسٹنگ پر محفوظ اجرا۔"}]},"ctaBand":{"heading":"کیا آپ ایسی ویب سائٹ چاہتے ہیں جو آپ کے کاروبار کی صحیح نمائندگی کرے؟","description":"ہمیں اپنے کاروبار اور مطلوبہ صفحات کی تفصیل بھیجیں تاکہ ہم واضح لائحۂ عمل ترتیب دے سکیں۔","buttonLabel":"اپنے پروجیکٹ پر گفتگو کریں"}},"seoPage":{"eyebrow":"سروس 02 · سرچ انجن آپٹیمائزیشن (SEO)","headline":"جب صارفین تلاش کریں تو آپ کا کاروبار نمایاں ہو۔","subheadline":"ہم آپ کی ویب سائٹ کے تکنیکی ڈھانچے، صفحات کی ترتیب اور تحریری مواد کو صارفین کی حقیقی تلاش کے مطابق ڈھالتے ہیں — واضح اور پائیدار انداز میں۔","primaryCta":"اپنی سرچ ویزیبلٹی بہتر بنائیں","secondaryCta":"مشاورت کی درخواست کریں","businessValue":{"eyebrow":"SEO کی سادہ وضاحت","heading":"سرچ انجن میں موجودگی بہتر ڈھانچے، وضاحت اور مطابقت سے حاصل ہوتی ہے۔","lead":"جب کوئی ممکنہ گاہک آپ کی سروس تلاش کرتا ہے تو سرچ انجن دیکھتے ہیں کہ آپ کی ویب سائٹ کتنی واضح ہے، تکنیکی طور پر کتنی درست ہے اور صارف کے سوال کا کتنا بہتر جواب دیتی ہے۔","honestyNoteTitle":"SEO نتائج کے بارے میں ہمارا اصول","honestyNoteBody":"ہم کبھی راتوں رات معجزے یا گوگل پر پہلے نمبر کی جھوٹی گارنٹی نہیں دیتے۔ سرچ الگورتھم مسلسل بدلتے رہتے ہیں۔ ہم پائیدار بنیادوں — صاف کوڈ، درست کی ورڈ ریسرچ اور مستقل بہتری — پر کام کرتے ہیں۔"},"pillars":{"eyebrow":"SEO کا دائرۂ کار","heading":"تکنیکی مضبوطی اور معیاری آن پیج آپٹیمائزیشن کا امتزاج۔","items":[{"number":"01","title":"ٹیکنیکل SEO","description":"کرالنگ، انڈیکسنگ، کینونیکل ٹیگز، سائٹ میپ، موبائل کارکردگی اور اسپیڈ سے متعلق مسائل کا حل۔"},{"number":"02","title":"آن پیج SEO","description":"ٹائٹل ٹیگز، میٹا تفصیلات، سرخیوں کی ترتیب (H1–H3)، اندرونی لنکس اور تصاویر کے alt ٹیکسٹ کی اصلاح۔"},{"number":"03","title":"کی ورڈ ریسرچ اور سرچ انٹینٹ","description":"ان الفاظ کی نشاندہی جو حقیقی خریدار تلاش کرتے ہیں، تاکہ ہر صفحہ درست صارف کی ضرورت پوری کرے۔"},{"number":"04","title":"حریفوں کا تجزیہ","description":"مارکیٹ میں موجود دیگر کاروباروں کی ویب سائٹس کا جائزہ لے کر بہتری کے عملی مواقع تلاش کرنا۔"},{"number":"05","title":"ویب سائٹ کی ساخت اور ترتیب","description":"سروس صفحات کو منطقی انداز میں منظم کرنا تاکہ صارف اور سرچ انجن دونوں آسانی سے ہر حصہ سمجھ سکیں۔"},{"number":"06","title":"مواد کی بہتری","description":"موجودہ صفحات کو نکھارنا اور نئے صفحات کے لیے واضح موضوعاتی ترتیب بنانا، غیر ضروری الفاظ کی بھرمار کے بغیر۔"}]},"intentExplorer":{"eyebrow":"تفصیلی جائزہ","heading":"ہر SEO پروجیکٹ میں ہم کن نکات کی جانچ اور اصلاح کرتے ہیں۔","description":"مختلف پہلوؤں کی چیک لسٹ دیکھنے کے لیے نیچے دیے گئے ٹیبز منتخب کریں۔","tabs":[{"id":"technical","label":"تکنیکی صحت","focus":"یقینی بنانا کہ سرچ انجن آپ کی ویب سائٹ کو بغیر رکاوٹ پڑھ اور انڈیکس کر سکیں۔","checks":["سیمینٹک HTML اور ہر صفحے پر درست H1 سرخی کی ترتیب","موبائل اسکرین پر مکمل موزونیت اور تیز لوڈنگ اسپیڈ","ٹوٹے ہوئے لنکس، ری ڈائریکٹس اور ڈپلیکیٹ URLs کا خاتمہ","درست میٹا ڈیٹا، کینونیکل لنکس اور سائٹ میپ کی تنظیم"]},{"id":"onpage","label":"آن پیج ڈھانچہ","focus":"ہر صفحے کو انسانی قارئین اور سرچ کرالرز دونوں کے لیے واضح بنانا۔","checks":["تلاش سے ہم آہنگ پیج ٹائٹلز اور مؤثر میٹا تفصیلات","ایسی ذیلی سرخیاں جو گاہک کے سوالات کا براہِ راست جواب دیں","سروس صفحات اور رابطہ صفحے کے درمیان بامقصد اندرونی لنکنگ","واضح URL ڈھانچہ اور تصاویر کے درست متبادل بیانات"]},{"id":"research","label":"تلاش کا مقصد اور حریف","focus":"ایسے کی ورڈز کو ترجیح دینا جو حقیقی کاروباری رابطے لائیں۔","checks":["تجارتی نوعیت کے کی ورڈز کو مخصوص سروس صفحات سے جوڑنا","صارف کی نیت (معلومات کی تلاش بمقابلہ سروس کا حصول) کی پہچان","حریف ویب سائٹس کے مواد اور ڈھانچے میں موجود خلاء کا تجزیہ","آسان فہم ماہانہ رپورٹس میں آرگینک کارکردگی کی نگرانی"]}]},"reporting":{"eyebrow":"شفاف SEO رپورٹنگ","heading":"ایسی رپورٹس جو کاروباری مالکان کو آسانی سے سمجھ آئیں۔","body":"ہر ماہ کی رپورٹ واضح کرتی ہے کہ ویب سائٹ پر کیا تبدیلیاں کی گئیں، سرچ میں کتنی پیش رفت ہوئی اور اگلے ماہ کی ترجیحات کیا ہیں۔","metricsList":["مکمل کیے گئے تکنیکی اور آن پیج کام کا خلاصہ","اہم سروس موضوعات پر سرچ امپریشنز اور کلکس کا رجحان","صفحات پر صارفین کی دلچسپی اور رابطے کے فارمز کا جائزہ","آئندہ مہینے کے لیے واضح عملی منصوبہ"]},"ctaBand":{"heading":"جاننا چاہتے ہیں کہ آپ کی ویب سائٹ سرچ میں پیچھے کیوں ہے؟","description":"ہمیں اپنی ویب سائٹ کا پتہ اور کاروباری مقاصد بھیجیں۔ ہم جائزہ لے کر عملی تجاویز پیش کریں گے۔","buttonLabel":"اپنے کاروبار کو قابلِ تلاش بنائیں"}},"socialPage":{"eyebrow":"سروس 03 · سوشل میڈیا مارکیٹنگ","headline":"مستقل برانڈ پہچان جو صارفین کی توجہ کو ویب سائٹ وزٹ میں بدلے۔","subheadline":"مؤثر سوشل میڈیا محض کبھی کبھار پوسٹ لگانے کا نام نہیں، بلکہ باقاعدہ منصوبہ بندی، ایک جیسے معیار اور ہدف پر مبنی مہمات کا نتیجہ ہے۔","primaryCta":"اپنی آن لائن موجودگی بڑھائیں","secondaryCta":"کال بُک کریں","strategyIntro":{"eyebrow":"سوشل چینلز کے لیے منظم طرزِ عمل","heading":"آخری لمحے کی دوڑ دھوپ کے بجائے باقاعدہ حکمتِ عملی۔","body":"جب پوسٹس بغیر سوچے سمجھے، غیر مستقل انداز میں اور ویب سائٹ سے کٹ کر لگائی جائیں تو اعتماد متاثر ہوتا ہے۔ ہم واضح موضوعات طے کرتے ہیں، بصری یکسانیت برقرار رکھتے ہیں اور سوشل میڈیا ٹریفک کو آپ کی ویب سائٹ سے جوڑتے ہیں۔"},"cadenceVisual":{"title":"منظم مواد کا ہفتہ وار توازن","subtitle":"متوازن موضوعات آپ کے سوشل چینلز کو معلوماتی، معتبر اور متحرک رکھتے ہیں۔","columns":["معلوماتی رہنمائی","سروس کی وضاحت","صارفین سے مکالمہ","ہدف پر مبنی تشہیر"]},"capabilities":{"eyebrow":"سوشل میڈیا سروسز","heading":"حکمتِ عملی، تخلیقی مواد اور پیڈ مہمات ایک ساتھ۔","items":[{"number":"01","title":"سوشل میڈیا حکمتِ عملی","description":"آپ کے صارفین کے مطابق درست پلیٹ فارمز کا انتخاب، برانڈ کا لہجہ اور واضح اہداف کا تعین۔"},{"number":"02","title":"مواد کی منصوبہ بندی اور کیلنڈر","description":"آپ کی خدمات، موسمی ترجیحات اور صارفین کے سوالات کے مطابق منظم ماہانہ شیڈول۔"},{"number":"03","title":"مواد کی تیاری اور پبلشنگ","description":"معیاری تحریر، برانڈ سے ہم آہنگ گرافکس اور وقت پر باقاعدہ پبلشنگ۔"},{"number":"04","title":"برانڈ کی یکسانیت","description":"اس بات کو یقینی بنانا کہ ہر سوشل پروفائل کا رنگ، انداز اور پیغام آپ کی ویب سائٹ سے مطابقت رکھے۔"},{"number":"05","title":"صارفین سے رابطہ اور مینجمنٹ","description":"پروفائلز کی باقاعدہ دیکھ بھال، کمنٹس اور پیغامات کے جواب کا معیار اور اعتماد سازی۔"},{"number":"06","title":"پیڈ سوشل میڈیا مہمات","description":"مخصوص سامعین تک پہنچنے اور لینڈنگ پیجز پر موزوں ٹریفک لانے کے لیے ہدف بند اشتہاری مہمات۔"}]},"bridgeSection":{"eyebrow":"ویب سائٹ کے ساتھ مضبوط ربط","heading":"سوشل میڈیا تب بہترین نتیجہ دیتا ہے جب اس کا رخ ایک واضح منزل کی طرف ہو۔","points":[{"title":"موزوں لینڈنگ پیجز","body":"اشتہاری مہمات صارفین کو براہِ راست ان سروس یا رابطہ صفحات پر لے جاتی ہیں جہاں ان کے سوال کا فوری جواب موجود ہو۔"},{"title":"یکساں کاروباری پیغام","body":"جو بات صارف آپ کی سوشل فیڈ پر پڑھتا ہے، ویب سائٹ پر آ کر بھی اسے وہی وقار اور وضاحت ملتی ہے۔"},{"title":"بتدریج بڑھتا ہوا اثر","body":"مستقل آرگینک پوسٹنگ اعتماد بناتی ہے جبکہ ٹارگٹڈ پیڈ مہمات خاص پیشکشوں کو تیزی سے آگے بڑھاتی ہیں۔"}]},"ctaBand":{"heading":"کیا آپ چاہتے ہیں کہ آپ کے سوشل چینلز آپ کے کاروبار کے معیار کی عکاسی کریں؟","description":"ہمیں بتائیں کہ آپ کے صارفین کن پلیٹ فارمز پر موجود ہیں، ہم آپ کے لیے ایک عملی منصوبہ تیار کریں گے۔","buttonLabel":"اپنا پروجیکٹ شروع کریں"}},"portfolioPage":{"eyebrow":"پاکستانی نِش ویب سائٹس پورٹ فولیو","headline":"پاکستان کے اسکولوں، اساتذہ اور مقامی کاروباروں کی سادہ اور واضح ویب سائٹس۔","subheadline":"مؤثر کاروباری ویب سائٹ کے لیے غیر ضروری بھاری اینیمیشنز کی ضرورت نہیں ہوتی۔ پاکستانی اسکولوں، ٹیوٹرز، کلینکس اور مقامی دکانوں کی حقیقی ویب سائٹس کی مثالیں دیکھیں۔","honestyBanner":"حوالہ جاتی نمائش: یہ حقیقی پاکستانی ویب سائٹس اس عملی اور قابلِ فہم معیار کی عکاسی کرتی ہیں جو ہم مقامی اسکولوں، اساتذہ اور چھوٹے کاروباروں کے لیے تیار کرتے ہیں۔","filters":{"all":"تمام اقسام","education":"اسکول اور اساتذہ","localServices":"کلینکس اور مقامی کاروبار"},"fetchRandomBtn":"نئی رینڈم ویب سائٹس لائیں","fetchingBtn":"نئی مثالیں لوڈ ہو رہی ہیں…","visitSiteLabel":"لائیو ویب سائٹ دیکھیں","buildSimilarLabel":"اس جیسی ویب سائٹ بنوائیں","ctaBand":{"heading":"کیا آپ اپنے اسکول یا مقامی کاروبار کے لیے ایسی ہی صاف ستھری ویب سائٹ چاہتے ہیں؟","description":"براہِ راست 0321-2995766 پر کال کریں یا اپنی تفصیلات بھیجیں تاکہ ہم واضح اور موزوں منصوبہ ترتیب دے سکیں۔","primaryCta":"اپنا پروجیکٹ شروع کریں","secondaryCta":"کال بُک کریں"}},"aboutPage":{"eyebrow":"خانز مارکیٹنگ کے بارے میں","headline":"وضاحت، باہمی ربط اور پائیدار عملدرآمد پر قائم ایک ڈیجیٹل گروتھ پارٹنر۔","subheadline":"خانز مارکیٹنگ (KM) کاروباروں کو ایک قابلِ اعتماد آن لائن پہچان قائم کرنے اور ویب سائٹس، مواد، سرچ اور سوشل میڈیا کے ذریعے آگے بڑھنے میں مدد دیتی ہے۔","philosophy":{"eyebrow":"ہمارا نظریہ","heading":"ویب سائٹ، تحریری مواد، سرچ اور سوشل میڈیا ایک ہی حکمتِ عملی کے حصے ہیں۔","paragraphs":["اکثر کاروباروں کو ویب ڈیزائن، کاپی رائٹنگ، SEO اور سوشل میڈیا کے لیے الگ الگ افراد یا اداروں کے ساتھ تال میل بٹھانا پڑتا ہے، جس کے نتیجے میں ہر شعبہ الگ سمت میں چلتا ہے اور نتیجہ متاثر ہوتا ہے۔","خانز مارکیٹنگ اس خلا کو ختم کرنے کے لیے کام کرتی ہے۔ جب ویب سائٹ بنانے والی ٹیم ہی مواد کو ترتیب دے، ٹیکنیکل SEO کی بنیاد رکھے اور سوشل میڈیا کی منصوبہ بندی کرے تو ہر حصہ دوسرے کو مضبوط کرتا ہے۔","ہم اپنے کام کو انہی اصولوں پر استوار رکھتے ہیں جو واقعی کاروباری صارفین کے کام آتے ہیں: واضح گفتگو، تیز اور قابلِ استعمال ویب صفحات، دیانت دارانہ مشورہ اور مستقل مزاجی۔"]},"pillars":{"eyebrow":"ہمارے کام کے اصول","heading":"چار بنیادی اقدار جو ہر پروجیکٹ کی رہنمائی کرتی ہیں۔","items":[{"number":"01","title":"آرائش سے پہلے وضاحت","body":"خوبصورت ڈیزائن تبھی مؤثر ہوتا ہے جب وزٹر فوراً سمجھ سکے کہ آپ کیا کرتے ہیں اور آپ سے کیسے رابطہ کرنا ہے۔"},{"number":"02","title":"مواد پر مبنی ڈھانچہ","body":"ہم الفاظ اور معلومات کی ترتیب کو بنیادی اہمیت دیتے ہیں۔ ہر صفحہ گاہک کے حقیقی سوالات کے گرد بنایا جاتا ہے۔"},{"number":"03","title":"تکنیکی پختگی","body":"صاف کوڈ، ریسپانسیو لے آؤٹ، قابلِ رسائی فارمز اور مضبوط SEO ڈھانچہ ہمارے ہر پروجیکٹ کا لازمی معیار ہے۔"},{"number":"04","title":"سادہ اور سچی شراکت داری","body":"ہم مشکل اصطلاحات اور غیر حقیقی دعوؤں سے گریز کرتے ہیں۔ آپ کو براہِ راست رابطہ اور شفاف پیش رفت ملتی ہے۔"}]},"integrationNote":{"eyebrow":"ہمارے ساتھ کام کریں","heading":"اپنی آن لائن موجودگی کے اگلے مرحلے کے لیے ایک قابلِ اعتماد پارٹنر کی تلاش ہے؟","body":"چاہے آپ کو صفر سے نئی ویب سائٹ درکار ہو یا موجودہ کاروبار کے لیے بہتر SEO اور سوشل میڈیا حکمتِ عملی، آئیں مل کر آپ کے اہداف کا جائزہ لیں۔","ctaLabel":"رابطہ کریں"}},"contactPage":{"eyebrow":"خانز مارکیٹنگ سے رابطہ کریں","headline":"ہمیں اپنے پروجیکٹ کے بارے میں بتائیں۔","subheadline":"اپنی ضرورت — نئی ویب سائٹ، بہتر سرچ ویزیبلٹی یا سوشل میڈیا مارکیٹنگ — کی تفصیل ارسال کریں، ہم واضح تجاویز کے ساتھ جلد جواب دیں گے۔","directInfo":{"title":"براہِ راست رابطہ اور فون","emailLabel":"آفیشل ای میل (قابلِ تبدیلی)","emailHint":"کمپنی کا آفیشل ای میل طے ہونے کے بعد اسے siteConfig.ts میں تبدیل کیا جا سکتا ہے۔","phoneLabel":"فون اور واٹس ایپ نمبر","phoneHint":"پروجیکٹ انکوائری اور مشاورت کے لیے براہِ راست کال یا واٹس ایپ کریں۔","bookingTitle":"فون پر براہِ راست بات کرنا چاہتے ہیں؟","bookingBody":"فوری کال یا واٹس ایپ کے لیے ہمارا نمبر (0321-2995766) دیکھنے کے لیے کال بُک کریں بٹن دبائیں۔","bookingCta":"کال بُک کریں"},"afterSubmit":{"title":"انکوائری بھیجنے کے بعد کیا ہوتا ہے؟","steps":[{"step":"01","title":"تفصیلات کا جائزہ","description":"ہم آپ کے کاروبار، موجودہ ویب سائٹ (اگر ہو) اور مطلوبہ خدمات کا غور سے مطالعہ کرتے ہیں۔"},{"step":"02","title":"ابتدائی مشاہدات اور سوالات","description":"ہم آپ کو ابتدائی نکات اور پروجیکٹ کے دائرۂ کار سے متعلق ضروری سوالات بھیجتے ہیں۔"},{"step":"03","title":"واضح لائحۂ عمل","description":"آپ کو کام کی تفصیل، مراحل اور آگے بڑھنے کے طریقے پر مشتمل واضح تجویز موصول ہوتی ہے۔"}]},"form":{"title":"پروجیکٹ انکوائری فارم","subtitle":"ستارہ (*) والے خانے پُر کرنا ضروری ہے تاکہ ہم درست جواب دے سکیں۔","fields":{"fullName":{"label":"مکمل نام *","placeholder":"مثلاً طارق محمود"},"email":{"label":"کاروباری ای میل *","placeholder":"name@company.com"},"phone":{"label":"فون نمبر / واٹس ایپ *","placeholder":"+92 300 000 0000"},"company":{"label":"کمپنی یا کاروبار کا نام *","placeholder":"آپ کے کاروبار کا نام"},"websiteUrl":{"label":"ویب سائٹ کا پتہ","placeholder":"https://yourbusiness.com","optional":"اختیاری"},"serviceRequired":{"label":"مطلوبہ سروس *"},"budget":{"label":"متوقع پروجیکٹ بجٹ","optional":"اختیاری"},"projectDetails":{"label":"اپنے پروجیکٹ کے بارے میں بتائیں *","placeholder":"اپنے کاروبار، مطلوبہ بہتری اور متوقع وقت کے بارے میں مختصر تفصیل لکھیں۔"}},"serviceOptions":{"website-development":"ویب سائٹ ڈیزائن اور ڈیولپمنٹ","seo":"سرچ انجن آپٹیمائزیشن (SEO)","social-media-marketing":"سوشل میڈیا مارکیٹنگ","multiple-services":"متعدد سروسز (ویب سائٹ + SEO + سوشل میڈیا)","other":"دیگر ڈیجیٹل مارکیٹنگ انکوائری"},"budgetOptions":{"":"بعد میں گفتگو کرنا بہتر ہے","under-1000":"ابتدائی دائرۂ کار ($1,000 سے کم)","1000-2500":"ترقیاتی دائرۂ کار ($1,000 – $2,500)","2500-5000":"جامع دائرۂ کار ($2,500 – $5,000)","5000-plus":"مکمل ریٹینر ($5,000+)","discuss":"کسٹم / لچکدار بجٹ"},"submitLabel":"انکوائری ارسال کریں","submittingLabel":"تفصیلات کی جانچ ہو رہی ہے…","privacyNote":"آپ کی فراہم کردہ معلومات صرف آپ کی پروجیکٹ انکوائری کے جائزے اور جواب کے لیے استعمال ہوں گی۔","errors":{"required_name":"براہِ کرم اپنا مکمل نام درج کریں (کم از کم 2 حروف)۔","required_email":"براہِ کرم اپنا کاروباری ای میل درج کریں۔","invalid_email":"براہِ کرم درست ای میل درج کریں (مثلاً name@company.com)۔","required_phone":"براہِ کرم اپنا فون یا واٹس ایپ نمبر درج کریں۔","invalid_phone":"براہِ کرم 7 سے 16 ہندسوں پر مشتمل درست فون نمبر درج کریں۔","required_company":"براہِ کرم اپنی کمپنی یا کاروبار کا نام درج کریں۔","invalid_url":"براہِ کرم درست ویب سائٹ لنک درج کریں (مثلاً https://example.com) یا اسے خالی چھوڑ دیں۔","required_service":"براہِ کرم مطلوبہ سروس منتخب کریں۔","required_details":"براہِ کرم اپنے پروجیکٹ کے بارے میں مختصر تفصیل درج کریں۔","short_details":"براہِ کرم کم از کم 15 حروف لکھیں تاکہ ہم آپ کے مقاصد سمجھ سکیں۔","spam_detected":"اسپام تحفظ کی وجہ سے یہ درخواست روک دی گئی ہے۔"},"devConfirmation":{"badge":"فرنٹ اینڈ جانچ مکمل · ای میل اینڈ پوائنٹ ابھی منسلک نہیں ہے","title":"آپ کی انکوائری کی تصدیق ہو چکی ہے اور یہ ای میل انضمام کے لیے تیار ہے۔","body":"اس ورژن میں ابھی کوئی بیک اینڈ ای میل سرور منسلک نہیں ہے، اس لیے فارم نے خودکار طور پر ای میل نہیں بھیجی۔ جب siteConfig.ts میں خانز مارکیٹنگ کا آفیشل اینڈ پوائنٹ منسلک ہو جائے گا تو درخواستیں براہِ راست موصول ہوں گی۔","configHint":"مقرر کردہ ای میل پتہ:","summaryTitle":"تیار کردہ انکوائری کا خلاصہ","mailtoButton":"ای میل ایپ کے ذریعے بھیجیں","resetButton":"ترمیم کریں یا نئی انکوائری لکھیں"},"liveSuccess":{"title":"شکریہ — آپ کی انکوائری موصول ہو چکی ہے۔","body":"ہم نے آپ کے پروجیکٹ کی تفصیلات محفوظ کر لی ہیں اور جلد ہی مناسب تجاویز کے ساتھ آپ سے رابطہ کریں گے۔","resetButton":"نئی انکوائری بھیجیں"},"liveFailure":{"title":"اس وقت خودکار طور پر انکوائری نہیں بھیجی جا سکی۔","body":"براہِ کرم نیچے دیے گئے بٹن کے ذریعے اپنی ای میل ایپ سے براہِ راست پیغام ارسال کریں۔","mailtoButton":"ای میل ایپ سے بھیجیں"}}},"footer":{"tagline":"ڈیجیٹل گروتھ پارٹنر — مکمل مواد والی ویب سائٹس، سرچ انجن آپٹیمائزیشن اور سوشل میڈیا مارکیٹنگ۔","navigationHeading":"کمپنی","servicesHeading":"سروسز","contactHeading":"رابطہ","emailConfigNote":"قابلِ تبدیلی آفیشل ای میل","copyright":"© 2026 خانز مارکیٹنگ (KM)۔ جملہ حقوق محفوظ ہیں۔","domainText":"khansmarketing.com"},"chatWidget":{"launcherLabel":"KM مشیر سے پوچھیں","closeLabel":"چیٹ بند کریں","clearLabel":"نئی گفتگو","title":"KM پروجیکٹ مشیر","subtitle":"ویب سائٹ، SEO اور سوشل میڈیا رہنمائی","roleLabel":"معاون انداز","roles":{"strategist":"پروجیکٹ اسٹریٹجسٹ","quickGuide":"فوری جواب"},"welcomeMessage":"السلام علیکم — اپنے کاروبار، اسکول یا ٹیوشن سروس کے لیے ویب سائٹ، تحریری مواد، SEO یا سوشل میڈیا کے بارے میں کوئی بھی سوال پوچھیں۔","starterPrompts":["آپ اسکول یا اساتذہ کی ویب سائٹ مواد کے ساتھ کیسے بناتے ہیں؟","ٹیکنیکل اور آن پیج SEO آڈٹ میں کیا شامل ہوتا ہے؟","کیا ہمیں پہلے ویب سائٹ بنانی چاہیے یا سوشل میڈیا شروع کرنا چاہیے؟"],"inputPlaceholder":"اپنی ویب سائٹ، SEO یا سوشل میڈیا کے بارے میں سوال لکھیں…","sendLabel":"بھیجیں","thinkingLabel":"جواب تیار ہو رہا ہے…","callShortcutLabel":"کال کریں 03212995766","errorFallback":"اس وقت چیٹ سروس دستیاب نہیں ہے۔ آپ براہِ راست 03212995766 پر کال یا واٹس ایپ کر سکتے ہیں۔"}}};
+    const PORTFOLIO_CATALOG = [{"id":"tuition-pk","domain":"tuition.pk","url":"https://tuition.pk","category":"education","city":"Lahore · Karachi","accentColor":"#164237","en":{"name":"Tuition.pk","niche":"Home & Online Teachers","summary":"A practical Pakistani tuition directory connecting parents with vetted school subject teachers for Matric, FSc, and O/A Levels.","highlights":["Subject & city search","Teacher profile pages","Direct enquiry form"]},"ur":{"name":"Tuition.pk","niche":"ہوم اور آن لائن اساتذہ","summary":"والدین کو میٹرک، ایف ایس سی اور او/اے لیول کے مستند مضامین کے اساتذہ سے جوڑنے والا سادہ اور کارآمد پاکستانی پلیٹ فارم۔","highlights":["شہر اور مضمون کے لحاظ سے تلاش","اساتذہ کے تعارفی صفحات","براہِ راست رابطہ فارم"]}},{"id":"itutor-pk","domain":"itutor.pk","url":"https://itutor.pk","category":"education","city":"Islamabad · Lahore","accentColor":"#8A5E1B","en":{"name":"iTutor.pk","niche":"Private School Tutors","summary":"Straightforward tutoring portal focused on helping school students find qualified home and online subject teachers without clutter.","highlights":["Grade-level filtering","Clear parent request flow","Mobile-friendly layout"]},"ur":{"name":"iTutor.pk","niche":"پرائیویٹ اسکول ٹیوٹرز","summary":"اسکول کے طلبہ اور والدین کے لیے گھر پر یا آن لائن پڑھانے والے قابل اساتذہ تلاش کرنے کی صاف ستھری ویب سائٹ۔","highlights":["کلاس کے مطابق فلٹر","والدین کے لیے آسان درخواست فارم","موبائل فرینڈلی ڈیزائن"]}},{"id":"theclass-pk","domain":"theclass.pk","url":"https://theclass.pk","category":"education","city":"Pakistan-wide","accentColor":"#1E3A5F","en":{"name":"The Class","niche":"Small-Group & Homeschooling","summary":"Focused online schooling and small-batch tuition site tailored for Pakistani families seeking structured weekly teacher guidance.","highlights":["Clear curriculum overview","Weekly batch timetable","Parent consultation CTA"]},"ur":{"name":"The Class","niche":"آن لائن اسکول اور ہوم اسکولنگ","summary":"پاکستانی خاندانوں کے لیے منظم ہوم اسکولنگ اور مختصر گروپ ٹیوشن کی وضاحت پیش کرنے والی تعلیمی ویب سائٹ۔","highlights":["نصاب کی سادہ وضاحت","ہفتہ وار کلاس شیڈول","والدین کے لیے مشاورت بٹن"]}},{"id":"learners-academy","domain":"learnersacademy.com.pk","url":"https://learnersacademy.com.pk","category":"education","city":"Karachi","accentColor":"#2B4C3F","en":{"name":"Learners Academy","niche":"IGCSE & O/A-Level Coaching","summary":"Independent coaching institute website presenting subject tracks, teacher credentials, and fast WhatsApp admission enquiries.","highlights":["Subject-wise syllabus notes","Teacher introduction cards","Quick admission enquiry"]},"ur":{"name":"لرنرز اکیڈمی","niche":"IGCSE اور O/A لیول کوچنگ","summary":"مضامین کی تفصیل، اساتذہ کا تعارف اور داخلے کے فوری رابطے پر مبنی ایک متوازن کوچنگ اکیڈمی کی ویب سائٹ۔","highlights":["مضامین کے مطابق تفصیل","اساتذہ کا تعارف","فوری داخلہ انکوائری"]}},{"id":"the-academy-school","domain":"theacademy.edu.pk","url":"https://theacademy.edu.pk","category":"education","city":"Karachi","accentColor":"#3B4252","en":{"name":"The Academy School","niche":"Neighborhood K–12 School","summary":"Community-focused K–12 school website built to give parents campus locations, admission dates, and academic calendar clarity.","highlights":["Campus directory","Admission procedure guide","Parent notices section"]},"ur":{"name":"دی اکیڈمی اسکول","niche":"مقامی K-12 اسکول","summary":"والدین کو کیمپس کی معلومات، داخلے کے مراحل اور تعلیمی کیلنڈر واضح طور پر دکھانے والی مقامی اسکول کی ویب سائٹ۔","highlights":["کیمپس کی تفصیلات","داخلے کا آسان طریقہ کار","والدین کے لیے اعلانات"]}},{"id":"edupark-pk","domain":"edupark.pk","url":"https://edupark.pk","category":"education","city":"Lahore","accentColor":"#6B4423","en":{"name":"EduPark.pk","niche":"Entry Test & Academic Prep","summary":"Local Pakistani prep portal helping students organize MDCAT, ECAT, and school subject preparation with clear course outlines.","highlights":["Exam track pages","Structured study resources","Student registration form"]},"ur":{"name":"EduPark.pk","niche":"انٹری ٹیسٹ اور تعلیمی تیاری","summary":"طلبہ کو MDCAT، ECAT اور اسکول مضامین کی تیاری کے لیے واضح کورس خاکے فراہم کرنے والی پاکستانی تعلیمی ویب سائٹ۔","highlights":["امتحانی کورسز کے صفحات","منظم تعلیمی مواد","طلبہ کی رجسٹریشن"]}},{"id":"sabaq-squad","domain":"sabaqsquad.com","url":"https://sabaqsquad.com","category":"education","city":"Rawalpindi · Islamabad","accentColor":"#164237","en":{"name":"Sabaq Squad","niche":"Teacher-Led Exam Coaching","summary":"Modest student-support website offering topic summaries, teacher-guided practice notes, and straightforward registration.","highlights":["Subject playlists","Simple navigation","Fast mobile reading"]},"ur":{"name":"سبق اسکواڈ","niche":"اساتذہ کی رہنمائی میں امتحان کی تیاری","summary":"موضوعاتی خلاصے، اساتذہ کے نوٹس اور سادہ رجسٹریشن کے ساتھ طلبہ کی مدد کے لیے تیار کردہ تعلیمی ویب سائٹ۔","highlights":["مضامین کی درجہ بندی","آسان نیویگیشن","موبائل پر تیز مطالعہ"]}},{"id":"london-dental-karachi","domain":"londondentalclinic.com.pk","url":"https://londondentalclinic.com.pk","category":"local-services","city":"Karachi","accentColor":"#1E4D40","en":{"name":"London Dental Clinic","niche":"Neighborhood Dental Practice","summary":"Clean local clinic site presenting treatment pages, practitioner qualifications, clinic timings, and direct phone booking.","highlights":["Clear treatment menu","Doctor profile & hours","Click-to-call appointment"]},"ur":{"name":"لندن ڈینٹل کلینک","niche":"مقامی ڈینٹل کلینک","summary":"علاج کی تفصیلات، ڈاکٹر کا تعارف، کلینک کے اوقات اور فون پر اپائنٹمنٹ کی سہولت پیش کرنے والی سادہ کلینک ویب سائٹ۔","highlights":["علاج کی واضح فہرست","ڈاکٹر اور اوقاتِ کار","براہِ راست کال بٹن"]}},{"id":"smile-pro-clinic","domain":"smileproclinic.com","url":"https://smileproclinic.com","category":"local-services","city":"Lahore","accentColor":"#2E4C5E","en":{"name":"Smile Pro Clinic","niche":"Family Dental & Hygiene","summary":"Focused dental care website explaining routine checkups, braces, and root canal care in clear everyday language for local families.","highlights":["Plain-language service pages","Before-visit FAQs","Local map & phone contact"]},"ur":{"name":"اسمائل پرو کلینک","niche":"فیملی ڈینٹل کیئر","summary":"خاندانوں کے لیے دانتوں کے معائنے اور علاج کو عام فہم انداز میں بیان کرنے والی مقامی ڈینٹل ویب سائٹ۔","highlights":["سادہ زبان میں خدمات","مریضوں کے عام سوالات","لوکیشن اور فون رابطہ"]}},{"id":"tayyib-bakery","domain":"tayyib.pk","url":"https://tayyib.pk","category":"local-services","city":"Lahore","accentColor":"#7A4B2A","en":{"name":"Tayyib Store & Bakery","niche":"Neighborhood Artisanal Bakery","summary":"Down-to-earth Lahore bakery storefront displaying daily bread, pastries, local delivery zones, and direct order options.","highlights":["Clean product catalog","City delivery info","WhatsApp & COD ordering"]},"ur":{"name":"طیب اسٹور اینڈ بیکری","niche":"مقامی بیکری اور اسٹور","summary":"روزمرہ بیکری مصنوعات، لاہور میں ڈیلیوری کی معلومات اور سادہ آرڈر سسٹم دکھانے والی مقامی کاروباری ویب سائٹ۔","highlights":["مصنوعات کی صاف فہرست","شہر میں ڈیلیوری کی تفصیل","کیش آن ڈیلیوری اور واٹس ایپ"]}},{"id":"mahmood-pharmacy","domain":"mahmoodpharmacy.com.pk","url":"https://mahmoodpharmacy.com.pk","category":"local-services","city":"Lahore","accentColor":"#164237","en":{"name":"Mahmood Pharmacy","niche":"Family Retail Pharmacy","summary":"Trustworthy neighborhood pharmacy site structured around branch locations, prescription enquiries, and everyday healthcare essentials.","highlights":["Branch locator details","Prescription order help","Verified store trust cues"]},"ur":{"name":"محمود فارمیسی","niche":"فیملی ریٹیل فارمیسی","summary":"برانچز کے پتے، نسخے کے مطابق دوائی کی معلومات اور روزمرہ صحت کی اشیاء پیش کرنے والی قابلِ اعتماد مقامی فارمیسی ویب سائٹ۔","highlights":["برانچ کی تفصیلات","نسخے کی معلومات میں رہنمائی","سادہ اور قابلِ اعتماد ترتیب"]}},{"id":"ferozsons-books","domain":"ferozsons.com.pk","url":"https://ferozsons.com.pk","category":"local-services","city":"Lahore · Karachi","accentColor":"#5B3A29","en":{"name":"Ferozsons","niche":"Academic & School Bookshop","summary":"Classic Pakistani bookshop portal organized by school textbooks, Urdu literature, and stationery categories for quick browsing.","highlights":["Curriculum book categories","Searchable catalog","Nationwide order dispatch"]},"ur":{"name":"فیروزسنز بک شاپ","niche":"اسکول اور تعلیمی کتب خانہ","summary":"اسکول کی درسی کتب، اردو ادب اور اسٹیشنری کی آسان درجہ بندی کے ساتھ پاکستانی کتب خانے کی ویب سائٹ۔","highlights":["نصاب کے مطابق کتب کی اقسام","آسان سرچ سسٹم","ملک بھر میں ترسیل"]}}];
+
+    function pickRandomSites(category, count, previousIds) {
+      const pool = category === 'all' ? PORTFOLIO_CATALOG : PORTFOLIO_CATALOG.filter(i => i.category === category);
+      const shuffle = (arr) => {
+        const c = arr.slice();
+        for (let i = c.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const tmp = c[i]; c[i] = c[j]; c[j] = tmp;
+        }
+        return c;
+      };
+      if (pool.length <= count) return shuffle(pool);
+      const fresh = pool.filter(i => !(previousIds || []).includes(i.id));
+      const stale = pool.filter(i => (previousIds || []).includes(i.id));
+      return shuffle(fresh).concat(shuffle(stale)).slice(0, count);
+    }
+
+    let state = {
+      lang: localStorage.getItem('km_lang') === 'ur' ? 'ur' : 'en',
+      route: 'home',
+      homeTab: 'web',
+      seoTab: 'technical',
+      openFaq: 0,
+      portfolioCategory: 'all',
+      portfolioItems: pickRandomSites('all', 6, [])
+    };
+
+    function t() { return DICT[state.lang]; }
+    function esc(s) {
+      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+
+    function observeReveals() {
+      const nodes = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        nodes.forEach(n => n.classList.add('in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      nodes.forEach(n => io.observe(n));
+    }
+
+    function setLanguage(lang) {
+      state.lang = lang;
+      localStorage.setItem('km_lang', lang);
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === 'ur' ? 'rtl' : 'ltr';
+      document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+      renderChrome();
+      renderPage();
+    }
+
+    function navigate(route) {
+      state.route = route;
+      document.getElementById('services-dropdown').classList.remove('open');
+      document.getElementById('mobile-drawer').classList.remove('open');
+      renderChrome();
+      renderPage();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderChrome() {
+      const d = t();
+      document.title = d.meta[state.route].title;
+      document.getElementById('utility-note').textContent = d.utilityBar.domainNote;
+      document.getElementById('brand-wordmark').textContent = state.lang === 'ur' ? 'خانز مارکیٹنگ' : 'Khans Marketing';
+      document.getElementById('nav-home').textContent = d.nav.home;
+      document.getElementById('nav-services-btn').textContent = d.nav.services + ' ▾';
+      document.getElementById('nav-web').textContent = d.nav.websiteDev;
+      document.getElementById('nav-seo').textContent = d.nav.seo;
+      document.getElementById('nav-social').textContent = d.nav.socialMedia;
+      document.getElementById('nav-portfolio').textContent = d.nav.portfolio;
+      document.getElementById('nav-about').textContent = d.nav.about;
+      document.getElementById('nav-contact').textContent = d.nav.contact;
+      document.getElementById('header-book-btn').textContent = d.nav.bookCall;
+      document.getElementById('m-home').textContent = d.nav.home;
+      document.getElementById('m-web').textContent = d.nav.websiteDev;
+      document.getElementById('m-seo').textContent = d.nav.seo;
+      document.getElementById('m-social').textContent = d.nav.socialMedia;
+      document.getElementById('m-portfolio').textContent = d.nav.portfolio;
+      document.getElementById('m-about').textContent = d.nav.about;
+      document.getElementById('m-contact').textContent = d.nav.contact;
+      document.getElementById('mobile-book-btn').textContent = d.nav.bookCall;
+      document.querySelectorAll('.nav-link').forEach(el => {
+        const r = el.dataset.route;
+        const isSvc = ['website-development','seo','social-media-marketing'].includes(state.route);
+        el.classList.toggle('active', r === state.route || (el.id === 'nav-services-btn' && isSvc));
+      });
+      document.getElementById('footer-copy').textContent = d.footer.copyright;
+      document.getElementById('footer-grid').innerHTML = `
+        <div>
+          <div class="brand" style="margin-bottom:0.85rem;"><span>${state.lang === 'ur' ? 'خانز مارکیٹنگ' : 'Khans Marketing'}</span></div>
+          <p style="max-width:22rem;line-height:1.65;">${esc(d.footer.tagline)}</p>
+        </div>
+        <div>
+          <h3 style="font-size:0.8rem;color:var(--on-deep);margin-bottom:0.75rem;">${esc(d.footer.navigationHeading)}</h3>
+          <div style="display:grid;gap:0.5rem;">
+            <a href="#home" data-route="home">${esc(d.nav.home)}</a>
+            <a href="#portfolio" data-route="portfolio">${esc(d.nav.portfolio)}</a>
+            <a href="#about" data-route="about">${esc(d.nav.about)}</a>
+            <a href="#contact" data-route="contact">${esc(d.nav.contact)}</a>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:0.8rem;color:var(--on-deep);margin-bottom:0.75rem;">${esc(d.footer.servicesHeading)}</h3>
+          <div style="display:grid;gap:0.5rem;">
+            <a href="#website-development" data-route="website-development">${esc(d.nav.websiteDev)}</a>
+            <a href="#seo" data-route="seo">${esc(d.nav.seo)}</a>
+            <a href="#social-media-marketing" data-route="social-media-marketing">${esc(d.nav.socialMedia)}</a>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size:0.8rem;color:var(--on-deep);margin-bottom:0.75rem;">${esc(d.footer.contactHeading)}</h3>
+          <a href="${KM_CONFIG.phoneHref}" dir="ltr" class="mono" style="display:inline-block;color:var(--on-deep);font-weight:600;margin-bottom:0.35rem;">${KM_CONFIG.phoneDisplay}</a>
+          <a href="mailto:${KM_CONFIG.recipientEmail}" style="display:block;color:var(--accent);">${KM_CONFIG.recipientEmail}</a>
+          <p style="font-size:0.75rem;color:#80928B;margin-top:0.35rem;">${esc(d.footer.emailConfigNote)}</p>
+        </div>`;
+      document.getElementById('modal-title').textContent = d.bookModal.title;
+      document.getElementById('modal-desc').textContent = d.bookModal.description;
+      document.getElementById('modal-phone-label').textContent = d.bookModal.phonePromptLabel;
+      document.getElementById('modal-copy-btn').textContent = d.bookModal.copyNumberAction;
+      document.getElementById('modal-call-btn').textContent = d.bookModal.callNowAction;
+      document.getElementById('modal-wa-btn').textContent = d.bookModal.whatsappAction;
+      document.getElementById('modal-contact-btn').textContent = d.bookModal.primaryAction;
+      document.getElementById('modal-close-btn').textContent = d.bookModal.secondaryAction;
+    }
+
+    function renderHome() {
+      const h = t().home;
+      const nav = t().nav;
+      const tab = h.systemShowcase.tabs.find(x => x.id === state.homeTab) || h.systemShowcase.tabs[0];
+      return `
+        <section class="section section-dark">
+          <div class="wrap grid-12" style="align-items:center;">
+            <div class="col-7">
+              <p class="eyebrow">${esc(h.hero.eyebrow)}</p>
+              <h1>${esc(h.hero.headlinePart1)}<em style="color:var(--accent);font-style:italic;font-weight:400;">${esc(h.hero.headlineHighlight1)}</em>${esc(h.hero.headlinePart2)}<em style="color:var(--accent);font-style:italic;font-weight:400;">${esc(h.hero.headlineHighlight2)}</em>.</h1>
+              <p class="lead" style="margin-top:1.25rem;">${esc(h.hero.subheadline)}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:0.9rem;margin-top:2rem;align-items:center;">
+                <button type="button" class="btn btn-accent js-book">${esc(h.hero.primaryCta)}</button>
+                <a href="#services-sec" class="btn btn-outline-dark">${esc(h.hero.secondaryCta)}</a>
+                <button type="button" data-route="portfolio" style="background:none;border:0;color:var(--on-deep-muted);font-size:0.875rem;font-weight:500;text-decoration:underline;cursor:pointer;">${esc(nav.portfolio)}</button>
+              </div>
+            </div>
+            <div class="col-5">
+              <div class="card-dark">
+                <div style="display:flex;justify-content:space-between;border-bottom:1px solid var(--deep-line);padding-bottom:0.75rem;margin-bottom:1rem;">
+                  <span style="font-size:0.75rem;font-weight:600;color:var(--accent);">${esc(h.hero.blueprintLabel)}</span>
+                  <span class="mono" style="font-size:0.72rem;color:var(--on-deep-muted);">khansmarketing.com</span>
+                </div>
+                <div style="display:grid;gap:0.75rem;margin-bottom:1rem;">
+                  ${h.hero.blueprintNodes.map((n, i) => `<div style="border:1px solid var(--deep-line);background:#111C18;padding:0.85rem 1rem;border-radius:10px;display:flex;gap:0.75rem;"><span class="mono" style="color:var(--accent);">0${i+1}</span><span style="font-size:0.9rem;">${esc(n)}</span></div>`).join('')}
+                </div>
+                <div style="border-top:1px solid var(--deep-line);padding-top:0.75rem;display:flex;justify-content:space-between;font-size:0.75rem;color:var(--on-deep-muted);">
+                  <span>Websites · Search · Social</span>
+                  <span class="mono" style="color:var(--accent);">${KM_CONFIG.phoneDisplay}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section section-light">
+          <div class="wrap reveal">
+            <p class="eyebrow">${esc(h.positioning.label)}</p>
+            <h2 style="max-width:48rem;margin-bottom:2rem;">${esc(h.positioning.statement)}</h2>
+            <div class="grid-3">
+              ${h.positioning.pillars.map(p => `<div style="border-top:1px solid var(--line);padding-top:1rem;"><h3 style="margin-bottom:0.5rem;">${esc(p.title)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(p.text)}</p></div>`).join('')}
+            </div>
+          </div>
+        </section>
+        <section id="services-sec" class="section section-canvas">
+          <div class="wrap reveal">
+            <p class="eyebrow">${esc(h.servicesOverview.eyebrow)}</p>
+            <h2 style="margin-bottom:0.75rem;">${esc(h.servicesOverview.heading)}</h2>
+            <p class="lead" style="margin-bottom:2.5rem;">${esc(h.servicesOverview.subheading)}</p>
+            <div class="grid-12">
+              ${h.servicesOverview.cards.map((c, idx) => `
+                <article class="card ${idx===0 ? 'col-12' : 'col-6'}">
+                  <span class="mono" style="font-size:0.75rem;color:var(--accent-ink);">${c.number}</span>
+                  <h3 style="margin:0.5rem 0;font-size:1.35rem;">${esc(c.title)}</h3>
+                  <p style="color:var(--muted);margin-bottom:1.25rem;font-size:0.95rem;">${esc(c.summary)}</p>
+                  <ul class="list-dash" style="margin-bottom:1.25rem;">${c.deliverables.map(d => `<li>${esc(d)}</li>`).join('')}</ul>
+                  <button type="button" class="btn btn-outline-light" data-route="${c.route}">${esc(h.servicesOverview.exploreLink)}</button>
+                </article>`).join('')}
+            </div>
+          </div>
+        </section>
+        <section class="section section-light">
+          <div class="wrap reveal">
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.5rem;margin-bottom:2rem;">
+              <div>
+                <p class="eyebrow">${esc(h.systemShowcase.eyebrow)}</p>
+                <h2>${esc(h.systemShowcase.heading)}</h2>
+              </div>
+              <div class="tabs">
+                ${h.systemShowcase.tabs.map(tb => `<button type="button" class="tab-btn ${tb.id===tab.id?'active':''}" data-hometab="${tb.id}">${esc(tb.label)}</button>`).join('')}
+              </div>
+            </div>
+            <div class="card" style="background:var(--canvas);">
+              <div class="grid-3">
+                <div><p class="eyebrow">${esc(tab.problemTitle)}</p><p>${esc(tab.problem)}</p></div>
+                <div><p class="eyebrow">${esc(tab.solutionTitle)}</p><p>${esc(tab.solution)}</p></div>
+                <div><p class="eyebrow">${esc(tab.outcomeTitle)}</p><p>${esc(tab.outcome)}</p></div>
+              </div>
+              <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid var(--line);display:flex;justify-content:flex-end;">
+                <button type="button" class="btn btn-emerald" data-route="${tab.route}">${esc(tab.ctaLabel)}</button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section class="section section-dark">
+          <div class="wrap reveal">
+            <p class="eyebrow">${esc(h.process.eyebrow)}</p>
+            <h2 style="margin-bottom:2.5rem;max-width:40rem;">${esc(h.process.heading)}</h2>
+            <div class="grid-3">
+              ${h.process.steps.map(s => `<div style="border-top:1px solid var(--deep-line);padding-top:1.25rem;"><span class="mono" style="color:var(--accent);">${s.step}</span><h3 style="margin:0.5rem 0;color:var(--on-deep);">${esc(s.title)}</h3><p style="color:var(--on-deep-muted);font-size:0.95rem;">${esc(s.description)}</p></div>`).join('')}
+            </div>
+          </div>
+        </section>
+        <section class="section section-canvas">
+          <div class="wrap reveal">
+            <p class="eyebrow">${esc(h.faq.eyebrow)}</p>
+            <h2 style="margin-bottom:2rem;">${esc(h.faq.heading)}</h2>
+            <div style="border-top:1px solid var(--line);margin-bottom:3.5rem;">
+              ${h.faq.items.map((f, i) => `
+                <div class="faq-item">
+                  <button type="button" class="faq-btn" data-faq="${i}" aria-expanded="${state.openFaq===i}"><span>${esc(f.question)}</span><span>${state.openFaq===i?'−':'+'}</span></button>
+                  ${state.openFaq===i ? `<div class="faq-ans">${esc(f.answer)}</div>` : ''}
+                </div>`).join('')}
+            </div>
+            <div class="card-dark" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding:2.25rem;">
+              <div style="max-width:38rem;">
+                <p class="eyebrow">${esc(h.closingCta.eyebrow)}</p>
+                <h2 style="margin-bottom:0.5rem;">${esc(h.closingCta.heading)}</h2>
+                <p style="color:var(--on-deep-muted);">${esc(h.closingCta.description)}</p>
+              </div>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <button type="button" class="btn btn-accent" data-route="contact">${esc(h.closingCta.primaryCta)}</button>
+                <button type="button" class="btn btn-outline-dark js-book">${esc(h.closingCta.secondaryCta)}</button>
+              </div>
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function renderPortfolio() {
+      const p = t().portfolioPage;
+      return `
+        <section class="section section-dark">
+          <div class="wrap">
+            <p class="eyebrow">${esc(p.eyebrow)}</p>
+            <h1 style="max-width:48rem;">${esc(p.headline)}</h1>
+            <p class="lead" style="margin-top:1rem;">${esc(p.subheadline)}</p>
+            <div style="margin-top:1.5rem;border:1px solid var(--deep-line);background:#16241F;border-radius:12px;padding:0.9rem 1.25rem;max-width:46rem;font-size:0.88rem;color:var(--on-deep-muted);">${esc(p.honestyBanner)}</div>
+          </div>
+        </section>
+        <section class="section section-canvas">
+          <div class="wrap">
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;padding-bottom:1.5rem;margin-bottom:2rem;border-bottom:1px solid var(--line);">
+              <div class="tabs">
+                <button type="button" class="tab-btn ${state.portfolioCategory==='all'?'active':''}" data-pcat="all">${esc(p.filters.all)}</button>
+                <button type="button" class="tab-btn ${state.portfolioCategory==='education'?'active':''}" data-pcat="education">${esc(p.filters.education)}</button>
+                <button type="button" class="tab-btn ${state.portfolioCategory==='local-services'?'active':''}" data-pcat="local-services">${esc(p.filters.localServices)}</button>
+              </div>
+              <button type="button" id="fetch-random-btn" class="btn btn-emerald">${esc(p.fetchRandomBtn)}</button>
+            </div>
+            <div class="grid-3">
+              ${state.portfolioItems.map(site => {
+                const copy = state.lang === 'ur' ? site.ur : site.en;
+                return `
+                  <article class="p-card">
+                    <div>
+                      <div class="p-head">
+                        <div class="p-dots"><span class="p-dot" style="background:${site.accentColor};"></span><span class="p-dot"></span><span class="p-dot"></span></div>
+                        <span class="mono" dir="ltr" style="font-size:0.72rem;color:var(--muted);">${esc(site.domain)}</span>
+                      </div>
+                      <div style="padding:1.4rem;">
+                        <div style="font-size:0.75rem;font-weight:600;color:var(--accent-ink);margin-bottom:0.5rem;">${esc(copy.niche)} · <span style="color:var(--muted);font-weight:400;">${esc(site.city)}</span></div>
+                        <h2 style="font-size:1.35rem;margin-bottom:0.65rem;">${esc(copy.name)}</h2>
+                        <p style="font-size:0.9rem;color:var(--muted);margin-bottom:1rem;">${esc(copy.summary)}</p>
+                        <ul class="list-dash" style="padding-top:0.75rem;border-top:1px solid var(--subtle);">${copy.highlights.map(h=>`<li>${esc(h)}</li>`).join('')}</ul>
+                      </div>
+                    </div>
+                    <div class="p-foot">
+                      <a href="${esc(site.url)}" target="_blank" rel="noopener noreferrer" style="font-size:0.82rem;font-weight:600;color:var(--emerald);">${esc(p.visitSiteLabel)} ↗</a>
+                      <button type="button" data-route="contact" style="background:none;border:0;font-size:0.78rem;color:var(--muted);text-decoration:underline;cursor:pointer;">${esc(p.buildSimilarLabel)}</button>
+                    </div>
+                  </article>`;
+              }).join('')}
+            </div>
+            <div class="card-dark reveal" style="margin-top:3rem;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;padding:2.25rem;">
+              <div style="max-width:38rem;">
+                <h2 style="margin-bottom:0.5rem;">${esc(p.ctaBand.heading)}</h2>
+                <p style="color:var(--on-deep-muted);">${esc(p.ctaBand.description)}</p>
+              </div>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <button type="button" class="btn btn-accent" data-route="contact">${esc(p.ctaBand.primaryCta)}</button>
+                <button type="button" class="btn btn-outline-dark js-book">${esc(p.ctaBand.secondaryCta)}</button>
+              </div>
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function renderServicePage(kind) {
+      const d = t();
+      if (kind === 'website-development') {
+        const p = d.webDevPage;
+        return `
+          <section class="section section-dark"><div class="wrap"><p class="eyebrow">${esc(p.eyebrow)}</p><h1 style="max-width:46rem;">${esc(p.headline)}</h1><p class="lead" style="margin-top:1rem;">${esc(p.subheadline)}</p><div style="display:flex;gap:0.85rem;margin-top:1.75rem;flex-wrap:wrap;"><button type="button" class="btn btn-accent" data-route="contact">${esc(p.primaryCta)}</button><button type="button" class="btn btn-outline-dark js-book">${esc(p.secondaryCta)}</button></div></div></section>
+          <section class="section section-light"><div class="wrap reveal"><p class="eyebrow">${esc(p.problemSection.eyebrow)}</p><h2 style="margin-bottom:0.75rem;">${esc(p.problemSection.heading)}</h2><p class="lead" style="margin-bottom:2rem;">${esc(p.problemSection.body)}</p><div class="grid-2"><div class="card" style="background:var(--canvas);"><h3 style="margin-bottom:1rem;">${esc(p.problemSection.comparisonLeftTitle)}</h3><ul class="list-dash">${p.problemSection.comparisonLeftItems.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div><div class="card-dark"><h3 style="margin-bottom:1rem;color:var(--accent);">${esc(p.problemSection.comparisonRightTitle)}</h3><ul class="list-dash">${p.problemSection.comparisonRightItems.map(i=>`<li>${esc(i)}</li>`).join('')}</ul></div></div></div></section>
+          <section class="section section-canvas"><div class="wrap reveal"><p class="eyebrow">${esc(p.capabilities.eyebrow)}</p><h2 style="margin-bottom:2rem;">${esc(p.capabilities.heading)}</h2><div class="grid-3">${p.capabilities.items.map(i=>`<div class="card"><span class="mono" style="color:var(--accent-ink);font-size:0.75rem;">${i.number}</span><h3 style="margin:0.5rem 0;">${esc(i.title)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(i.description)}</p></div>`).join('')}</div></div></section>
+          <section class="section section-light"><div class="wrap reveal"><p class="eyebrow">${esc(p.launchProcess.eyebrow)}</p><h2 style="margin-bottom:2rem;">${esc(p.launchProcess.heading)}</h2><div class="grid-2">${p.launchProcess.steps.map(s=>`<div style="border-top:1px solid var(--line);padding-top:1rem;"><span class="mono" style="color:var(--accent-ink);font-size:0.78rem;">${s.step}</span><h3 style="margin:0.4rem 0;">${esc(s.title)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(s.description)}</p></div>`).join('')}</div><div class="card" style="background:var(--canvas);margin-top:2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;"><div><h3>${esc(p.ctaBand.heading)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(p.ctaBand.description)}</p></div><button type="button" class="btn btn-emerald" data-route="contact">${esc(p.ctaBand.buttonLabel)}</button></div></div></section>`;
+      }
+      if (kind === 'seo') {
+        const p = d.seoPage;
+        const tab = p.intentExplorer.tabs.find(x => x.id === state.seoTab) || p.intentExplorer.tabs[0];
+        return `
+          <section class="section section-dark"><div class="wrap"><p class="eyebrow">${esc(p.eyebrow)}</p><h1 style="max-width:46rem;">${esc(p.headline)}</h1><p class="lead" style="margin-top:1rem;">${esc(p.subheadline)}</p><div style="display:flex;gap:0.85rem;margin-top:1.75rem;flex-wrap:wrap;"><button type="button" class="btn btn-accent" data-route="contact">${esc(p.primaryCta)}</button><button type="button" class="btn btn-outline-dark js-book">${esc(p.secondaryCta)}</button></div></div></section>
+          <section class="section section-light"><div class="wrap grid-12 reveal"><div class="col-7"><p class="eyebrow">${esc(p.businessValue.eyebrow)}</p><h2 style="margin-bottom:0.85rem;">${esc(p.businessValue.heading)}</h2><p class="lead">${esc(p.businessValue.lead)}</p></div><div class="col-5"><div class="card" style="background:var(--canvas);"><h3 style="margin-bottom:0.5rem;">${esc(p.businessValue.honestyNoteTitle)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(p.businessValue.honestyNoteBody)}</p></div></div></div></section>
+          <section class="section section-canvas"><div class="wrap reveal"><div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1rem;margin-bottom:1.5rem;"><div><p class="eyebrow">${esc(p.intentExplorer.eyebrow)}</p><h2>${esc(p.intentExplorer.heading)}</h2></div><div class="tabs">${p.intentExplorer.tabs.map(tb=>`<button type="button" class="tab-btn ${tb.id===tab.id?'active':''}" data-seotab="${tb.id}">${esc(tb.label)}</button>`).join('')}</div></div><div class="card"><h3 style="margin-bottom:1rem;">${esc(tab.focus)}</h3><ul class="list-dash">${tab.checks.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div></div></section>
+          <section class="section section-light"><div class="wrap reveal"><p class="eyebrow">${esc(p.pillars.eyebrow)}</p><h2 style="margin-bottom:2rem;">${esc(p.pillars.heading)}</h2><div class="grid-3">${p.pillars.items.map(i=>`<div class="card"><span class="mono" style="color:var(--accent-ink);font-size:0.75rem;">${i.number}</span><h3 style="margin:0.5rem 0;">${esc(i.title)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(i.description)}</p></div>`).join('')}</div></div></section>
+          <section class="section section-dark"><div class="wrap reveal"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;"><div><h3>${esc(p.ctaBand.heading)}</h3><p style="color:var(--on-deep-muted);">${esc(p.ctaBand.description)}</p></div><button type="button" class="btn btn-accent" data-route="contact">${esc(p.ctaBand.buttonLabel)}</button></div></div></section>`;
+      }
+      const p = d.socialPage;
+      return `
+        <section class="section section-canvas"><div class="wrap"><p class="eyebrow">${esc(p.eyebrow)}</p><h1 style="max-width:46rem;">${esc(p.headline)}</h1><p class="lead" style="margin-top:1rem;">${esc(p.subheadline)}</p><div style="display:flex;gap:0.85rem;margin-top:1.75rem;flex-wrap:wrap;"><button type="button" class="btn btn-emerald" data-route="contact">${esc(p.primaryCta)}</button><button type="button" class="btn btn-outline-light js-book">${esc(p.secondaryCta)}</button></div><div class="card reveal" style="margin-top:2.5rem;"><h2 style="font-size:1.35rem;margin-bottom:0.4rem;">${esc(p.cadenceVisual.title)}</h2><p style="color:var(--muted);font-size:0.9rem;margin-bottom:1.25rem;">${esc(p.cadenceVisual.subtitle)}</p><div class="grid-2">${p.cadenceVisual.columns.map((c,i)=>`<div style="background:var(--canvas);border:1px solid var(--line);padding:1rem;border-radius:8px;"><span class="mono" style="color:var(--accent-ink);font-size:0.75rem;">0${i+1}</span><div style="font-weight:600;margin-top:0.25rem;">${esc(c)}</div></div>`).join('')}</div></div></div></section>
+        <section class="section section-light"><div class="wrap reveal"><p class="eyebrow">${esc(p.capabilities.eyebrow)}</p><h2 style="margin-bottom:2rem;">${esc(p.capabilities.heading)}</h2><div class="grid-2">${p.capabilities.items.map(i=>`<div class="card"><span class="mono" style="color:var(--accent-ink);font-size:0.75rem;">${i.number}</span><h3 style="margin:0.4rem 0;">${esc(i.title)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(i.description)}</p></div>`).join('')}</div></div></section>
+        <section class="section section-dark"><div class="wrap reveal"><div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;"><div><h3>${esc(p.ctaBand.heading)}</h3><p style="color:var(--on-deep-muted);">${esc(p.ctaBand.description)}</p></div><button type="button" class="btn btn-accent" data-route="contact">${esc(p.ctaBand.buttonLabel)}</button></div></div></section>`;
+    }
+
+    function renderAbout() {
+      const p = t().aboutPage;
+      return `
+        <section class="section section-dark"><div class="wrap"><p class="eyebrow">${esc(p.eyebrow)}</p><h1 style="max-width:48rem;">${esc(p.headline)}</h1><p class="lead" style="margin-top:1rem;">${esc(p.subheadline)}</p></div></section>
+        <section class="section section-light"><div class="wrap grid-12 reveal"><div class="col-5"><p class="eyebrow">${esc(p.philosophy.eyebrow)}</p><h2>${esc(p.philosophy.heading)}</h2></div><div class="col-7" style="display:grid;gap:1rem;color:var(--muted);">${p.philosophy.paragraphs.map(par=>`<p>${esc(par)}</p>`).join('')}</div></div></section>
+        <section class="section section-canvas"><div class="wrap reveal"><p class="eyebrow">${esc(p.pillars.eyebrow)}</p><h2 style="margin-bottom:2rem;">${esc(p.pillars.heading)}</h2><div class="grid-2">${p.pillars.items.map(i=>`<div class="card"><span class="mono" style="color:var(--accent-ink);font-size:0.75rem;">${i.number}</span><h3 style="margin:0.4rem 0;">${esc(i.title)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(i.body)}</p></div>`).join('')}</div><div class="card" style="margin-top:2.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;"><div><h3>${esc(p.integrationNote.heading)}</h3><p style="color:var(--muted);font-size:0.92rem;">${esc(p.integrationNote.body)}</p></div><button type="button" class="btn btn-emerald" data-route="contact">${esc(p.integrationNote.ctaLabel)}</button></div></div></section>`;
+    }
+
+    function renderContact() {
+      const p = t().contactPage;
+      const f = p.form;
+      return `
+        <section class="section section-dark"><div class="wrap"><p class="eyebrow">${esc(p.eyebrow)}</p><h1>${esc(p.headline)}</h1><p class="lead" style="margin-top:1rem;">${esc(p.subheadline)}</p></div></section>
+        <section class="section section-canvas">
+          <div class="wrap grid-12">
+            <div class="col-5" style="display:grid;gap:1.5rem;align-content:start;">
+              <div class="card">
+                <h2 style="font-size:1.25rem;margin-bottom:1rem;">${esc(p.directInfo.title)}</h2>
+                <p style="font-size:0.8rem;color:var(--muted);">${esc(p.directInfo.phoneLabel)}</p>
+                <p class="mono" dir="ltr" style="font-size:1.25rem;font-weight:600;margin-bottom:0.25rem;"><a href="${KM_CONFIG.phoneHref}">${KM_CONFIG.phoneRaw}</a></p>
+                <p style="font-size:0.78rem;color:var(--muted);margin-bottom:1rem;">${esc(p.directInfo.phoneHint)} · <a href="${KM_CONFIG.whatsappHref}" target="_blank" rel="noopener noreferrer" style="color:var(--emerald);font-weight:600;text-decoration:underline;">WhatsApp</a></p>
+                <p style="font-size:0.8rem;color:var(--muted);">${esc(p.directInfo.emailLabel)}</p>
+                <p class="mono" style="font-weight:600;margin-bottom:0.25rem;"><a href="mailto:${KM_CONFIG.recipientEmail}">${KM_CONFIG.recipientEmail}</a></p>
+                <p style="font-size:0.78rem;color:#80928B;margin-bottom:1rem;">${esc(p.directInfo.emailHint)}</p>
+                <div style="background:var(--canvas);border:1px solid var(--line);border-radius:10px;padding:1rem;">
+                  <strong style="display:block;font-size:0.92rem;margin-bottom:0.35rem;">${esc(p.directInfo.bookingTitle)}</strong>
+                  <p style="font-size:0.85rem;color:var(--muted);margin-bottom:0.75rem;">${esc(p.directInfo.bookingBody)}</p>
+                  <button type="button" class="btn btn-accent js-book">${esc(p.directInfo.bookingCta)}</button>
+                </div>
+              </div>
+              <div class="card">
+                <h2 style="font-size:1.2rem;margin-bottom:1rem;">${esc(p.afterSubmit.title)}</h2>
+                ${p.afterSubmit.steps.map(s=>`<div style="padding:0.65rem 0;border-top:1px solid var(--subtle);"><span class="mono" style="color:var(--accent-ink);font-size:0.75rem;">${s.step}</span> <strong>${esc(s.title)}</strong><p style="font-size:0.85rem;color:var(--muted);margin-top:0.25rem;">${esc(s.description)}</p></div>`).join('')}
+              </div>
+            </div>
+            <div class="col-7" id="lead-form-host">
+              <form class="card" id="km-lead-form" novalidate style="display:grid;gap:1rem;">
+                <div><h2 style="font-size:1.45rem;">${esc(f.title)}</h2><p style="font-size:0.85rem;color:var(--muted);">${esc(f.subtitle)}</p></div>
+                <div class="sr-only" aria-hidden="true"><input type="text" name="companyFaxTrap" tabindex="-1" autocomplete="off" /></div>
+                <div class="form-grid">
+                  <div><label for="f-name">${esc(f.fields.fullName.label)}</label><input id="f-name" name="fullName" required placeholder="${esc(f.fields.fullName.placeholder)}" /><div class="err-msg" id="err-fullName"></div></div>
+                  <div><label for="f-email">${esc(f.fields.email.label)}</label><input id="f-email" name="email" type="email" required placeholder="${esc(f.fields.email.placeholder)}" /><div class="err-msg" id="err-email"></div></div>
+                  <div><label for="f-phone">${esc(f.fields.phone.label)}</label><input id="f-phone" name="phone" type="tel" dir="ltr" required placeholder="${esc(f.fields.phone.placeholder)}" /><div class="err-msg" id="err-phone"></div></div>
+                  <div><label for="f-company">${esc(f.fields.company.label)}</label><input id="f-company" name="company" required placeholder="${esc(f.fields.company.placeholder)}" /><div class="err-msg" id="err-company"></div></div>
+                  <div><label for="f-url">${esc(f.fields.websiteUrl.label)} (${esc(f.fields.websiteUrl.optional)})</label><input id="f-url" name="websiteUrl" type="url" dir="ltr" placeholder="${esc(f.fields.websiteUrl.placeholder)}" /><div class="err-msg" id="err-websiteUrl"></div></div>
+                  <div><label for="f-service">${esc(f.fields.serviceRequired.label)}</label><select id="f-service" name="serviceRequired">${Object.entries(f.serviceOptions).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join('')}</select></div>
+                </div>
+                <div><label for="f-budget">${esc(f.fields.budget.label)} (${esc(f.fields.budget.optional)})</label><select id="f-budget" name="budget">${Object.entries(f.budgetOptions).map(([k,v])=>`<option value="${k}">${esc(v)}</option>`).join('')}</select></div>
+                <div><label for="f-details">${esc(f.fields.projectDetails.label)}</label><textarea id="f-details" name="projectDetails" rows="4" required placeholder="${esc(f.fields.projectDetails.placeholder)}"></textarea><div class="err-msg" id="err-projectDetails"></div></div>
+                <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;">
+                  <button type="submit" class="btn btn-emerald">${esc(f.submitLabel)}</button>
+                  <span style="font-size:0.78rem;color:var(--muted);">${esc(f.privacyNote)}</span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </section>`;
+    }
+
+    function bindPageEvents() {
+      document.querySelectorAll('[data-hometab]').forEach(b => b.addEventListener('click', () => { state.homeTab = b.dataset.hometab; renderPage(); }));
+      document.querySelectorAll('[data-seotab]').forEach(b => b.addEventListener('click', () => { state.seoTab = b.dataset.seotab; renderPage(); }));
+      document.querySelectorAll('[data-pcat]').forEach(b => b.addEventListener('click', () => {
+        state.portfolioCategory = b.dataset.pcat;
+        state.portfolioItems = pickRandomSites(state.portfolioCategory, 6, []);
+        renderPage();
+      }));
+      const fetchBtn = document.getElementById('fetch-random-btn');
+      if (fetchBtn) {
+        fetchBtn.addEventListener('click', () => {
+          const prevIds = state.portfolioItems.map(i => i.id);
+          state.portfolioItems = pickRandomSites(state.portfolioCategory, 6, prevIds);
+          renderPage();
+        });
+      }
+      document.querySelectorAll('[data-faq]').forEach(b => b.addEventListener('click', () => {
+        const idx = Number(b.dataset.faq);
+        state.openFaq = state.openFaq === idx ? -1 : idx;
+        renderPage();
+      }));
+      document.querySelectorAll('.js-book').forEach(b => b.addEventListener('click', openBookModal));
+      const form = document.getElementById('km-lead-form');
+      if (form) {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const data = Object.fromEntries(new FormData(form).entries());
+          const errs = {};
+          const f = t().contactPage.form;
+          if (String(data.companyFaxTrap || '').trim()) return;
+          if (String(data.fullName || '').trim().length < 2) errs.fullName = f.errors.required_name;
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(data.email || '').trim())) errs.email = f.errors.invalid_email;
+          const digits = String(data.phone || '').replace(/\D/g, '');
+          if (digits.length < 7 || digits.length > 16) errs.phone = f.errors.invalid_phone;
+          if (String(data.company || '').trim().length < 2) errs.company = f.errors.required_company;
+          if (String(data.websiteUrl || '').trim()) {
+            try { new URL(/^https?:\/\//i.test(data.websiteUrl) ? data.websiteUrl : 'https://' + data.websiteUrl); } catch { errs.websiteUrl = f.errors.invalid_url; }
+          }
+          if (String(data.projectDetails || '').trim().length < 15) errs.projectDetails = f.errors.short_details;
+          ['fullName','email','phone','company','websiteUrl','projectDetails'].forEach(k => {
+            const el = document.getElementById('err-' + k);
+            if (el) el.textContent = errs[k] || '';
+          });
+          if (Object.keys(errs).length > 0) return;
+          const mailto = 'mailto:' + KM_CONFIG.recipientEmail + '?subject=' + encodeURIComponent('Project Enquiry: ' + data.company) + '&body=' + encodeURIComponent(data.fullName + ' (' + data.email + ', ' + data.phone + ')\n\n' + data.projectDetails);
+          document.getElementById('lead-form-host').innerHTML = `
+            <div class="card" role="status">
+              <p class="eyebrow">${esc(f.devConfirmation.badge)}</p>
+              <h2 style="font-size:1.35rem;margin-bottom:0.65rem;">${esc(f.devConfirmation.title)}</h2>
+              <p style="color:var(--muted);font-size:0.92rem;margin-bottom:1rem;">${esc(f.devConfirmation.body)}</p>
+              <div style="display:flex;gap:0.75rem;flex-wrap:wrap;">
+                <a class="btn btn-emerald" href="${mailto}">${esc(f.devConfirmation.mailtoButton)}</a>
+                <button type="button" class="btn btn-outline-light" id="reset-form-btn">${esc(f.devConfirmation.resetButton)}</button>
+              </div>
+            </div>`;
+          document.getElementById('reset-form-btn').addEventListener('click', renderPage);
+        });
+      }
+      observeReveals();
+    }
+
+    function renderPage() {
+      const host = document.getElementById('app-main');
+      if (state.route === 'home') host.innerHTML = renderHome();
+      else if (state.route === 'portfolio') host.innerHTML = renderPortfolio();
+      else if (state.route === 'about') host.innerHTML = renderAbout();
+      else if (state.route === 'contact') host.innerHTML = renderContact();
+      else host.innerHTML = renderServicePage(state.route);
+      bindPageEvents();
+    }
+
+    function openBookModal() {
+      if (KM_CONFIG.bookingUrl) { window.location.href = KM_CONFIG.bookingUrl; return; }
+      document.getElementById('book-modal').classList.add('open');
+    }
+    function closeBookModal() {
+      document.getElementById('book-modal').classList.remove('open');
+    }
+
+    document.addEventListener('click', (e) => {
+      const routeBtn = e.target.closest('[data-route]');
+      if (routeBtn) { e.preventDefault(); navigate(routeBtn.dataset.route); }
+      if (!e.target.closest('.dropdown')) document.getElementById('services-dropdown').classList.remove('open');
+    });
+    document.querySelectorAll('.lang-btn').forEach(b => b.addEventListener('click', () => setLanguage(b.dataset.lang)));
+    document.getElementById('nav-services-btn').addEventListener('click', () => document.getElementById('services-dropdown').classList.toggle('open'));
+    document.getElementById('mobile-menu-btn').addEventListener('click', () => document.getElementById('mobile-drawer').classList.toggle('open'));
+    document.getElementById('header-book-btn').addEventListener('click', openBookModal);
+    document.getElementById('mobile-book-btn').addEventListener('click', openBookModal);
+    document.getElementById('modal-close-x').addEventListener('click', closeBookModal);
+    document.getElementById('modal-close-btn').addEventListener('click', closeBookModal);
+    document.getElementById('modal-contact-btn').addEventListener('click', () => { closeBookModal(); navigate('contact'); });
+    document.getElementById('modal-copy-btn').addEventListener('click', () => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(KM_CONFIG.phoneRaw).then(() => {
+          document.getElementById('modal-copy-btn').textContent = t().bookModal.copiedLabel;
+          setTimeout(() => { document.getElementById('modal-copy-btn').textContent = t().bookModal.copyNumberAction; }, 2200);
+        }).catch(() => {});
+      }
+    });
+
+    setLanguage(state.lang);
+  </script>
+</body>
+</html>

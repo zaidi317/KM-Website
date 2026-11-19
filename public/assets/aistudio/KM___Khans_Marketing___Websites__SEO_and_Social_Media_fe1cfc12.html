@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KM | Khans Marketing – Websites, SEO and Social Media</title>
+<meta name="description" content="Khans Marketing (KM) builds websites with the content in place, then grows them through SEO and social media marketing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#E9EDEB; --ink:#0A1A22; --muted:#52646B; --line:#C5CECB; --surface:#F6F8F7;
+  --deep:#0A1A22; --on-deep:#EAF0EE; --on-deep-muted:#94A9AE; --accent:#C8A96B;
+  --font:"Manrope","Segoe UI",system-ui,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0B1419;--ink:#E7EEEC;--muted:#8FA3A8;--line:#22343B;--surface:#101C22;--deep:#060D11}
+}
+:root[data-theme="dark"]{--bg:#0B1419;--ink:#E7EEEC;--muted:#8FA3A8;--line:#22343B;--surface:#101C22;--deep:#060D11}
+*,*::before,*::after{box-sizing:border-box}
+html{background:var(--deep);scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.7 var(--font);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+p{margin:0}
+h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.03em;line-height:1.08}
+.wrap{width:min(1160px,100% - 3rem);margin-inline:auto}
+
+/* hero */
+.hero{position:relative;background:var(--deep);color:var(--on-deep);overflow:hidden}
+.hero svg{position:absolute;inset:auto 0 0 0;width:100%;height:68%;opacity:.9;pointer-events:none}
+.hero .g{fill:none;stroke:var(--accent);stroke-width:1.5;stroke-dasharray:2400;stroke-dashoffset:2400;animation:draw 3.2s cubic-bezier(.3,.6,.2,1) .3s forwards}
+.hero .f{fill:url(#fade);opacity:0;animation:show 1.5s ease 2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes show{to{opacity:1}}
+.top{position:relative;display:flex;justify-content:space-between;align-items:center;padding:1.75rem 0}
+.logo{font-weight:800;font-size:1.15rem;letter-spacing:.02em;text-decoration:none}
+.logo span{color:var(--accent)}
+.logo small{font-weight:400;font-size:.9rem;letter-spacing:0;color:var(--on-deep-muted);margin-left:.6rem}
+@media (max-width:480px){.logo small{display:none}}
+nav{display:flex;gap:2.25rem;align-items:center;font-size:.95rem}
+nav a{text-decoration:none;color:var(--on-deep-muted)}
+nav a:hover{color:var(--on-deep)}
+nav a.pill{color:var(--on-deep);padding:.55rem 1.25rem;border:1px solid var(--on-deep-muted);border-radius:99px}
+nav a.pill:hover{border-color:var(--accent);color:var(--accent)}
+@media (max-width:700px){nav a:not(.pill){display:none}}
+.hero-body{position:relative;padding:7rem 0 12rem;max-width:52rem}
+.hero h1{font-size:clamp(2.6rem,7vw,5.6rem)}
+.hero h1 b{font-weight:600}
+.hero p{margin:2rem 0 2.5rem;max-width:34rem;color:var(--on-deep-muted);font-size:1.2rem}
+.btn{display:inline-block;text-decoration:none;font-weight:600;padding:1rem 2rem;border-radius:99px;background:var(--accent);color:#0A1A22;transition:background .2s}
+.btn:hover{background:#DABD82}
+.link{margin-left:1.5rem;color:var(--on-deep);text-underline-offset:6px}
+@media (max-width:700px){.hero-body{padding:4rem 0 9rem}.link{display:inline-block;margin:1rem 0 0}}
+
+section{padding:6.5rem 0}
+.intro{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;margin-bottom:4rem}
+.intro h2{font-size:clamp(2rem,4vw,3.2rem)}
+.intro p{color:var(--muted);font-size:1.2rem;align-self:end}
+@media (max-width:860px){.intro{grid-template-columns:1fr;gap:1.5rem}}
+
+/* services as rows */
+.row{display:grid;grid-template-columns:1fr 1.2fr 1fr;gap:3rem;padding:2.75rem 0;border-top:1px solid var(--line)}
+.row:last-child{border-bottom:1px solid var(--line)}
+.row h3{font-size:1.9rem;font-weight:400}
+.row p{color:var(--muted)}
+.row ul{margin:0;padding:0;list-style:none}
+.row li{padding:.35rem 0 .35rem 1.2rem;position:relative}
+.row li::before{content:"";position:absolute;left:0;top:1.1rem;width:.5rem;height:1px;background:var(--accent)}
+@media (max-width:860px){.row{grid-template-columns:1fr;gap:1rem}}
+
+/* approach */
+.approach{background:var(--deep);color:var(--on-deep)}
+.approach h2{font-size:clamp(2rem,4vw,3.2rem);max-width:30rem;margin-bottom:4rem}
+.timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:0}
+.stage{padding:0 2.5rem 0 0;position:relative}
+.stage::before{content:"";display:block;height:1px;background:var(--on-deep-muted);opacity:.4;margin-bottom:2rem}
+.stage::after{content:"";position:absolute;top:-4px;left:0;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+.stage h3{font-size:1.6rem;font-weight:400;margin-bottom:.75rem}
+.stage p{color:var(--on-deep-muted)}
+@media (max-width:860px){.timeline{grid-template-columns:1fr;gap:2.5rem}.stage{padding-right:0}}
+
+/* principles */
+.pr{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+.pr div{border-left:1px solid var(--line);padding-left:1.5rem}
+.pr h3{font-size:1.25rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.6rem}
+.pr p{color:var(--muted)}
+@media (max-width:860px){.pr{grid-template-columns:1fr;gap:2rem}}
+
+/* contact */
+.contact{background:var(--surface);border-top:1px solid var(--line)}
+.contact .in{display:grid;grid-template-columns:1.3fr 1fr;gap:4rem;align-items:center}
+.contact h2{font-size:clamp(2rem,4.5vw,3.6rem)}
+.contact p{color:var(--muted);margin-bottom:1.75rem}
+@media (max-width:860px){.contact .in{grid-template-columns:1fr;gap:1.5rem}}
+footer{background:var(--deep);color:var(--on-deep-muted);padding:2rem 0 3rem;font-size:.92rem}
+footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+@media (prefers-reduced-motion:reduce){
+  .hero .g{animation:none;stroke-dashoffset:0}.hero .f{animation:none;opacity:1}html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+<header class="hero">
+  <svg viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
+    <defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#C8A96B" stop-opacity=".18"/><stop offset="1" stop-color="#C8A96B" stop-opacity="0"/></linearGradient></defs>
+    <path class="f" d="M0 470 C180 450 260 430 380 400 S560 380 680 330 S900 290 1020 200 S1280 90 1440 40 L1440 520 L0 520Z"/>
+    <path class="g" d="M0 470 C180 450 260 430 380 400 S560 380 680 330 S900 290 1020 200 S1280 90 1440 40"/>
+  </svg>
+  <div class="wrap">
+    <div class="top">
+      <a class="logo" href="#top">KM<span>.</span><small>Khans Marketing</small></a>
+      <nav aria-label="Main">
+        <a href="#services">Services</a>
+        <a href="#approach">Approach</a>
+        <a class="pill" href="#contact">Contact</a>
+      </nav>
+    </div>
+    <div class="hero-body" id="top">
+      <h1>Websites built to be <b>found</b>, and content that earns <b>attention</b>.</h1>
+      <p>Khans Marketing designs your website, integrates your content, and grows your reach through SEO and social media marketing.</p>
+      <a class="btn" href="#contact">Start a project</a>
+      <a class="link" href="#services">Explore our services</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="services">
+  <div class="wrap">
+    <div class="intro">
+      <h2>Everything your business needs to be seen online.</h2>
+      <p>One team handles the build, the words, the search ranking, and the social channels, so every piece supports the others.</p>
+    </div>
+    <div class="row">
+      <h3>Website development with content integration</h3>
+      <p>We design and build a fast, responsive website, then write and place your content in it. It launches complete, not as an empty template.</p>
+      <ul><li>Custom design and development</li><li>Copywriting and content placement</li><li>Mobile and speed optimization</li></ul>
+    </div>
+    <div class="row">
+      <h3>Search engine optimization</h3>
+      <p>We improve how your site is structured and what it says, so search engines understand it and the right customers find it.</p>
+      <ul><li>Keyword and competitor research</li><li>On-page and technical SEO</li><li>Monthly performance reports</li></ul>
+    </div>
+    <div class="row">
+      <h3>Social media marketing</h3>
+      <p>We plan and publish consistent content on your social channels and run campaigns that send people to your website.</p>
+      <ul><li>Content planning and publishing</li><li>Audience engagement</li><li>Paid social campaigns</li></ul>
+    </div>
+  </div>
+</section>
+
+<section class="approach" id="approach">
+  <div class="wrap">
+    <h2>A clear path from first call to steady growth.</h2>
+    <div class="timeline">
+      <div class="stage"><h3>Discover</h3><p>We learn your business, your customers, and your goals, then agree on what the website and campaigns need to achieve.</p></div>
+      <div class="stage"><h3>Build</h3><p>We design the site, write and add the content, and set up the search foundations before it goes live.</p></div>
+      <div class="stage"><h3>Grow</h3><p>We run SEO and social media on an ongoing basis and report on the results in plain language.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap pr">
+    <div><h3>One team, one plan</h3><p>Your site, search, and social work from the same strategy instead of three separate efforts.</p></div>
+    <div><h3>Content comes first</h3><p>Good copy and clear pages are what visitors and search engines respond to, so we start there.</p></div>
+    <div><h3>Reports you can read</h3><p>You see what was done and what changed, without jargon.</p></div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap in">
+    <h2>Let’s talk about your website.</h2>
+    <div>
+      <p>Tell us about your business and what you want to achieve. We’ll reply with suggested next steps.</p>
+      <a class="btn" href="mailto:hello@kmmarketing.com">Email Khans Marketing</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 KM, Khans Marketing</span>
+    <span>Website development, SEO, and social media marketing</span>
+  </div>
+</footer>
+</body>
+</html>

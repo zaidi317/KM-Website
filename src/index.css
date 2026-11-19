@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --km-canvas: #faf8f5;
+    --km-surface: #ffffff;
+    --km-surface-subtle: #f1ede6;
+    --km-ink: #111c18;
+    --km-muted: #4b5954;
+    --km-line: #e2ddd3;
+    --km-deep: #111c18;
+    --km-deep-elevated: #172620;
+    --km-deep-line: #253a32;
+    --km-on-deep: #f7f4ee;
+    --km-on-deep-muted: #a6b5af;
+    --km-accent: #c58f38;
+    --km-accent-hover: #d4a14e;
+    --km-accent-ink: #8a5e1b;
+    --km-emerald: #164237;
+
+    --font-display: "Fraunces", Georgia, serif;
+    --font-body: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --font-urdu-display: "Noto Nastaliq Urdu", "Noto Naskh Arabic", serif;
+    --font-urdu-ui: "Noto Naskh Arabic", "Noto Nastaliq Urdu", sans-serif;
+  }
+
+  html {
+    background-color: var(--km-deep);
+    color: var(--km-ink);
+    font-family: var(--font-body);
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--km-canvas);
+    color: var(--km-ink);
+    overflow-x: hidden;
+  }
+
+  /* English Typography: Editorial Serif Display + Crisp Geometric Sans Body */
+  html[lang="en"] h1,
+  html[lang="en"] h2 {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  html[lang="en"] h3,
+  html[lang="en"] h4 {
+    font-family: var(--font-body);
+    text-wrap: balance;
+  }
+
+  /* Urdu Typography & RTL Harmony */
+  html[lang="ur"] body {
+    font-family: var(--font-urdu-ui);
+    line-height: 1.85;
+  }
+
+  html[lang="ur"] h1,
+  html[lang="ur"] h2,
+  html[lang="ur"] .font-display {
+    font-family: var(--font-urdu-display);
+    font-weight: 400;
+    line-height: 2.1 !important;
+    letter-spacing: 0 !important;
+  }
+
+  html[lang="ur"] h3,
+  html[lang="ur"] h4,
+  html[lang="ur"] h3.font-display,
+  html[lang="ur"] h4.font-display {
+    font-family: var(--font-urdu-ui);
+    font-weight: 600;
+    line-height: 1.7 !important;
+    letter-spacing: 0 !important;
+  }
+
+  html[lang="ur"] button,
+  html[lang="ur"] a,
+  html[lang="ur"] input,
+  html[lang="ur"] select,
+  html[lang="ur"] textarea,
+  html[lang="ur"] label {
+    font-family: var(--font-urdu-ui);
+    letter-spacing: 0 !important;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--km-accent);
+    outline-offset: 3px;
+  }
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+html[lang="ur"] .font-display {
+  font-family: var(--font-urdu-display);
+  line-height: 2.1;
+  letter-spacing: 0 !important;
+}
+
+.font-mono-num {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
