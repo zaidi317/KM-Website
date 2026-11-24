@@ -20,6 +20,8 @@ const DISCIPLINE_ORDER: ServiceDisciplineFilter[] = [
   'search-reputation',
   'performance-ads',
   'social-brand',
+  'video-creators',
+  'automation-growth',
 ];
 
 export const ServiceCatalogSection: React.FC<ServiceCatalogSectionProps> = ({
@@ -116,6 +118,13 @@ export const ServiceCatalogSection: React.FC<ServiceCatalogSectionProps> = ({
                 </h3>
 
                 <p className="text-sm text-[#4B5954] leading-relaxed">{item.summary}</p>
+
+                <p className="text-xs text-[#111C18] leading-relaxed pt-1">
+                  <span className="font-semibold text-[#8A5E1B]">
+                    {directory.whoItIsForLabel}:{' '}
+                  </span>
+                  <span>{item.whoItIsFor}</span>
+                </p>
               </div>
 
               <div className="pt-4 border-t border-[#F1EDE6] flex flex-col justify-between gap-5">

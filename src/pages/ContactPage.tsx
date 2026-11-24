@@ -60,16 +60,16 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                         dir="ltr"
                         className="font-mono-num text-lg font-semibold text-[#111C18] hover:text-[#164237] transition-colors"
                       >
-                        {SITE_CONFIG.phoneRaw}
+                        {SITE_CONFIG.phoneDisplay}
                       </a>
                       <a
                         href={SITE_CONFIG.whatsappHref}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 text-xs font-semibold text-[#164237] hover:text-[#8A5E1B]"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-[#164237] text-[#F7F4EE] text-xs font-semibold hover:bg-[#1D5547] transition-colors"
                       >
-                        <MessageCircle className="w-3.5 h-3.5" aria-hidden="true" />
-                        <span>WhatsApp</span>
+                        <MessageCircle className="w-3.5 h-3.5 text-[#C58F38]" aria-hidden="true" />
+                        <span>{p.directInfo.whatsappCta}</span>
                       </a>
                     </div>
                     <p className="text-xs text-[#6B7973]">{p.directInfo.phoneHint}</p>
@@ -84,7 +84,8 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                     </div>
                     <a
                       href={`mailto:${SITE_CONFIG.recipientEmail}`}
-                      className="font-mono-num font-medium text-[#111C18] hover:text-[#8A5E1B] break-all"
+                      dir="ltr"
+                      className="font-mono-num font-medium text-[#111C18] hover:text-[#8A5E1B] break-all inline-block"
                     >
                       {SITE_CONFIG.recipientEmail}
                     </a>
@@ -109,6 +110,10 @@ export const ContactPage: React.FC<ContactPageProps> = ({
                   {p.directInfo.bookingCta}
                 </button>
               </div>
+
+              <p className="text-xs text-[#4B5954] border-t border-[#F1EDE6] pt-4 leading-relaxed">
+                {p.directInfo.noPaymentNote}
+              </p>
             </div>
 
             {/* What Happens After Submitting */}

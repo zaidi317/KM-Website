@@ -28,7 +28,7 @@ export const HeroArchitectureVisual: React.FC<HeroArchitectureVisualProps> = ({
           {label}
         </span>
         <span dir="ltr" className="font-mono-num text-[11px] text-[#A6B5AF]">
-          khansmarketing.com
+          khanmarketings.com
         </span>
       </div>
 
@@ -52,7 +52,7 @@ export const HeroArchitectureVisual: React.FC<HeroArchitectureVisualProps> = ({
               </div>
               <div className="text-xs text-[#A6B5AF] leading-relaxed">
                 {isUr
-                  ? 'لانچ کے دن سے ہی مستند کاروباری پیغام اور ریسپانسیو صفحات۔'
+                  ? 'لانچ کے دن سے ہی واضح پیغام اور موبائل کے مطابق صفحات۔'
                   : 'Responsive pages built with real business messaging from launch day.'}
               </div>
             </div>

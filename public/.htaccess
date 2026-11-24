@@ -1,0 +1,35 @@
+# Khan Marketings — Apache / Hostinger / cPanel Static Hosting Rules
+Options -MultiViews
+RewriteEngine On
+
+# Force HTTPS when hosted over SSL
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Legacy /services/* redirects to canonical top-level SEO paths
+RewriteRule ^services/website-development/?$ /website-development [R=301,L]
+RewriteRule ^services/seo/?$ /seo [R=301,L]
+RewriteRule ^services/social-media-marketing/?$ /social-media-marketing [R=301,L]
+
+# Custom static 404 page
+ErrorDocument 404 /404.html
+
+# Serve prerendered clean-URL directory index files before falling back
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
+
+# Gzip / Deflate Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json image/svg+xml
+</IfModule>
+
+# Browser Caching for Static Assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/html "access plus 0 seconds"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>

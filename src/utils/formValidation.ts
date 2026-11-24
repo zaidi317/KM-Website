@@ -1,13 +1,15 @@
 export type ServiceOption =
-  | 'website-development'
-  | 'ecommerce-store'
+  | 'website'
+  | 'ecommerce'
   | 'seo'
-  | 'local-seo-maps'
-  | 'performance-ads'
-  | 'social-media-marketing'
-  | 'whatsapp-automation'
-  | 'brand-copywriting'
-  | 'multiple-services'
+  | 'local-seo'
+  | 'social'
+  | 'ads'
+  | 'video-youtube'
+  | 'branding'
+  | 'automation-ai'
+  | 'training-consulting'
+  | 'multiple'
   | 'other';
 
 export type BudgetOption =
@@ -59,7 +61,7 @@ export const INITIAL_LEAD_FORM_VALUES: LeadFormValues = {
   phone: '',
   company: '',
   websiteUrl: '',
-  serviceRequired: 'website-development',
+  serviceRequired: 'website',
   budget: '',
   projectDetails: '',
   companyFaxTrap: '',
@@ -74,7 +76,6 @@ export function isValidEmail(value: string): boolean {
 export function isValidPhone(value: string): boolean {
   const trimmed = value.trim();
   if (!trimmed) return false;
-  // Allow digits, spaces, +, -, parentheses; require at least 7 digits and max 16
   if (!/^[+\d\s().-]+$/.test(trimmed)) return false;
   const digits = trimmed.replace(/\D/g, '');
   return digits.length >= 7 && digits.length <= 16;
@@ -159,7 +160,7 @@ export function buildMailtoHref(
     `Company / Business: ${values.company.trim()}`,
     `Website URL: ${values.websiteUrl.trim() || 'Not provided'}`,
     `Service Required: ${serviceLabel}`,
-    `Approximate Budget: ${budgetLabel || 'Not specified'}`,
+    `Approximate Scope: ${budgetLabel || 'Not specified'}`,
     '',
     'Project Details:',
     values.projectDetails.trim(),

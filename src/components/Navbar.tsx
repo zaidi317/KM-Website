@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { ChevronDown, Menu, X } from 'lucide-react';
 import { BrandMark } from './BrandMark';
 import type { Language, TranslationDictionary } from '../i18n/types';
-import { isServiceRoute, type PageRoute } from '../utils/routing';
+import { buildLocalizedPath, isGuideRoute, isServiceRoute, type PageRoute } from '../utils/routing';
 
 interface NavbarProps {
   currentRoute: PageRoute;
@@ -26,6 +26,7 @@ export const Navbar: React.FC<NavbarProps> = ({
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const serviceActive = isServiceRoute(currentRoute);
+  const guidesActive = currentRoute === 'guides' || isGuideRoute(currentRoute);
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
@@ -62,7 +63,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {t.utilityBar.domainNote}
           </span>
           <span className="text-[#A6B5AF] truncate sm:hidden font-mono-num">
-            khansmarketing.com
+            khanmarketings.com
           </span>
 
           <div
@@ -102,7 +103,7 @@ export const Navbar: React.FC<NavbarProps> = ({
       <div className="mx-auto max-w-[1200px] px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-8">
         {/* Zone 1: Brand Wordmark */}
         <a
-          href="/"
+          href={buildLocalizedPath('home', language)}
           onClick={(e) => {
             e.preventDefault();
             handleLinkClick('home');
@@ -111,17 +112,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         >
           <BrandMark
             variant="on-dark"
-            wordmark={language === 'ur' ? 'خانز مارکیٹنگ' : 'Khans Marketing'}
+            wordmark={language === 'ur' ? 'خان مارکیٹنگز' : 'Khan Marketings'}
           />
         </a>
 
-        {/* Zone 2: Desktop Navigation Links (5 clean links) */}
+        {/* Zone 2: Desktop Navigation Links */}
         <nav
           aria-label="Main navigation"
-          className="hidden md:flex items-center gap-6 text-sm font-medium"
+          className="hidden md:flex items-center gap-5 lg:gap-6 text-sm font-medium"
         >
           <a
-            href="/"
+            href={buildLocalizedPath('home', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('home');
@@ -160,17 +161,32 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {servicesOpen && (
               <div
-                className="absolute top-full mt-3 start-0 w-64 rounded-lg border border-[#253A32] bg-[#16241F] py-2 shadow-xl"
+                className="absolute top-full mt-3 start-0 w-72 rounded-lg border border-[#253A32] bg-[#16241F] py-2 shadow-xl"
                 role="menu"
               >
                 <a
-                  href="/services/website-development"
+                  href={buildLocalizedPath('services', language)}
+                  role="menuitem"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('services');
+                  }}
+                  className={`block px-4 py-2.5 text-sm font-medium transition-colors ${
+                    currentRoute === 'services'
+                      ? 'bg-[#1D3029] text-[#C58F38]'
+                      : 'text-[#F7F4EE] hover:bg-[#1A2B24]'
+                  }`}
+                >
+                  {t.nav.allServices}
+                </a>
+                <a
+                  href={buildLocalizedPath('website-development', language)}
                   role="menuitem"
                   onClick={(e) => {
                     e.preventDefault();
                     handleLinkClick('website-development');
                   }}
-                  className={`block px-4 py-2.5 text-sm transition-colors ${
+                  className={`block px-4 py-2 text-sm transition-colors ${
                     currentRoute === 'website-development'
                       ? 'bg-[#1D3029] text-[#C58F38]'
                       : 'text-[#E3DFD6] hover:bg-[#1A2B24] hover:text-[#F7F4EE]'
@@ -179,13 +195,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {t.nav.websiteDev}
                 </a>
                 <a
-                  href="/services/seo"
+                  href={buildLocalizedPath('seo', language)}
                   role="menuitem"
                   onClick={(e) => {
                     e.preventDefault();
                     handleLinkClick('seo');
                   }}
-                  className={`block px-4 py-2.5 text-sm transition-colors ${
+                  className={`block px-4 py-2 text-sm transition-colors ${
                     currentRoute === 'seo'
                       ? 'bg-[#1D3029] text-[#C58F38]'
                       : 'text-[#E3DFD6] hover:bg-[#1A2B24] hover:text-[#F7F4EE]'
@@ -194,13 +210,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {t.nav.seo}
                 </a>
                 <a
-                  href="/services/social-media-marketing"
+                  href={buildLocalizedPath('social-media-marketing', language)}
                   role="menuitem"
                   onClick={(e) => {
                     e.preventDefault();
                     handleLinkClick('social-media-marketing');
                   }}
-                  className={`block px-4 py-2.5 text-sm transition-colors ${
+                  className={`block px-4 py-2 text-sm transition-colors ${
                     currentRoute === 'social-media-marketing'
                       ? 'bg-[#1D3029] text-[#C58F38]'
                       : 'text-[#E3DFD6] hover:bg-[#1A2B24] hover:text-[#F7F4EE]'
@@ -208,12 +224,63 @@ export const Navbar: React.FC<NavbarProps> = ({
                 >
                   {t.nav.socialMedia}
                 </a>
+
+                <div className="my-2 border-t border-[#253A32]" />
+                <div className="px-4 py-1 text-[11px] font-semibold text-[#A6B5AF]">
+                  {t.nav.audiencesHeading}
+                </div>
+
+                <a
+                  href={buildLocalizedPath('for-teachers', language)}
+                  role="menuitem"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('for-teachers');
+                  }}
+                  className={`block px-4 py-2 text-sm transition-colors ${
+                    currentRoute === 'for-teachers'
+                      ? 'bg-[#1D3029] text-[#C58F38]'
+                      : 'text-[#E3DFD6] hover:bg-[#1A2B24] hover:text-[#F7F4EE]'
+                  }`}
+                >
+                  {t.nav.forTeachers}
+                </a>
+                <a
+                  href={buildLocalizedPath('for-small-business', language)}
+                  role="menuitem"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('for-small-business');
+                  }}
+                  className={`block px-4 py-2 text-sm transition-colors ${
+                    currentRoute === 'for-small-business'
+                      ? 'bg-[#1D3029] text-[#C58F38]'
+                      : 'text-[#E3DFD6] hover:bg-[#1A2B24] hover:text-[#F7F4EE]'
+                  }`}
+                >
+                  {t.nav.forSmallBusiness}
+                </a>
+                <a
+                  href={buildLocalizedPath('for-large-business', language)}
+                  role="menuitem"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleLinkClick('for-large-business');
+                  }}
+                  className={`block px-4 py-2 text-sm transition-colors ${
+                    currentRoute === 'for-large-business'
+                      ? 'bg-[#1D3029] text-[#C58F38]'
+                      : 'text-[#E3DFD6] hover:bg-[#1A2B24] hover:text-[#F7F4EE]'
+                  }`}
+                >
+                  {t.nav.forLargeBusiness}
+                </a>
               </div>
             )}
           </div>
 
           <a
-            href="/portfolio"
+            href={buildLocalizedPath('portfolio', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('portfolio');
@@ -229,7 +296,23 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="/about"
+            href={buildLocalizedPath('guides', language)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('guides');
+            }}
+            aria-current={guidesActive ? 'page' : undefined}
+            className={`whitespace-nowrap shrink-0 py-1 transition-colors ${
+              guidesActive
+                ? 'text-[#F7F4EE] border-b border-[#C58F38]'
+                : 'text-[#A6B5AF] hover:text-[#F7F4EE]'
+            }`}
+          >
+            {t.nav.guides}
+          </a>
+
+          <a
+            href={buildLocalizedPath('about', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('about');
@@ -245,7 +328,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="/contact"
+            href={buildLocalizedPath('contact', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('contact');
@@ -292,7 +375,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="md:hidden border-t border-[#253A32] bg-[#111C18] px-4 py-5 space-y-1"
         >
           <a
-            href="/"
+            href={buildLocalizedPath('home', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('home');
@@ -308,7 +391,19 @@ export const Navbar: React.FC<NavbarProps> = ({
             {t.nav.services}
           </div>
           <a
-            href="/services/website-development"
+            href={buildLocalizedPath('services', language)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('services');
+            }}
+            className={`block ps-6 pe-3 py-2.5 rounded text-sm font-medium ${
+              currentRoute === 'services' ? 'bg-[#172620] text-[#C58F38]' : 'text-[#F7F4EE]'
+            }`}
+          >
+            {t.nav.allServices}
+          </a>
+          <a
+            href={buildLocalizedPath('website-development', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('website-development');
@@ -322,7 +417,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {t.nav.websiteDev}
           </a>
           <a
-            href="/services/seo"
+            href={buildLocalizedPath('seo', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('seo');
@@ -334,7 +429,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             {t.nav.seo}
           </a>
           <a
-            href="/services/social-media-marketing"
+            href={buildLocalizedPath('social-media-marketing', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('social-media-marketing');
@@ -348,8 +443,52 @@ export const Navbar: React.FC<NavbarProps> = ({
             {t.nav.socialMedia}
           </a>
 
+          <div className="pt-2 pb-1 px-3 text-xs font-medium text-[#A6B5AF]">
+            {t.nav.audiencesHeading}
+          </div>
           <a
-            href="/portfolio"
+            href={buildLocalizedPath('for-teachers', language)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('for-teachers');
+            }}
+            className={`block ps-6 pe-3 py-2.5 rounded text-sm ${
+              currentRoute === 'for-teachers' ? 'bg-[#172620] text-[#C58F38]' : 'text-[#E3DFD6]'
+            }`}
+          >
+            {t.nav.forTeachers}
+          </a>
+          <a
+            href={buildLocalizedPath('for-small-business', language)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('for-small-business');
+            }}
+            className={`block ps-6 pe-3 py-2.5 rounded text-sm ${
+              currentRoute === 'for-small-business'
+                ? 'bg-[#172620] text-[#C58F38]'
+                : 'text-[#E3DFD6]'
+            }`}
+          >
+            {t.nav.forSmallBusiness}
+          </a>
+          <a
+            href={buildLocalizedPath('for-large-business', language)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('for-large-business');
+            }}
+            className={`block ps-6 pe-3 py-2.5 rounded text-sm ${
+              currentRoute === 'for-large-business'
+                ? 'bg-[#172620] text-[#C58F38]'
+                : 'text-[#E3DFD6]'
+            }`}
+          >
+            {t.nav.forLargeBusiness}
+          </a>
+
+          <a
+            href={buildLocalizedPath('portfolio', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('portfolio');
@@ -362,7 +501,20 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="/about"
+            href={buildLocalizedPath('guides', language)}
+            onClick={(e) => {
+              e.preventDefault();
+              handleLinkClick('guides');
+            }}
+            className={`block px-3 py-2.5 rounded text-base font-medium ${
+              guidesActive ? 'bg-[#172620] text-[#C58F38]' : 'text-[#F7F4EE]'
+            }`}
+          >
+            {t.nav.guides}
+          </a>
+
+          <a
+            href={buildLocalizedPath('about', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('about');
@@ -375,7 +527,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           </a>
 
           <a
-            href="/contact"
+            href={buildLocalizedPath('contact', language)}
             onClick={(e) => {
               e.preventDefault();
               handleLinkClick('contact');

@@ -10,7 +10,7 @@ import {
 } from './formValidation';
 
 test('email validation accepts standard business emails and rejects malformed input', () => {
-  assert.equal(isValidEmail('tariq@khansmarketing.com'), true);
+  assert.equal(isValidEmail('tariq@khanmarketings.com'), true);
   assert.equal(isValidEmail('info@company.co.uk'), true);
   assert.equal(isValidEmail('invalid-email'), false);
   assert.equal(isValidEmail('user@domain'), false);
@@ -19,6 +19,7 @@ test('email validation accepts standard business emails and rejects malformed in
 
 test('phone validation accepts international/local numbers and rejects invalid strings', () => {
   assert.equal(isValidPhone('+92 300 1234567'), true);
+  assert.equal(isValidPhone('0321-2995766'), true);
   assert.equal(isValidPhone('(021) 3555-0192'), true);
   assert.equal(isValidPhone('12345'), false);
   assert.equal(isValidPhone('abc-def-ghij'), false);
@@ -26,8 +27,8 @@ test('phone validation accepts international/local numbers and rejects invalid s
 
 test('optional URL validation allows empty string and valid domains', () => {
   assert.equal(isValidOptionalUrl(''), true);
-  assert.equal(isValidOptionalUrl('khansmarketing.com'), true);
-  assert.equal(isValidOptionalUrl('https://khansmarketing.com/services'), true);
+  assert.equal(isValidOptionalUrl('khanmarketings.com'), true);
+  assert.equal(isValidOptionalUrl('https://khanmarketings.com/seo'), true);
   assert.equal(isValidOptionalUrl('not a valid url'), false);
   assert.equal(isValidOptionalUrl('localhost'), false);
 });
@@ -48,7 +49,7 @@ test('validateLeadForm flags missing required fields and accepts complete valid 
     phone: '+92 321 4455667',
     company: 'Crescent Logistics',
     websiteUrl: 'https://crescentlogistics.pk',
-    serviceRequired: 'multiple-services',
+    serviceRequired: 'multiple',
     budget: '1000-2500',
     projectDetails: 'We need a redesigned website with clear service pages and technical SEO.',
   });
@@ -61,7 +62,7 @@ test('validateLeadForm flags missing required fields and accepts complete valid 
     email: 'bilal@karachiretail.pk',
     phone: '03212995766',
     company: 'Qureshi Apparel',
-    serviceRequired: 'ecommerce-store',
+    serviceRequired: 'ecommerce',
     projectDetails: 'Need a Shopify COD store with Meta Pixel and TikTok conversion tracking.',
   });
   assert.equal(adsResult.valid, true);
@@ -83,7 +84,7 @@ test('validateLeadForm blocks submissions when honeypot field is populated', () 
 
 test('buildMailtoHref encodes recipient and enquiry details cleanly', () => {
   const href = buildMailtoHref(
-    'hello@khansmarketing.com',
+    'hello@khanmarketings.com',
     {
       ...INITIAL_LEAD_FORM_VALUES,
       fullName: 'Amina Khan',
@@ -93,9 +94,9 @@ test('buildMailtoHref encodes recipient and enquiry details cleanly', () => {
       projectDetails: 'Looking for a bilingual website and search foundation.',
     },
     'Website Design & Development',
-    'Growth Scope ($1,000 – $2,500)'
+    'Prefer to discuss after free review'
   );
-  assert.ok(href.startsWith('mailto:hello@khansmarketing.com?subject='));
+  assert.ok(href.startsWith('mailto:hello@khanmarketings.com?subject='));
   assert.ok(href.includes('Amina%20Studio'));
   assert.ok(href.includes('Website%20Design'));
 });

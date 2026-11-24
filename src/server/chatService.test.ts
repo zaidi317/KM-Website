@@ -1,5 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import { CANONICAL_ENTITY_DEFINITION } from '../config/siteConfig';
 import {
   buildSystemInstruction,
   prepareChatRequest,
@@ -12,15 +13,17 @@ test('resolveChatModel routes strategist to gemini-4-hydrogen and quick-guide to
   assert.equal(resolveChatModel('quick-guide'), 'gemini-3.1-flash-lite');
 });
 
-test('buildSystemInstruction includes Khans Marketing role, phone number, and honesty rules', () => {
+test('buildSystemInstruction includes canonical entity, 40 services, phone, and honesty rules', () => {
   const enInstr = buildSystemInstruction('strategist', 'en');
-  assert.ok(enInstr.includes('Khans Marketing'));
-  assert.ok(enInstr.includes('03212995766'));
-  assert.ok(enInstr.includes('English'));
+  assert.ok(enInstr.includes(CANONICAL_ENTITY_DEFINITION));
+  assert.ok(enInstr.includes('0321-2995766'));
+  assert.ok(enInstr.includes('(40) Workshops & training'));
+  assert.ok(enInstr.includes('Roman Urdu'));
+  assert.ok(enInstr.includes('Do NOT quote invented PKR or USD prices'));
 
   const urInstr = buildSystemInstruction('quick-guide', 'ur');
-  assert.ok(urInstr.includes('اردو'));
   assert.ok(urInstr.includes('Quick Digital Growth Guide'));
+  assert.ok(urInstr.includes('آسان عام فہم اردو'));
 });
 
 test('prepareChatRequest splits multi-turn history and validates latest user message', () => {

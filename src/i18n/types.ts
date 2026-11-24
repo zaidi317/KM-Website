@@ -1,8 +1,66 @@
 import type { BudgetOption, ServiceOption, ValidationErrorCode } from '../utils/formValidation';
-import type { PageRoute } from '../utils/routing';
-import type { AgencyServiceItem } from '../utils/serviceCatalogUtils';
+import type { GuideRoute, PageRoute } from '../utils/routing';
+import type { AgencyServiceItem, ServiceDisciplineId } from '../utils/serviceCatalogUtils';
 
 export type Language = 'en' | 'ur';
+
+export type GuideTopicId = 'google-seo' | 'websites-stores' | 'social-strategy';
+
+export interface GuideSection {
+  heading: string;
+  paragraphs: string[];
+  bullets?: string[];
+}
+
+export interface GuideArticle {
+  route: GuideRoute;
+  number: string;
+  topic: GuideTopicId;
+  categoryLabel: string;
+  title: string;
+  excerpt: string;
+  readTimeLabel: string;
+  lastUpdatedText: string;
+  answerFirstTitle: string;
+  answerFirstSummary: string;
+  sections: GuideSection[];
+  keyTakeawaysTitle: string;
+  keyTakeaways: string[];
+  nextStepCta: {
+    eyebrow: string;
+    heading: string;
+    description: string;
+    serviceOption: ServiceOption;
+    primaryButtonLabel: string;
+    whatsappLabel: string;
+    relatedRoute: PageRoute;
+    relatedLabel: string;
+  };
+}
+
+export interface GuidesHubContent {
+  eyebrow: string;
+  headline: string;
+  subheadline: string;
+  lastUpdatedText: string;
+  primaryCta: string;
+  secondaryCta: string;
+  filterHeading: string;
+  categories: Record<'all' | GuideTopicId, string>;
+  readGuideLabel: string;
+  articleLabels: {
+    homeBreadcrumb: string;
+    guidesBreadcrumb: string;
+    backToHubLabel: string;
+    relatedHeading: string;
+  };
+  ctaBand: {
+    heading: string;
+    description: string;
+    primaryCta: string;
+    secondaryCta: string;
+  };
+}
 
 export interface ServiceDetailItem {
   number: string;
@@ -16,7 +74,16 @@ export interface ProcessStep {
   description: string;
 }
 
-export type FaqTopicId = 'web' | 'seo' | 'social';
+export type FaqTopicId =
+  | 'general'
+  | 'pricing'
+  | 'web'
+  | 'seo'
+  | 'social'
+  | 'ads'
+  | 'ecommerce'
+  | 'creators';
+
 export type FaqCategory = 'all' | FaqTopicId;
 
 export interface FaqItem {
@@ -41,6 +108,59 @@ export interface TrustStandardBadge {
   subtitle: string;
 }
 
+export interface ServicePageOwnership {
+  eyebrow: string;
+  heading: string;
+  items: string[];
+  honestyDisclosure: string;
+}
+
+export interface RelatedServiceLink {
+  title: string;
+  description: string;
+  route: PageRoute;
+  ctaLabel: string;
+}
+
+export interface AudienceLandingContent {
+  eyebrow: string;
+  headline: string;
+  subheadline: string;
+  primaryCta: string;
+  secondaryCta: string;
+  lastUpdatedText: string;
+  defaultServiceOption: ServiceOption;
+  challengesSection: {
+    eyebrow: string;
+    heading: string;
+    body: string;
+    challengesTitle: string;
+    challenges: string[];
+    solutionsTitle: string;
+    solutions: string[];
+  };
+  packagesSection: {
+    eyebrow: string;
+    heading: string;
+    items: ServiceDetailItem[];
+  };
+  processSection: {
+    eyebrow: string;
+    heading: string;
+    steps: ProcessStep[];
+  };
+  ownership: ServicePageOwnership;
+  faqHeading: string;
+  faqs: FaqItem[];
+  relatedHeading: string;
+  relatedLinks: [RelatedServiceLink, RelatedServiceLink];
+  ctaBand: {
+    heading: string;
+    description: string;
+    buttonLabel: string;
+  };
+}
+
 export interface TranslationDictionary {
   meta: Record<PageRoute, { title: string; description: string }>;
   utilityBar: {
@@ -52,10 +172,16 @@ export interface TranslationDictionary {
   nav: {
     home: string;
     services: string;
+    allServices: string;
     websiteDev: string;
     seo: string;
     socialMedia: string;
+    audiencesHeading: string;
+    forTeachers: string;
+    forSmallBusiness: string;
+    forLargeBusiness: string;
     portfolio: string;
+    guides: string;
     about: string;
     contact: string;
     bookCall: string;
@@ -85,16 +211,57 @@ export interface TranslationDictionary {
       subheadline: string;
       primaryCta: string;
       secondaryCta: string;
+      whatsappCta: string;
       blueprintLabel: string;
       blueprintNodes: [string, string, string];
     };
     positioning: {
       label: string;
+      heading: string;
+      canonicalEntity: string;
       statement: string;
       pillars: [
         { title: string; text: string },
         { title: string; text: string },
         { title: string; text: string }
+      ];
+    };
+    whoWeHelp: {
+      eyebrow: string;
+      heading: string;
+      subheading: string;
+      explorePageLabel: string;
+      cards: [
+        {
+          id: string;
+          audience: string;
+          hook: string;
+          description: string;
+          offers: string[];
+          ctaLabel: string;
+          serviceOption: ServiceOption;
+          route: PageRoute;
+        },
+        {
+          id: string;
+          audience: string;
+          hook: string;
+          description: string;
+          offers: string[];
+          ctaLabel: string;
+          serviceOption: ServiceOption;
+          route: PageRoute;
+        },
+        {
+          id: string;
+          audience: string;
+          hook: string;
+          description: string;
+          offers: string[];
+          ctaLabel: string;
+          serviceOption: ServiceOption;
+          route: PageRoute;
+        }
       ];
     };
     trustStandards: {
@@ -137,13 +304,8 @@ export interface TranslationDictionary {
       heading: string;
       subheading: string;
       ctaLabel: string;
-      categories: {
-        all: string;
-        'web-commerce': string;
-        'search-reputation': string;
-        'performance-ads': string;
-        'social-brand': string;
-      };
+      whoItIsForLabel: string;
+      categories: Record<'all' | ServiceDisciplineId, string>;
       items: AgencyServiceItem[];
     };
     systemShowcase: {
@@ -208,12 +370,8 @@ export interface TranslationDictionary {
       eyebrow: string;
       heading: string;
       subheading: string;
-      categories: {
-        all: string;
-        web: string;
-        seo: string;
-        social: string;
-      };
+      lastUpdatedText: string;
+      categories: Record<FaqCategory, string>;
       items: FaqItem[];
     };
     closingCta: {
@@ -222,6 +380,7 @@ export interface TranslationDictionary {
       description: string;
       primaryCta: string;
       secondaryCta: string;
+      whatsappCta: string;
     };
   };
   webDevPage: {
@@ -230,6 +389,7 @@ export interface TranslationDictionary {
     subheadline: string;
     primaryCta: string;
     secondaryCta: string;
+    lastUpdatedText: string;
     problemSection: {
       eyebrow: string;
       heading: string;
@@ -249,6 +409,11 @@ export interface TranslationDictionary {
       heading: string;
       steps: ProcessStep[];
     };
+    ownership: ServicePageOwnership;
+    faqHeading: string;
+    faqs: FaqItem[];
+    relatedHeading: string;
+    relatedLinks: [RelatedServiceLink, RelatedServiceLink];
     ctaBand: {
       heading: string;
       description: string;
@@ -261,6 +426,7 @@ export interface TranslationDictionary {
     subheadline: string;
     primaryCta: string;
     secondaryCta: string;
+    lastUpdatedText: string;
     businessValue: {
       eyebrow: string;
       heading: string;
@@ -304,6 +470,11 @@ export interface TranslationDictionary {
       body: string;
       metricsList: string[];
     };
+    ownership: ServicePageOwnership;
+    faqHeading: string;
+    faqs: FaqItem[];
+    relatedHeading: string;
+    relatedLinks: [RelatedServiceLink, RelatedServiceLink];
     ctaBand: {
       heading: string;
       description: string;
@@ -316,6 +487,7 @@ export interface TranslationDictionary {
     subheadline: string;
     primaryCta: string;
     secondaryCta: string;
+    lastUpdatedText: string;
     strategyIntro: {
       eyebrow: string;
       heading: string;
@@ -340,12 +512,51 @@ export interface TranslationDictionary {
         { title: string; body: string }
       ];
     };
+    ownership: ServicePageOwnership;
+    faqHeading: string;
+    faqs: FaqItem[];
+    relatedHeading: string;
+    relatedLinks: [RelatedServiceLink, RelatedServiceLink];
     ctaBand: {
       heading: string;
       description: string;
       buttonLabel: string;
     };
   };
+  servicesHubPage: {
+    eyebrow: string;
+    headline: string;
+    subheadline: string;
+    primaryCta: string;
+    secondaryCta: string;
+    lastUpdatedText: string;
+    corePillarsHeading: string;
+    corePillars: Array<{
+      title: string;
+      description: string;
+      route: PageRoute;
+      ctaLabel: string;
+    }>;
+    audienceTracksHeading: string;
+    audienceTracks: Array<{
+      audience: string;
+      title: string;
+      description: string;
+      route: PageRoute;
+      ctaLabel: string;
+    }>;
+    ownership: ServicePageOwnership;
+    faqHeading: string;
+    faqs: FaqItem[];
+    ctaBand: {
+      heading: string;
+      description: string;
+      buttonLabel: string;
+    };
+  };
+  forTeachersPage: AudienceLandingContent;
+  forSmallBusinessPage: AudienceLandingContent;
+  forLargeBusinessPage: AudienceLandingContent;
   portfolioPage: {
     eyebrow: string;
     headline: string;
@@ -367,10 +578,14 @@ export interface TranslationDictionary {
       secondaryCta: string;
     };
   };
+  guidesHubPage: GuidesHubContent;
+  guideArticles: Record<GuideRoute, GuideArticle>;
   aboutPage: {
     eyebrow: string;
     headline: string;
     subheadline: string;
+    lastUpdatedText: string;
+    canonicalEntity: string;
     philosophy: {
       eyebrow: string;
       heading: string;
@@ -403,6 +618,8 @@ export interface TranslationDictionary {
       emailHint: string;
       phoneLabel: string;
       phoneHint: string;
+      whatsappCta: string;
+      noPaymentNote: string;
       bookingTitle: string;
       bookingBody: string;
       bookingCta: string;
@@ -453,6 +670,8 @@ export interface TranslationDictionary {
   };
   footer: {
     tagline: string;
+    servingNote: string;
+    honestyDisclosure: string;
     navigationHeading: string;
     servicesHeading: string;
     contactHeading: string;
@@ -478,6 +697,7 @@ export interface TranslationDictionary {
     sendLabel: string;
     thinkingLabel: string;
     callShortcutLabel: string;
+    whatsappShortcutLabel: string;
     errorFallback: string;
   };
   toast: {

@@ -4,7 +4,9 @@ export type ServiceDisciplineId =
   | 'web-commerce'
   | 'search-reputation'
   | 'performance-ads'
-  | 'social-brand';
+  | 'social-brand'
+  | 'video-creators'
+  | 'automation-growth';
 
 export type ServiceDisciplineFilter = 'all' | ServiceDisciplineId;
 
@@ -15,6 +17,7 @@ export interface AgencyServiceItem {
   categoryLabel: string;
   title: string;
   summary: string;
+  whoItIsFor: string;
   deliverables: string[];
   leadServiceOption: ServiceOption;
 }
@@ -38,6 +41,8 @@ export function countServicesByDiscipline(
     'search-reputation': 0,
     'performance-ads': 0,
     'social-brand': 0,
+    'video-creators': 0,
+    'automation-growth': 0,
   };
 
   for (const item of items) {

@@ -8,7 +8,7 @@ import { en } from '../src/i18n/en';
 const rootDir = path.resolve(process.cwd());
 const distAssetsDir = path.resolve(rootDir, 'dist', 'assets');
 const outDir = path.resolve(rootDir, 'exports');
-const outFile = path.join(outDir, 'khansmarketing.html');
+const outFile = path.join(outDir, 'khanmarketings.html');
 
 const skipVite = process.argv.includes('--skip-vite');
 
@@ -103,7 +103,7 @@ async function main() {
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(outFile, html, 'utf8');
   const sizeKb = (Buffer.byteLength(html, 'utf8') / 1024).toFixed(1);
-  console.log(`Generated complete standalone HTML: exports/khansmarketing.html (${sizeKb} KB)`);
+  console.log(`Generated complete standalone HTML: exports/khanmarketings.html (${sizeKb} KB)`);
 }
 
 main().catch((err) => {

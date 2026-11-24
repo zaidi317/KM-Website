@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "tsx server.ts",
     "start": "node server.ts",
-    "build": "vite build && tsx scripts/generate-standalone.ts --skip-vite",
+    "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-ssr && tsx scripts/prerender.ts && rm -rf dist-ssr && tsx scripts/generate-standalone.ts --skip-vite",
     "build:html": "tsx scripts/generate-standalone.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",

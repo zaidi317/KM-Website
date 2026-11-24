@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { MotionConfig } from 'motion/react';
 import { BookCallModal } from './components/BookCallModal';
 import { Footer } from './components/Footer';
-import { KhansChatWidget } from './components/KhansChatWidget';
+import { KhanChatWidget } from './components/KhanChatWidget';
 import { Navbar } from './components/Navbar';
 import { ToastViewport } from './components/ToastViewport';
 import { en } from './i18n/en';
@@ -10,17 +10,26 @@ import type { Language } from './i18n/types';
 import { ur } from './i18n/ur';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
+import { ForLargeBusinessPage } from './pages/ForLargeBusinessPage';
+import { ForSmallBusinessPage } from './pages/ForSmallBusinessPage';
+import { ForTeachersPage } from './pages/ForTeachersPage';
+import { GuideArticlePage } from './pages/GuideArticlePage';
+import { GuidesHubPage } from './pages/GuidesHubPage';
 import { HomePage } from './pages/HomePage';
 import { PortfolioPage } from './pages/PortfolioPage';
 import { SeoPage } from './pages/SeoPage';
+import { ServicesHubPage } from './pages/ServicesHubPage';
 import { SocialMediaPage } from './pages/SocialMediaPage';
 import { WebDevPage } from './pages/WebDevPage';
 import type { ServiceOption } from './utils/formValidation';
+import { buildStructuredData } from './seo/structuredData';
 import {
-  ROUTE_PATHS,
+  buildCanonicalUrl,
+  buildLocalizedPath,
+  isGuideRoute,
   isServiceRoute,
   isStandaloneEnvironment,
-  resolveRouteFromLocation,
+  parseLocalizedLocation,
   type PageRoute,
 } from './utils/routing';
 import {
@@ -32,27 +41,76 @@ import {
 
 const LANGUAGE_STORAGE_KEY = 'km_preferred_language';
 
-function getInitialLanguage(): Language {
-  try {
-    const saved = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
-    if (saved === 'ur' || saved === 'en') {
-      return saved;
-    }
-  } catch {
-    // Ignore storage access restrictions
+const ROUTE_TO_SERVICE: Partial<Record<PageRoute, ServiceOption>> = {
+  services: 'multiple',
+  'website-development': 'website',
+  seo: 'seo',
+  'social-media-marketing': 'social',
+  'for-teachers': 'website',
+  'for-small-business': 'local-seo',
+  'for-large-business': 'multiple',
+};
+
+function upsertHeadMeta(
+  selector: string,
+  tagName: 'meta' | 'link',
+  attrs: Record<string, string>
+) {
+  let el = document.head.querySelector(selector);
+  if (!el) {
+    el = document.createElement(tagName);
+    document.head.appendChild(el);
   }
-  return 'en';
+  for (const [k, v] of Object.entries(attrs)) {
+    el.setAttribute(k, v);
+  }
 }
 
-export default function App() {
-  const [route, setRoute] = useState<PageRoute>(() =>
-    resolveRouteFromLocation(window.location.pathname, window.location.hash)
-  );
-  const [language, setLanguage] = useState<Language>(getInitialLanguage);
+function resolveInitialState(
+  initialRoute?: PageRoute,
+  initialLanguage?: Language
+): { route: PageRoute; language: Language } {
+  if (initialRoute && initialLanguage) {
+    return { route: initialRoute, language: initialLanguage };
+  }
+  if (typeof window === 'undefined') {
+    return {
+      route: initialRoute ?? 'home',
+      language: initialLanguage ?? 'en',
+    };
+  }
+
+  const parsed = parseLocalizedLocation(window.location.pathname, window.location.hash);
+  let lang: Language = initialLanguage ?? parsed.language ?? 'en';
+
+  if (!initialLanguage && !parsed.language && isStandaloneEnvironment()) {
+    try {
+      const saved = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      if (saved === 'ur' || saved === 'en') {
+        lang = saved;
+      }
+    } catch {
+      // Ignore storage restrictions
+    }
+  }
+
+  return {
+    route: initialRoute ?? parsed.route,
+    language: lang,
+  };
+}
+
+export interface AppProps {
+  initialRoute?: PageRoute;
+  initialLanguage?: Language;
+}
+
+export default function App({ initialRoute, initialLanguage }: AppProps = {}) {
+  const initialState = resolveInitialState(initialRoute, initialLanguage);
+  const [route, setRoute] = useState<PageRoute>(initialState.route);
+  const [language, setLanguage] = useState<Language>(initialState.language);
   const [bookModalOpen, setBookModalOpen] = useState(false);
-  const [lastServiceContext, setLastServiceContext] = useState<ServiceOption>(
-    'website-development'
-  );
+  const [lastServiceContext, setLastServiceContext] = useState<ServiceOption>('website');
   const [toasts, setToasts] = useState<ToastItem[]>([]);
 
   const handleNotify = useCallback((toast: ToastInput) => {
@@ -71,11 +129,68 @@ export default function App() {
     html.dir = language === 'ur' ? 'rtl' : 'ltr';
 
     const pageMeta = t.meta[route];
+    const canonicalUrl = buildCanonicalUrl(route, language);
+    const enUrl = buildCanonicalUrl(route, 'en');
+    const urUrl = buildCanonicalUrl(route, 'ur');
+
     document.title = pageMeta.title;
-    const descTag = document.querySelector('meta[name="description"]');
-    if (descTag) {
-      descTag.setAttribute('content', pageMeta.description);
+    upsertHeadMeta('meta[name="description"]', 'meta', {
+      name: 'description',
+      content: pageMeta.description,
+    });
+    upsertHeadMeta('meta[property="og:title"]', 'meta', {
+      property: 'og:title',
+      content: pageMeta.title,
+    });
+    upsertHeadMeta('meta[property="og:description"]', 'meta', {
+      property: 'og:description',
+      content: pageMeta.description,
+    });
+    upsertHeadMeta('meta[property="og:url"]', 'meta', {
+      property: 'og:url',
+      content: canonicalUrl,
+    });
+    upsertHeadMeta('meta[property="og:locale"]', 'meta', {
+      property: 'og:locale',
+      content: language === 'ur' ? 'ur_PK' : 'en_PK',
+    });
+    upsertHeadMeta('meta[name="twitter:title"]', 'meta', {
+      name: 'twitter:title',
+      content: pageMeta.title,
+    });
+    upsertHeadMeta('meta[name="twitter:description"]', 'meta', {
+      name: 'twitter:description',
+      content: pageMeta.description,
+    });
+
+    upsertHeadMeta('link[rel="canonical"]', 'link', {
+      rel: 'canonical',
+      href: canonicalUrl,
+    });
+    upsertHeadMeta('link[rel="alternate"][hreflang="en"]', 'link', {
+      rel: 'alternate',
+      hreflang: 'en',
+      href: enUrl,
+    });
+    upsertHeadMeta('link[rel="alternate"][hreflang="ur"]', 'link', {
+      rel: 'alternate',
+      hreflang: 'ur',
+      href: urUrl,
+    });
+    upsertHeadMeta('link[rel="alternate"][hreflang="x-default"]', 'link', {
+      rel: 'alternate',
+      hreflang: 'x-default',
+      href: enUrl,
+    });
+
+    let ldScript = document.head.querySelector('#km-jsonld') as HTMLScriptElement | null;
+    if (!ldScript) {
+      ldScript = document.createElement('script');
+      ldScript.id = 'km-jsonld';
+      ldScript.type = 'application/ld+json';
+      document.head.appendChild(ldScript);
     }
+    ldScript.textContent = JSON.stringify(buildStructuredData(route, language));
 
     try {
       window.localStorage.setItem(LANGUAGE_STORAGE_KEY, language);
@@ -86,7 +201,13 @@ export default function App() {
 
   useEffect(() => {
     const onRouteSync = () => {
-      setRoute(resolveRouteFromLocation(window.location.pathname, window.location.hash));
+      const parsed = parseLocalizedLocation(window.location.pathname, window.location.hash);
+      setRoute(parsed.route);
+      if (parsed.language) {
+        setLanguage(parsed.language);
+      } else if (!isStandaloneEnvironment()) {
+        setLanguage('en');
+      }
     };
     window.addEventListener('popstate', onRouteSync);
     window.addEventListener('hashchange', onRouteSync);
@@ -96,12 +217,8 @@ export default function App() {
     };
   }, []);
 
-  const handleNavigate = useCallback((nextRoute: PageRoute) => {
-    if (isServiceRoute(nextRoute)) {
-      setLastServiceContext(nextRoute as ServiceOption);
-    }
-    setRoute(nextRoute);
-    const targetPath = ROUTE_PATHS[nextRoute];
+  const syncBrowserUrl = useCallback((nextRoute: PageRoute, nextLang: Language) => {
+    const targetPath = buildLocalizedPath(nextRoute, nextLang);
     if (isStandaloneEnvironment()) {
       const nextHash = targetPath === '/' ? '' : `#${targetPath}`;
       if (window.location.hash !== nextHash) {
@@ -114,8 +231,28 @@ export default function App() {
         window.location.hash = targetPath === '/' ? '' : `#${targetPath}`;
       }
     }
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
+
+  const handleNavigate = useCallback(
+    (nextRoute: PageRoute) => {
+      if (isServiceRoute(nextRoute) && ROUTE_TO_SERVICE[nextRoute]) {
+        setLastServiceContext(ROUTE_TO_SERVICE[nextRoute] as ServiceOption);
+      }
+      setRoute(nextRoute);
+      syncBrowserUrl(nextRoute, language);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    },
+    [language, syncBrowserUrl]
+  );
+
+  const handleLanguageChange = useCallback(
+    (nextLang: Language) => {
+      if (nextLang === language) return;
+      setLanguage(nextLang);
+      syncBrowserUrl(route, nextLang);
+    },
+    [language, route, syncBrowserUrl]
+  );
 
   const handleRequestServiceScope = useCallback(
     (service: ServiceOption) => {
@@ -133,13 +270,22 @@ export default function App() {
           language={language}
           t={t}
           onNavigate={handleNavigate}
-          onLanguageChange={setLanguage}
+          onLanguageChange={handleLanguageChange}
           onBookCall={() => setBookModalOpen(true)}
         />
 
         <main className="flex-1">
           {route === 'home' && (
             <HomePage
+              language={language}
+              t={t}
+              onNavigate={handleNavigate}
+              onRequestServiceScope={handleRequestServiceScope}
+              onBookCall={() => setBookModalOpen(true)}
+            />
+          )}
+          {route === 'services' && (
+            <ServicesHubPage
               language={language}
               t={t}
               onNavigate={handleNavigate}
@@ -168,11 +314,56 @@ export default function App() {
               onBookCall={() => setBookModalOpen(true)}
             />
           )}
+          {route === 'for-teachers' && (
+            <ForTeachersPage
+              language={language}
+              t={t}
+              onNavigate={handleNavigate}
+              onRequestServiceScope={handleRequestServiceScope}
+              onBookCall={() => setBookModalOpen(true)}
+            />
+          )}
+          {route === 'for-small-business' && (
+            <ForSmallBusinessPage
+              language={language}
+              t={t}
+              onNavigate={handleNavigate}
+              onRequestServiceScope={handleRequestServiceScope}
+              onBookCall={() => setBookModalOpen(true)}
+            />
+          )}
+          {route === 'for-large-business' && (
+            <ForLargeBusinessPage
+              language={language}
+              t={t}
+              onNavigate={handleNavigate}
+              onRequestServiceScope={handleRequestServiceScope}
+              onBookCall={() => setBookModalOpen(true)}
+            />
+          )}
           {route === 'portfolio' && (
             <PortfolioPage
               language={language}
               t={t}
               onNavigate={handleNavigate}
+              onBookCall={() => setBookModalOpen(true)}
+            />
+          )}
+          {route === 'guides' && (
+            <GuidesHubPage
+              language={language}
+              t={t}
+              onNavigate={handleNavigate}
+              onBookCall={() => setBookModalOpen(true)}
+            />
+          )}
+          {isGuideRoute(route) && (
+            <GuideArticlePage
+              route={route}
+              language={language}
+              t={t}
+              onNavigate={handleNavigate}
+              onRequestServiceScope={handleRequestServiceScope}
               onBookCall={() => setBookModalOpen(true)}
             />
           )}
@@ -209,7 +400,7 @@ export default function App() {
           onDismiss={handleDismissToast}
         />
 
-        <KhansChatWidget language={language} t={t} />
+        <KhanChatWidget language={language} t={t} />
       </div>
     </MotionConfig>
   );

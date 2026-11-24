@@ -66,7 +66,7 @@ export const BookCallModal: React.FC<BookCallModalProps> = ({
         <div className="flex items-start justify-between gap-4">
           <div className="inline-flex items-center gap-2 text-[#8A5E1B]">
             <Phone className="w-4 h-4 shrink-0" aria-hidden="true" />
-            <span className="text-xs font-semibold tracking-wide">khansmarketing.com</span>
+            <span className="text-xs font-semibold tracking-wide">khanmarketings.com</span>
           </div>
           <button
             type="button"

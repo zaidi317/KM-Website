@@ -6,21 +6,28 @@ import { filterFaqItems } from '../utils/faqUtils';
 
 interface FaqAccordionProps {
   items: FaqItem[];
-  categories?: {
-    all: string;
-    web: string;
-    seo: string;
-    social: string;
-  };
+  categories?: Partial<Record<FaqCategory, string>>;
   filterAriaLabel?: string;
 }
+
+const FAQ_CATEGORY_ORDER: FaqCategory[] = [
+  'all',
+  'general',
+  'pricing',
+  'web',
+  'seo',
+  'social',
+  'ads',
+  'ecommerce',
+  'creators',
+];
 
 const ACCORDION_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export const FaqAccordion: React.FC<FaqAccordionProps> = ({
   items,
   categories,
-  filterAriaLabel = 'Filter frequently asked questions by service',
+  filterAriaLabel = 'Filter frequently asked questions by topic',
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<FaqCategory>('all');
   const [openId, setOpenId] = useState<string | null>(() => items[0]?.id ?? null);
@@ -35,12 +42,10 @@ export const FaqAccordion: React.FC<FaqAccordionProps> = ({
   };
 
   const categoryTabs: Array<{ id: FaqCategory; label: string }> = categories
-    ? [
-        { id: 'all', label: categories.all },
-        { id: 'web', label: categories.web },
-        { id: 'seo', label: categories.seo },
-        { id: 'social', label: categories.social },
-      ]
+    ? FAQ_CATEGORY_ORDER.filter((catId) => typeof categories[catId] === 'string').map((catId) => ({
+        id: catId,
+        label: categories[catId] as string,
+      }))
     : [];
 
   return (

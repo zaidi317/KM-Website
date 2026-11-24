@@ -24,6 +24,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ t, onNavigate, onBookCall 
           <p className="text-base sm:text-lg text-[#A6B5AF] leading-relaxed">
             {p.subheadline}
           </p>
+          <p className="text-xs font-mono-num text-[#80928B]">{p.lastUpdatedText}</p>
         </Reveal>
       </section>
 
@@ -39,6 +40,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ t, onNavigate, onBookCall 
             </div>
 
             <div className="lg:col-span-7 space-y-5 text-base sm:text-[1.0625rem] text-[#4B5954] leading-relaxed">
+              <div className="rounded-xl border border-[#E2DDD3] bg-[#FAF8F5] p-5 text-sm sm:text-base text-[#111C18] leading-relaxed">
+                {p.canonicalEntity}
+              </div>
               {p.philosophy.paragraphs.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}

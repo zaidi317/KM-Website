@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { ArrowUpRight, RefreshCw } from 'lucide-react';
+import { ArrowUpRight, MessageCircle, RefreshCw } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Reveal, RevealStagger, RevealItem } from '../components/MotionPrimitives';
+import { SITE_CONFIG } from '../config/siteConfig';
 import {
   PAKISTANI_NICHE_CATALOG,
   filterAndPickRandomSites,
@@ -27,7 +28,7 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
   const p = t.portfolioPage;
   const [category, setCategory] = useState<PortfolioCategory>('all');
   const [items, setItems] = useState<PakistaniNicheSite[]>(() =>
-    filterAndPickRandomSites(PAKISTANI_NICHE_CATALOG, 'all', 6, [])
+    PAKISTANI_NICHE_CATALOG.slice(0, 6)
   );
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -219,6 +220,15 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({
                 >
                   {p.ctaBand.primaryCta}
                 </button>
+                <a
+                  href={SITE_CONFIG.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-[#164237] text-[#F7F4EE] text-sm font-semibold hover:bg-[#1D5547] transition-colors whitespace-nowrap"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#C58F38] shrink-0" aria-hidden="true" />
+                  <span>{t.bookModal.whatsappAction}</span>
+                </a>
                 <button
                   type="button"
                   onClick={onBookCall}

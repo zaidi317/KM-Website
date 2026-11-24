@@ -29,7 +29,7 @@ type SubmissionState =
 
 export const LeadForm: React.FC<LeadFormProps> = ({
   t,
-  defaultService = 'website-development',
+  defaultService = 'website',
   onNotify,
 }) => {
   const [values, setValues] = useState<LeadFormValues>({

@@ -36,9 +36,9 @@ async function createServer() {
     }
   });
 
-  const standaloneHtmlPath = path.resolve(__dirname, 'exports', 'khansmarketing.html');
+  const standaloneHtmlPath = path.resolve(__dirname, 'exports', 'khanmarketings.html');
 
-  app.get('/khansmarketing.html', (_req, res) => {
+  app.get('/khanmarketings.html', (_req, res) => {
     if (fs.existsSync(standaloneHtmlPath)) {
       res.type('text/html; charset=utf-8').sendFile(standaloneHtmlPath);
     } else {
@@ -48,7 +48,7 @@ async function createServer() {
 
   app.get('/download-html', (_req, res) => {
     if (fs.existsSync(standaloneHtmlPath)) {
-      res.download(standaloneHtmlPath, 'khansmarketing.html');
+      res.download(standaloneHtmlPath, 'khanmarketings.html');
     } else {
       res.status(404).send('Standalone HTML not generated yet. Run npm run build:html.');
     }
@@ -63,6 +63,9 @@ async function createServer() {
     app.use(vite.middlewares);
   } else {
     const distDir = path.resolve(__dirname, 'dist');
+    app.get('/services/website-development', (_req, res) => res.redirect(301, '/website-development'));
+    app.get('/services/seo', (_req, res) => res.redirect(301, '/seo'));
+    app.get('/services/social-media-marketing', (_req, res) => res.redirect(301, '/social-media-marketing'));
     app.use(express.static(distDir));
     app.get('*', (_req, res) => {
       const indexHtml = path.join(distDir, 'index.html');
@@ -75,7 +78,7 @@ async function createServer() {
   }
 
   app.listen(port, '0.0.0.0', () => {
-    console.log(`Khans Marketing server running on http://localhost:${port}`);
+    console.log(`Khan Marketings server running on http://localhost:${port}`);
   });
 }
 

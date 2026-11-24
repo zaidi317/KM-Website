@@ -7,12 +7,12 @@ interface BrandMarkProps {
 }
 
 /**
- * Custom geometric KM monogram + wordmark for Khans Marketing.
+ * Custom geometric KM monogram + wordmark for Khan Marketings.
  */
 export const BrandMark: React.FC<BrandMarkProps> = ({
   variant = 'on-light',
   compact = false,
-  wordmark = 'Khans Marketing',
+  wordmark = 'Khan Marketings',
 }) => {
   const isDarkBg = variant === 'on-dark';
   const frameBg = isDarkBg ? '#172620' : '#111C18';

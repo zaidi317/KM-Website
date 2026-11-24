@@ -1,0 +1,36 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/api/chat"
+  to = "/.netlify/functions/chat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/services/website-development"
+  to = "/website-development"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/seo"
+  to = "/seo"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/social-media-marketing"
+  to = "/social-media-marketing"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

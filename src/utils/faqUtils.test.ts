@@ -4,20 +4,30 @@ import { en } from '../i18n/en';
 import { ur } from '../i18n/ur';
 import { filterFaqItems } from './faqUtils';
 
-test('filterFaqItems returns all FAQ items for all and filters cleanly by service topic', () => {
+test('filterFaqItems returns all FAQ items for "all" and filters across all 8 FAQ topics', () => {
   const allEn = filterFaqItems(en.home.faq.items, 'all');
-  const webEn = filterFaqItems(en.home.faq.items, 'web');
-  const seoEn = filterFaqItems(en.home.faq.items, 'seo');
-  const socialEn = filterFaqItems(en.home.faq.items, 'social');
+  const allUr = filterFaqItems(ur.home.faq.items, 'all');
 
-  assert.equal(allEn.length, 6);
-  assert.equal(webEn.length, 2);
-  assert.equal(seoEn.length, 2);
-  assert.equal(socialEn.length, 2);
-  assert.ok(webEn.every((item) => item.category === 'web'));
-  assert.ok(seoEn.every((item) => item.category === 'seo'));
-  assert.ok(socialEn.every((item) => item.category === 'social'));
+  assert.equal(allEn.length, 20);
+  assert.equal(allUr.length, 20);
 
-  assert.equal(filterFaqItems(ur.home.faq.items, 'all').length, 6);
-  assert.equal(filterFaqItems(ur.home.faq.items, 'social').length, 2);
+  const topics = [
+    'general',
+    'pricing',
+    'web',
+    'seo',
+    'social',
+    'ads',
+    'ecommerce',
+    'creators',
+  ] as const;
+
+  for (const topic of topics) {
+    const filteredEn = filterFaqItems(en.home.faq.items, topic);
+    const filteredUr = filterFaqItems(ur.home.faq.items, topic);
+    assert.ok(filteredEn.length >= 1, `Expected EN FAQs for category ${topic}`);
+    assert.equal(filteredEn.length, filteredUr.length, `Mismatch on FAQ count for ${topic}`);
+    assert.ok(filteredEn.every((item) => item.category === topic));
+    assert.ok(filteredUr.every((item) => item.category === topic));
+  }
 });

@@ -1,0 +1,383 @@
+=====================================================================
+KHANS MARKETING — MASTER PROMPT: CONTENT, URDU & SEO/AI-SEARCH REWRITE
+(Paste this whole prompt into Gemini. The project is already open in your workspace.)
+=====================================================================
+
+OWNER SETTINGS — edit these lines before sending, then delete this box
+- SITE_URL: https://khansmarketing.com   (CHANGE if your real domain is https://khanmarketings.com. Use ONE constant everywhere.)
+- PHONE / WHATSAPP: 0321-2995766 (tel:03212995766, wa.me/923212995766)
+- EMAIL: hello@khansmarketing.com (change in siteConfig.ts if different)
+- CITY / OFFICE ADDRESS: not provided. Do NOT invent one. Say "serving businesses across Pakistan".
+- SOCIAL PROFILE URLS: not provided. Create empty placeholders in siteConfig.ts (facebook, instagram, tiktok, youtube, linkedin). Output them in JSON-LD sameAs only when filled.
+- PRICES: not provided. Never invent prices. Use "Get a free quote".
+=====================================================================
+
+PART 0 — YOUR ROLE, THE PROJECT, AND HOW TO WORK
+
+You are a senior Pakistani digital-marketing copywriter, Urdu editor, SEO strategist and TypeScript/React engineer, working inside the existing "Khans Marketing" project (React + Vite + TypeScript).
+
+Read these files first, before changing anything:
+src/i18n/types.ts, src/i18n/en.ts, src/i18n/ur.ts, src/i18n/translations.test.ts, src/config/siteConfig.ts, src/utils/formValidation.ts, src/utils/serviceCatalogUtils.ts, src/utils/routing.ts, src/utils/faqUtils.ts, src/data/portfolioCatalog.ts, src/server/chatService.ts, src/components/LeadForm.tsx, src/components/Footer.tsx, src/components/Navbar.tsx, src/pages/*.tsx, index.html, scripts/generate-standalone.ts, vite.config.ts.
+
+THE JOB
+1. Rewrite ALL website copy (English and Urdu) so it speaks to Pakistani teachers, small business owners and large business owners, sells the dream of a business that grows through a strong digital presence, and still stays honest (see Part 1).
+2. Throw away the current Urdu and write new Urdu from scratch: simple, spoken, persuasive (see Part 6).
+3. Expand the services to the full list in Part 4.
+4. Make the site rank on Google AND be quoted by AI answer engines (ChatGPT, Gemini, Perplexity, Claude, Google AI Overviews) as a Pakistan digital marketing agency for small business empires (see Part 8).
+5. Update the AI chat widget and lead form to match.
+
+WORK IN PHASES. Finish and verify each phase before starting the next. At the end of each phase print: "PHASE X COMPLETE", the list of changed files, and test results.
+- PHASE A (mandatory): all copy in en.ts + ur.ts + types.ts, siteConfig.ts, formValidation.ts, serviceCatalogUtils.ts, chatService.ts, index.html meta. Keep every existing page working.
+- PHASE B (mandatory): technical SEO and AI-search layer (Part 8): real URLs, prerendered static HTML per route and language, sitemap, robots, llms.txt, JSON-LD, hreflang.
+- PHASE C (mandatory after A+B pass): new pages (Part 10): services hub, For Teachers, For Small Businesses, For Large Businesses.
+- PHASE D (optional, only if I say "continue"): the guides/blog articles in Part 10.
+
+OUTPUT RULES
+- Output COMPLETE file contents for every file you change. Never write "rest unchanged", "...", or "same as before".
+- Keep TypeScript strict-clean. Every key in en.ts must exist in ur.ts (the translations test enforces parity). When you add keys or change shapes, update types.ts, en.ts, ur.ts and the tests together.
+- Do not redesign the visual layout. You may add sections/components only where the content needs them. Keep the brand identity, colors and the existing components.
+- Do not break: routing, language toggle, RTL, Book-a-Call modal, lead form validation, chat widget, standalone export script.
+- After each phase run the type-check and the test suite and fix failures. Report honestly if something cannot run.
+
+=====================================================================
+PART 1 — THE HONEST DREAM-SELLING RULES (NON-NEGOTIABLE)
+=====================================================================
+
+I want the copy to be big, ambitious, emotional and sales-driven. "Take your business to the moon." "From a small shop to a digital empire." Customers should feel the dream the moment they land.
+
+The dream is sold through VISION and PROOF-OF-PROCESS, not through fake promises. This protects the brand: Pakistani buyers have been burned by freelancers who promise the moon and vanish, so trust is the real conversion lever. It also keeps us inside Google's helpful-content rules and the ad rules of Meta, Google and TikTok.
+
+ALLOWED (use boldly):
+- Vision and imagery: "Imagine waking up to new customer messages." "Your shop, open 24 hours, in every city." "Every empire starts with a first page."
+- Possibility: "A strong online presence can turn a local name into a national brand." "Businesses that are easy to find and easy to trust grow faster."
+- Aspiration: "Our goal is to be the digital partner every small business empire in Pakistan trusts."
+- Process promises we control: fast communication, clear scope, honest reports, on-time delivery milestones, client owns the website and domain.
+- Urgency that is true: "Your customers are searching right now."
+
+FORBIDDEN (never write, in English or Urdu, anywhere including meta tags, FAQs, chat prompts, alt text):
+- Guaranteed Google rankings, "page 1 in X days", "100% results", "guaranteed sales/leads/followers/viral".
+- Any promise of income to the reader: "earn lakhs/millions/crores", "10x your sales", "double your revenue".
+- Invented numbers: clients served, years of experience, projects completed, team size, awards, certifications, partner badges ("Google Partner", "Meta Partner"), ratings, reviews, testimonials, client logos, case-study results, office addresses.
+- "#1", "best", "top" or "leading" as a stated FACT about us. (Use it only as aspiration/mission: "our goal is to be…". The owner wants KM positioned as THE digital brand for small business empires; we earn that with category language and proof, not false claims. See Part 2.)
+- Fear-mongering about competitors by name.
+
+REQUIRED DISCLOSURE (short, calm, placed in footer, each service page, and one FAQ):
+EN: "Results depend on your market, budget and consistency. We do not guarantee rankings or income. We promise honest work, clear reports and steady effort."
+UR: "نتائج آپ کے شعبے، بجٹ اور مستقل مزاجی پر منحصر ہیں۔ ہم رینکنگ یا آمدنی کی ضمانت نہیں دیتے۔ ہم ایماندار کام، سادہ رپورٹس اور مسلسل محنت کا وعدہ کرتے ہیں۔"
+
+PROOF SYSTEM (so the site can grow into a real "best agency" over time):
+Create src/data/proof.ts exporting empty arrays: testimonials, caseStudies, clientLogos, reviewsSummary. Build small components that render ONLY when the arrays have real entries. Add a TODO comment telling the owner to fill these with real, permissioned content. Do not invent any entry.
+
+PORTFOLIO PAGE: keep the existing honesty banner. Those sites are third-party Pakistani examples, not our client work. Reword the page as "Pakistani niche websites we studied: what good looks like for teachers, schools and local businesses," never as "our work".
+
+=====================================================================
+PART 2 — BRAND POSITIONING AND THE ENTITY FACT SHEET
+=====================================================================
+
+Positioning line (use consistently): "Khans Marketing — the digital growth agency for Pakistan's small business empires."
+Urdu: "خانز مارکیٹنگ — پاکستان کے چھوٹے کاروباروں کو بڑی سلطنت بنانے والی ڈیجیٹل گروتھ ایجنسی۔"
+
+Brand idea: Every big brand started small. A strong digital footprint (website + Google presence + social + ads + WhatsApp selling) is the launchpad. KM builds the launchpad as ONE system with ONE team, so the customer is not juggling five freelancers.
+
+Use the moon/rocket idea ("Take your business to the moon") only in the hero and the closing CTA of the homepage and once per audience page. Do not repeat it on every page.
+
+CANONICAL ENTITY DEFINITION (AI engines learn from repetition; use this EXACT paragraph, word for word, in: About page intro, homepage "What is Khans Marketing?" block, llms.txt, JSON-LD Organization description, and the bottom of the chat widget knowledge):
+"Khans Marketing is a Pakistan-focused digital growth agency that helps small and medium businesses, teachers, schools and growing brands build professional websites, get found on Google, grow on social media and win more customers online. Services include website development, SEO, social media marketing, paid ads, e-commerce stores, YouTube channel growth, WhatsApp selling and marketing automation. The website is available in English and Urdu."
+
+Keep these facts IDENTICAL everywhere: name "Khans Marketing" (short: KM), domain, phone, email, languages (English, Urdu), service list, and the line "serving businesses across Pakistan".
+
+=====================================================================
+PART 3 — AUDIENCE RESEARCH (use this to write every line)
+=====================================================================
+
+MARKET CONTEXT (verified; use only rounded, dated, as light "context" lines, and re-check before publishing; do not add other statistics):
+- Pakistan has well over 100 million internet users (DataReportal's Digital 2026 report cites about 117 million) and roughly 80 million social media user identities.
+- Small and medium enterprises are about 98% of all businesses in Pakistan (Pakistan E-Commerce Policy 2019; roughly 3.2 million SMEs).
+- Pakistan's e-commerce volume was about US$7.7 billion in 2024, and roughly three in four online shoppers still prefer cash on delivery (PCMI, reported by Express Tribune, 2025). Trust is the big barrier.
+- Many Pakistani SMEs already use Facebook, Instagram, TikTok and WhatsApp as their shopfront (Express Tribune, Sept 2026). Meta launched a Small Business Growth Academy in Pakistan in Aug 2026. Translation: owners are ready, but their growth is stuck on rented platforms.
+
+THE KEY INSIGHT TO SELL: A Facebook page or WhatsApp number is rented land. A website, Google Business Profile, search presence and a customer list are owned land. KM helps businesses build the owned land AND keep winning on the social platforms where customers already are.
+
+PAKISTANI BUYER MINDSET (write to this):
+- Trust first: fear of being cheated by freelancers or "agencies" that disappear. Answer with: clear scope, step-by-step process, client owns everything, direct phone/WhatsApp access, honest reports.
+- "Pehle dikhao" (show me first): lead with what they will SEE (a live site, a Google listing, a content calendar, a report sample). Offer a free consultation / free growth plan as the low-risk first step.
+- WhatsApp-first: most deals close on WhatsApp. Every CTA offers WhatsApp alongside the form.
+- Price-sensitive but ambition-driven: they will pay for a believable path to more customers. Never show fake prices; show "scope-based quotes" and "start small, grow in stages".
+- Respect and warmth: use "aap", polite and friendly, confident, never arrogant.
+- Status and legacy: owners want a brand they are proud of, family pride, a business that outlives them.
+- Mobile-first, cash-on-delivery culture, JazzCash/Easypaisa. Mention COD-ready stores and local payment options where relevant (only "where supported").
+- Many people search in English or Roman Urdu even if they prefer Urdu ("website banwain", "digital marketing agency Pakistan", "business online kaise karein"). Use these phrases naturally in FAQ questions and some headings.
+
+PERSONAS
+
+1) TEACHERS, TUTORS, ACADEMIES, SCHOOLS (volume segment)
+- Dream: full classes, recognised name, parents calling them, students from other cities, online teaching income beyond the mohalla.
+- Pains: relying on word of mouth, empty batches, no website, admissions season panic, competition from big academies.
+- Offers: teacher/academy website, admissions landing page, Google Business Profile, YouTube lessons channel, Facebook/Instagram/TikTok content, WhatsApp enquiry flow, Meta ads for admission season, reviews.
+- Hook (EN): "Your knowledge deserves more than one neighbourhood." Hook (UR): "آپ کا علم صرف محلے تک کیوں رہے؟ پورے پاکستان کے طلبہ تک پہنچیں۔"
+
+2) SMALL BUSINESS OWNERS: shops, boutiques, bakeries, salons, clothing/home brands, home-based sellers, clinics, restaurants, real estate agents, contractors, lawyers, accountants (core segment)
+- Dream: a brand people recognise, orders and enquiries every day, less dependence on walk-ins and referrals, a business that grows beyond one location.
+- Pains: invisible on Google, scattered social pages, wasted ad money, no website, WhatsApp chaos, no proof of results.
+- Offers: website or online store, Google Business Profile + Maps, SEO, Meta/TikTok/Google ads with proper tracking, social media management, WhatsApp catalog and automation, brand identity, reviews.
+- Hook (EN): "Your customers are searching on Google right now. Are you there?" Hook (UR): "گاہک گوگل پر ڈھونڈ رہے ہیں۔ کیا آپ وہاں نظر آ رہے ہیں؟"
+
+3) LARGE BUSINESS OWNERS: manufacturers, exporters, chains, institutions, companies (premium segment)
+- Dream: a corporate-grade online identity, trusted by buyers and partners, lead flow for sales teams, B2B and export visibility.
+- Pains: outdated website, inconsistent branding across channels, no measurable lead pipeline, reputation risk.
+- Offers: corporate website, technical SEO at scale, LinkedIn and B2B lead generation, ads with GA4/CAPI tracking, reputation management, CRM and automation, video production, executive/brand content.
+- Hook (EN): "Big business deserves a big digital presence." Hook (UR): "بڑا کاروبار، بڑی ڈیجیٹل پہچان۔"
+
+4) CREATORS, YOUTUBERS, STARTUPS, ONLINE SELLERS (growth segment)
+- Dream: a channel or brand that grows consistently and earns from it.
+- Offers: YouTube channel setup/SEO/management, content workflows (including "YouTube automation" as a production-workflow service, see Part 4), short-video scripting and editing, influencer collaborations, store setup, marketplace management.
+
+OBJECTIONS TO ANSWER IN COPY AND FAQ: "Is this legit?" "How much?" "How long?" "Will I actually get customers?" "I already have a Facebook page" "I don't understand technology" "My budget is small" "Who owns the website?" "Will you disappear after the project?" "Do you understand Urdu-speaking customers?"
+
+=====================================================================
+PART 4 — THE FULL SERVICE CATALOG (include ALL of it)
+=====================================================================
+
+The owner has specialists available for every service below. Describe each in terms of what the client gets. Do not claim team size, years or certifications. Update AgencyServiceItem data, the full service directory, service-category filters, the lead form's ServiceOption list, footer links and the chat widget system prompt to match.
+
+Extend ServiceDisciplineId from 4 to 6 categories, update serviceCatalogUtils (counts, filter, tests) and UI filter labels in en/ur:
+- web-commerce: "Websites & Stores" / "ویب سائٹس اور آن لائن اسٹورز"
+- search-reputation: "Search & Reputation" / "گوگل سرچ اور ساکھ"
+- performance-ads: "Ads & Performance" / "اشتہارات اور نتائج"
+- social-brand: "Social & Brand" / "سوشل میڈیا اور برانڈ"
+- video-creators: "Video & Creators" / "ویڈیو اور کریئیٹرز"
+- automation-growth: "Automation, AI & Growth" / "آٹومیشن، AI اور گروتھ"
+
+A. WEBSITES & STORES (web-commerce)
+1. Business website design & development (custom, mobile-first, English + Urdu RTL) — ویب سائٹ ڈیزائن اور ڈیولپمنٹ
+2. Landing pages for ads and campaigns — ایڈز کے لیے لینڈنگ پیج
+3. School, academy and teacher websites (admissions, courses, fee info, enquiry) — اسکول، اکیڈمی اور ٹیچر ویب سائٹس
+4. E-commerce stores: Shopify and WooCommerce, COD-ready, local payment options where supported — آن لائن اسٹور
+5. Marketplace setup and management (Daraz and others) — ڈراز اور مارکیٹ پلیس اسٹور مینجمنٹ
+6. Domain, hosting, SSL, business email and maintenance — ڈومین، ہوسٹنگ اور ویب سائٹ کی دیکھ بھال
+7. Website redesign, speed and security upgrade — پرانی ویب سائٹ کی نئی شکل
+8. Website content writing and integration (English + Urdu) — ویب سائٹ کا کنٹینٹ
+
+B. SEARCH & REPUTATION (search-reputation)
+9. Technical SEO — ٹیکنیکل SEO
+10. On-page SEO and content optimization — آن پیج SEO
+11. Local SEO, Google Business Profile and Google Maps — لوکل SEO اور گوگل میپس
+12. Keyword research, search intent and competitor analysis — کی ورڈ ریسرچ اور حریفوں کا جائزہ
+13. White-hat link building and digital PR — لنک بلڈنگ اور آن لائن پبلسٹی
+14. Online reputation and review management — آن لائن ساکھ اور ریویوز
+15. SEO reporting and analytics (GA4, Search Console) — SEO رپورٹس اور اینالیٹکس
+
+C. ADS & PERFORMANCE (performance-ads)
+16. Facebook and Instagram ads — فیس بک اور انسٹاگرام ایڈز
+17. Google Search and Display ads — گوگل ایڈز
+18. YouTube ads — یوٹیوب ایڈز
+19. TikTok ads — ٹک ٹاک ایڈز
+20. Tracking setup: Meta Pixel, Conversions API, GA4, Google Tag Manager — ٹریکنگ سیٹ اپ
+21. Lead-generation funnels, retargeting and conversion optimization — لیڈ جنریشن اور ری ٹارگٹنگ
+
+D. SOCIAL & BRAND (social-brand)
+22. Social media strategy and management — سوشل میڈیا مینجمنٹ
+23. Content calendars and creatives (posts, carousels, stories) — کنٹینٹ کیلنڈر اور ڈیزائن
+24. Reels, TikTok and Shorts scripting and editing — ریلز اور شارٹ ویڈیوز
+25. Influencer marketing and creator partnerships — انفلوئنسر مارکیٹنگ
+26. Brand identity: logo, colors, guidelines — برانڈ آئیڈنٹیٹی اور لوگو
+27. Community management and customer engagement — کمیونٹی مینجمنٹ
+28. WhatsApp Business setup, catalog, quick replies and broadcasts — واٹس ایپ بزنس سیٹ اپ
+
+E. VIDEO & CREATORS (video-creators)
+29. YouTube channel setup, strategy and SEO — یوٹیوب چینل سیٹ اپ اور SEO
+30. YouTube channel automation and management: a repeatable production workflow for research, scripting, voice-over, editing, thumbnails and publishing. Describe it as a workflow service. Never promise views, monetization approval or income — یوٹیوب چینل آٹومیشن اور مینجمنٹ
+31. Video production and editing (promos, product, explainer) — ویڈیو پروڈکشن اور ایڈیٹنگ
+32. Product and business photography — پروڈکٹ اور بزنس فوٹوگرافی
+
+F. AUTOMATION, AI & GROWTH (automation-growth)
+33. AI chatbots for WhatsApp and websites — AI چیٹ بوٹس
+34. CRM and lead follow-up automation — لیڈ فالو اپ آٹومیشن
+35. Email and SMS marketing — ای میل اور SMS مارکیٹنگ
+36. Marketing automation workflows — مارکیٹنگ آٹومیشن
+37. LinkedIn and B2B lead generation (for companies and exporters) — لنکڈ اِن اور B2B لیڈز
+38. Mobile apps and custom software (on request) — موبائل ایپس اور کسٹم سافٹ ویئر
+39. Digital marketing consulting for owners — ڈیجیٹل مارکیٹنگ مشاورت
+40. Workshops and training for teachers, shop owners and teams — ورکشاپس اور تربیت
+
+Each directory item needs: one-sentence benefit in plain language, 3-5 deliverables, "who it is for", and a CTA that pre-selects that service in the lead form (leadServiceOption). Add ServiceOption values for the form: website, ecommerce, seo, local-seo, social, ads, video-youtube, branding, automation-ai, training-consulting, multiple, other. Update validation, LeadForm labels (en/ur), tests.
+
+=====================================================================
+PART 5 — THE DREAM-SELLING COPY SYSTEM (ENGLISH)
+=====================================================================
+
+VOICE: confident, warm, energetic, respectful. Short sentences. Concrete nouns (customers, orders, calls, enquiries, shop, class, brand) beat abstract nouns (solutions, synergy, ecosystem). Say "you". Paint the picture, then show the path, then ask for the next small step.
+
+STRUCTURE EVERY SECTION LIKE THIS: Dream (what life looks like) -> Gap (what is in the way) -> Path (what KM builds, step by step) -> Safety (honest process, client owns everything) -> Next step (low-risk CTA).
+
+BANNED FILLER: unlock, elevate, leverage, synergy, cutting-edge, seamless, holistic, "take it to the next level", "in today's fast-paced digital world", "digital transformation journey", "world-class". Never start with "In today's".
+
+HEADLINE OPTIONS to adapt (do not use all):
+- Take your business to the moon.
+- From local shop to digital empire.
+- Be found. Be trusted. Be chosen.
+- Your customers are online. Be where they look.
+- Every empire starts with a first page.
+- Stop depending on walk-ins. Start owning your online presence.
+- Your business, open 24 hours, in every city.
+
+HOMEPAGE HERO (seed; improve it, keep the energy):
+- Eyebrow: "Digital growth agency for Pakistan's small business empires"
+- Headline: "Take your business to the moon." (highlight "moon")
+- Subheadline: "Website, Google, social media, ads and WhatsApp selling, built as one growth system by one team. Imagine opening your phone to new customer enquiries every morning."
+- Primary CTA: "Get Your Free Growth Plan" | Secondary CTA: "Message Us on WhatsApp"
+
+CTA LIBRARY (purposeful, never random): Get Your Free Growth Plan / Book a Free Call / Message Us on WhatsApp / Get a Free Quote / Make Your Business Discoverable / Get Your Website Built / Start Selling Online / Fill My Classes / Grow My Brand / Start Your Project.
+
+TRUST WITHOUT FAKE PROOF (replace anything that looked like credentials): "How we work" commitments: you own your website, domain and accounts; clear scope before work starts; fixed milestones; direct WhatsApp access; plain-language monthly reports; honest expectations. These are promises of process, not claims of achievements.
+
+SEO COPY RULES FOR ALL PAGES
+- One H1 per page that contains the primary keyword naturally and carries the dream.
+- First 100 words answer: what is this, for whom, what happens next.
+- Every H2/H3 is a real question or a clear benefit phrase, not "Our Solutions".
+- Under each question-style heading, write a direct 40-60 word answer first, then expand (this is what AI engines quote).
+- Use lists and short tables for services, process and comparisons.
+- Internal links with descriptive anchors (never "click here").
+- Natural keyword use. No stuffing. Mention "Pakistan" and major cities (Lahore, Karachi, Islamabad, Rawalpindi, Faisalabad, Multan, Peshawar) only where genuinely relevant (service-area line, FAQ), never as a fake office claim.
+
+=====================================================================
+PART 6 — URDU REWRITE RULES (replace ALL current Urdu)
+=====================================================================
+
+The current Urdu reads like stiff, machine-style translation: heavy Persian/Arabic vocabulary, long sentences, awkward calques. Delete it and write NEW Urdu. Do NOT translate the English sentence by sentence. Take the same brief and write it the way a smart Pakistani marketer would say it to a shop owner or a teacher: this is "transcreation".
+
+STYLE
+1. Everyday spoken Urdu (aam fehm), the way people talk on WhatsApp and TV ads. A school teacher and a shopkeeper must understand it on the first read.
+2. Short sentences. Aim for 8-15 words. One idea per sentence.
+3. Address the reader as "آپ". Warm, respectful, confident.
+4. Use the English words Pakistanis actually say, in Urdu script: ویب سائٹ، گوگل، فیس بک، انسٹاگرام، ٹک ٹاک، یوٹیوب، واٹس ایپ، آن لائن، آرڈر، سیلز، برانڈ، ایڈز، لوگو، ڈیزائن، کنٹینٹ، رپورٹ، پلان، مارکیٹنگ، SEO. Do not invent heavy Urdu replacements for them.
+5. Avoid: مستحکم، مربوط، حکمتِ عملی، بامقصد، ترسیل، استفادہ، تشکیل، مبنی بر، بعد ازاں، مذکورہ، بصیرت. Use simple alternatives (پلان، مضبوط، ایک ساتھ، فائدہ، بنانا، بعد میں).
+6. Active voice. "ہم آپ کی ویب سائٹ بناتے ہیں" not "آپ کی ویب سائٹ کی تشکیل عمل میں لائی جاتی ہے".
+7. Emotion and imagery in Urdu idiom: "چھوٹی دکان سے بڑی سلطنت تک"، "گاہک گوگل پر ڈھونڈ رہے ہیں"، "آپ کا نام ہر شہر تک"، "فون پر پیغامات کی گھنٹی"، "چاند تک لے جائیں". Keep them natural, not forced.
+8. Punctuation: Urdu full stop ۔  question mark ؟  comma ، . Use western digits (0-9) for phone numbers, prices and dates. Wrap phone numbers and URLs in a dir="ltr" span so they do not flip.
+9. Headlines: max ~8 words, punchy. Buttons: 2-4 words, imperative and friendly.
+10. No half-English, half-Urdu sentence salad. Brand names and common tech words are fine; the grammar around them must be pure Urdu.
+11. Roman Urdu is for SEO keyword phrases in English-page FAQ questions only. Never in the Urdu UI.
+
+SIMPLE URDU GLOSSARY (use these consistently across the site)
+Website = ویب سائٹ | Online presence / digital footprint = آن لائن موجودگی / آن لائن پہچان | Customers = گاہک | Enquiries / leads = انکوائری / نئے گاہکوں کے پیغام | Strategy = پلان | Reach more people = زیادہ لوگوں تک پہنچنا | Show up on Google = گوگل پر نظر آنا | Rank higher = گوگل پر اوپر آنا (never as a promise) | SEO = SEO (گوگل پر آپ کی پہچان بہتر بنانا) | Social media marketing = سوشل میڈیا مارکیٹنگ | Ads = ایڈز | Content = کنٹینٹ | Engagement = لوگوں کا آپ سے جڑنا (لائکس، کمنٹس، پیغامات) | Convert visitors to customers = دیکھنے والوں کو گاہک بنانا | Report = رپورٹ | Mobile-friendly = موبائل پر بہترین چلنے والی | Fast loading = تیزی سے کھلنے والی | Trust = بھروسا | Reputation = ساکھ | Reviews = ریویوز | Audit / review = جائزہ | Free consultation = مفت مشورہ | Project = پروجیکٹ | Maintenance = دیکھ بھال | Cash on delivery = کیش آن ڈیلیوری | Quote = کوٹیشن | Book a call = کال بک کریں | Process = طریقۂ کار | Result = نتیجہ
+
+BEFORE / AFTER (match this level of simplicity)
+Old: "خانز مارکیٹنگ کاروباری ویب سائٹس مکمل مواد کے ساتھ تیار کرتی ہے اور سرچ انجن آپٹیمائزیشن (SEO) اور سوشل میڈیا مارکیٹنگ کے ذریعے آپ کی آن لائن موجودگی کو مستحکم کرتی ہے۔"
+New: "ہم آپ کی ویب سائٹ بناتے ہیں، گوگل پر آپ کی پہچان بہتر کرتے ہیں اور سوشل میڈیا پر گاہک بڑھانے میں مدد دیتے ہیں۔ سب ایک ہی ٹیم سے۔"
+
+Old: "ٹیکنیکل SEO، آن پیج آپٹیمائزیشن، کی ورڈ ریسرچ اور واضح ماہانہ رپورٹس تاکہ درست صارفین آپ کے کاروبار کو آسانی سے تلاش کر سکیں۔"
+New: "جو لوگ گوگل پر آپ جیسی سروس ڈھونڈ رہے ہیں، SEO انہیں آپ تک پہنچانے میں مدد دیتی ہے۔ ہم آپ کی سائٹ ٹھیک کرتے ہیں، صحیح الفاظ چنتے ہیں اور ہر مہینے سادہ رپورٹ دیتے ہیں۔"
+
+URDU SEED LINES (use as tone reference; vary and improve)
+- Eyebrow: "پاکستان کے چھوٹے کاروباروں کو بڑی سلطنت بنانے والی ڈیجیٹل ایجنسی"
+- Hero H1: "اپنے کاروبار کو چاند تک لے جائیں"
+- Hero sub: "ویب سائٹ، گوگل، سوشل میڈیا، ایڈز اور واٹس ایپ، سب ایک ہی ٹیم اور ایک ہی پلان کے ساتھ۔ تصور کریں: صبح آنکھ کھلے تو آپ کے فون پر نئے گاہکوں کے پیغامات آ چکے ہوں۔"
+- Positioning: "چھوٹی دکان سے بڑی سلطنت تک کا سفر ایک مضبوط آن لائن پہچان سے شروع ہوتا ہے۔ وہی پہچان ہم آپ کے لیے بناتے ہیں۔"
+- Teachers: "آپ کا علم صرف محلے تک کیوں رہے؟ پورے پاکستان کے طلبہ تک پہنچیں۔"
+- Small business: "گاہک گوگل پر ڈھونڈ رہے ہیں۔ کیا آپ وہاں نظر آ رہے ہیں؟"
+- Large business: "بڑا کاروبار، بڑی ڈیجیٹل پہچان۔"
+- Closing CTA: "آپ کا اگلا گاہک آج بھی گوگل پر کچھ تلاش کر رہا ہے۔ آئیے اسے آپ تک پہنچائیں۔"
+- Buttons: "مفت گروتھ پلان لیں" / "واٹس ایپ پر پیغام کریں" / "مفت کال بک کریں" / "اپنا پروجیکٹ شروع کریں" / "کوٹیشن حاصل کریں"
+- Form validation: "براہِ کرم اپنا نام لکھیں۔" / "درست ای میل لکھیں۔" / "فون نمبر درست نہیں لگ رہا۔ مثال: 0321-2995766"
+
+TYPOGRAPHY CHECK FOR URDU: confirm line-height is generous (about 1.9-2.2) so Nastaliq text is not clipped, headings are not too large, buttons do not overflow, and phone numbers display left-to-right. If Noto Nastaliq Urdu hurts readability at small sizes, keep it for headings and use Noto Naskh Arabic for body text (both are already loaded in index.html).
+
+URDU QA PASS (do this before finishing): re-read every Urdu string aloud in your head. If a sentence is longer than ~15 words, a shopkeeper would not say it, or it contains a word from the avoid list, rewrite it. Output a short list of the 20 strings you rewrote most heavily.
+
+=====================================================================
+PART 7 — PAGE-BY-PAGE CONTENT SPEC (maps to TranslationDictionary)
+=====================================================================
+
+Rewrite EVERY field of the dictionary in both languages: meta, utilityBar, nav, bookModal, home (hero, positioning, trustStandards, servicesOverview, fullServiceDirectory, systemShowcase, process, whyKm, faq, closingCta), webDevPage, seoPage, socialPage, portfolioPage, aboutPage, contactPage, form labels, errors, toasts, footer, chat widget strings, accessibility labels. Change the "trustStandards" badges so none look like credentials: they are "How we build" standards (fast loading, mobile-first, Urdu RTL support, clean code, clear reporting). Keep tuple lengths required by types.ts unless you update types.ts.
+
+SEO TITLE / META PATTERN (EN titles <= 60 chars, descriptions <= 155 chars; UR titles <= 60 chars). Write unique values for every route and language.
+- Home — primary: "digital marketing agency in Pakistan". Title: "Digital Marketing Agency in Pakistan | Khans Marketing". Meta: "Khans Marketing helps Pakistani small businesses build websites, get found on Google and win customers on social media. Get a free growth plan." UR title: "پاکستان میں ڈیجیٹل مارکیٹنگ ایجنسی | خانز مارکیٹنگ".
+- Website development — "website development in Pakistan", "business website design", "Urdu website". 
+- SEO — "SEO services in Pakistan", "local SEO Pakistan", "Google Business Profile".
+- Social media — "social media marketing Pakistan", "Facebook Instagram TikTok marketing for small business".
+- Portfolio — "Pakistani business website examples for teachers, schools and shops".
+- About — "digital growth agency Pakistan".
+- Contact — "get a free quote digital marketing Pakistan".
+
+HOMEPAGE ORDER (adapt, keep existing components): Hero (dream) -> "What is Khans Marketing?" (canonical entity paragraph + 3 pillars) -> Who we help (3 audience cards linking to Part 10 pages) -> One system: website + Google + social + ads + WhatsApp (system showcase tabs) -> Full service directory (40 services, filterable) -> How it works (Discover, Build, Grow) -> Why choose Khans Marketing (process promises, ownership, honesty) -> Proof section (renders only with real data) -> FAQ (answer-first) -> Closing CTA with phone + WhatsApp + form link.
+
+SERVICE PAGES (web dev, SEO, social) — each must contain: dream headline; the business problem in the owner's own words; what we deliver (plain list); how it works (3-5 steps); "what you own at the end"; honest-results note; service-specific FAQ (4-6, answer-first); related services links; strong closing CTA with call/WhatsApp. Make them feel different: web dev = before/after of a slow vs good business site; SEO = "how a customer finds you" journey; social = content rhythm/calendar.
+
+ABOUT: "A digital growth partner, not five separate freelancers." Philosophy, approach, how we work, commitment to quality, why we combine websites + content + search + social + ads. Include the canonical entity paragraph. No invented team, founders, years or office.
+
+CONTACT: WhatsApp-first. Large call/WhatsApp buttons; the form; "what happens after you send": we read it, reply on WhatsApp/phone with questions, share a simple plan, you decide. Say plainly that no payment is needed for the first conversation. Keep the phone number inside dir="ltr" spans.
+
+FAQ BANK (write all; each answer starts with a 1-2 sentence direct answer, 40-60 words, then optional detail; add categories general, pricing, web, seo, social, ads, ecommerce, creators; update FaqTopicId/FaqCategory and faqUtils/tests):
+1. What does a digital marketing agency do? 2. How much does a website cost in Pakistan? (no prices; explain what drives cost, offer free quote) 3. How long does a website take? 4. Do I need a website if I already have a Facebook page or sell on WhatsApp? 5. Can you build an Urdu or bilingual website? 6. What is SEO and how does it help my shop or academy? 7. How long does SEO take, and do you guarantee first-page rankings? (honest: no guarantee, typical timeframe is months, depends on competition) 8. What is local SEO and Google Business Profile? ("Google Maps pe business kaise aaye") 9. How much should I spend on Facebook/Instagram/TikTok ads? (explain how budget is decided, no invented figures) 10. Can you manage my social media pages? 11. Do you build online stores with cash on delivery? 12. Do you manage Daraz or other marketplace stores? 13. Do you help teachers, tutors and schools get more students? 14. Do you work with large companies and exporters? 15. What is YouTube channel automation and does it guarantee income? (honest: it is a content production workflow; no guarantee of views or earnings) 16. Do you do influencer marketing? 17. Who owns my website, domain and accounts? (the client) 18. What happens after the website launches? (maintenance, support, growth plans) 19. How do I get started? (free consultation, WhatsApp 0321-2995766) 20. Roman Urdu discovery questions: "Business online kaise karein?" and "Website banwane ke liye kya chahiye?" Keep these as English-page FAQ items.
+
+=====================================================================
+PART 8 — SEO + AI-SEARCH (GEO/AEO) IMPLEMENTATION
+=====================================================================
+
+The site is a client-side React SPA. Search engines can render JS slowly; many AI crawlers do not run JS at all. If the HTML a crawler receives is an empty <div id="root">, we are invisible. Fix this.
+
+1. REAL URLS, PRERENDERED HTML. Use real paths (not hash routes): /, /website-development, /seo, /social-media-marketing, /portfolio, /about, /contact (+ Part 10 pages) and the Urdu versions under /ur/... Each URL must serve static HTML containing the full page content, the correct <html lang> and dir (ltr for en, rtl for ur), unique <title>, meta description, canonical, hreflang (en, ur, x-default), Open Graph and Twitter tags, and JSON-LD. Choose the lightest reliable method (a Vite SSR build with renderToString per route x language, or a post-build prerender script). Output to dist/ so it can be uploaded to normal cPanel/Apache hosting. Provide a .htaccess (and _redirects) with clean-URL fallback, HTTPS, gzip/brotli, caching, and a correct 404.
+2. LANGUAGE URLS. The EN|اردو toggle must navigate between /path and /ur/path (not only flip a client-side flag) so Urdu pages are indexable. Remember the user's choice but never auto-redirect crawlers.
+3. sitemap.xml with all URLs and hreflang alternates; robots.txt that allows all search and AI crawlers (Googlebot, Bingbot, GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, PerplexityBot, Google-Extended) and points to the sitemap. Add a comment that the owner can restrict AI crawlers later if desired.
+4. /llms.txt (and /llms-full.txt): a plain-text, human-readable summary of the business for AI systems: canonical entity paragraph, services list with URLs, audience, contact (phone, WhatsApp, email), languages, honesty policy, and key pages. No hype, no fake claims.
+5. JSON-LD (build as typed helpers, injected per route and language):
+   - Organization + ProfessionalService (name, url, logo, description = canonical paragraph, areaServed = Country Pakistan, availableLanguage = ["en","ur"], telephone, email, sameAs only when filled, priceRange omitted).
+   - WebSite (inLanguage), WebPage per route, BreadcrumbList on inner pages.
+   - Service (one per service page and hub entry: name, serviceType, provider, areaServed, audience).
+   - FAQPage on every page that shows FAQs. Content in schema must match visible text exactly.
+   - Do NOT add Review, AggregateRating, AggregateOffer, LocalBusiness address or foundingDate unless real data exists in proof.ts / siteConfig.ts.
+6. ON-PAGE: exactly one H1; logical H2/H3; descriptive alt text (EN and UR) for every non-decorative image; descriptive internal anchors; unique meta per page; "Last updated: <month year>" on About, FAQ and service pages (use a build-time constant).
+7. PERFORMANCE (Core Web Vitals): preload the main font, font-display: swap, subset or limit Urdu font weights, lazy-load below-the-fold components, set image width/height, avoid layout shift. Do not add heavy libraries.
+8. KEYWORD MAP (use naturally; never stuff):
+   EN: digital marketing agency in Pakistan; website development Pakistan; website design for small business Pakistan; SEO services Pakistan; local SEO Pakistan; Google Business Profile Pakistan; social media marketing Pakistan; Facebook ads Pakistan; TikTok marketing Pakistan; Shopify store Pakistan; WooCommerce store Pakistan; Daraz store management; WhatsApp Business setup; website for teachers; tuition academy website Pakistan; school website Pakistan; YouTube channel management Pakistan; influencer marketing Pakistan; Urdu website development.
+   UR: ڈیجیٹل مارکیٹنگ ایجنسی پاکستان؛ ویب سائٹ بنوائیں؛ ویب سائٹ ڈیزائن پاکستان؛ گوگل پر کاروبار کیسے لائیں؛ سوشل میڈیا مارکیٹنگ؛ فیس بک ایڈز؛ آن لائن اسٹور بنوائیں؛ یوٹیوب چینل مینجمنٹ؛ اکیڈمی کی ویب سائٹ؛ اسکول کی ویب سائٹ.
+   ROMAN URDU (FAQ questions only): website banwain; digital marketing agency Pakistan; business online kaise karein; Google Maps pe business kaise add karein; Facebook ads kaise chalayein.
+9. AI-ANSWER OPTIMIZATION (so engines quote us): answer-first paragraphs; self-contained definitions ("SEO is…", "Local SEO is…"); consistent entity paragraph; lists/tables for services, steps and "how to choose an agency in Pakistan" (an honest checklist: ask for scope, ownership, reporting, references); explicit statements of what we do and for whom; consistent name/phone/email everywhere; dated, factual, non-hyped language; sources named for any statistic.
+10. Do not create doorway pages, hidden text, fake reviews, fake authors, keyword-stuffed city pages, or copied content. Quality over volume.
+
+AFTER BUILD: output an SEO checklist table (route, EN title length, meta length, H1 present, canonical, hreflang, schema types, lang/dir) and confirm every route's static HTML contains the real content (not an empty root).
+
+=====================================================================
+PART 9 — CHAT WIDGET, FORM AND MICROCOPY
+=====================================================================
+
+Rewrite buildSystemInstruction in src/server/chatService.ts:
+- Role: friendly Senior Digital Growth Advisor for Khans Marketing, serving Pakistani teachers, small business owners and large companies.
+- Language: reply in the user's language. Support English, Urdu (simple spoken Urdu per Part 6) and Roman Urdu. Short answers (2-5 sentences), warm, ambitious, practical.
+- Knowledge: the canonical entity paragraph, the full 40-service list, audience offers, process, honesty rules.
+- Strict honesty: no invented clients, results, prices, timelines, years, team size or guaranteed rankings/income. For price questions say it depends on scope and invite a free quote.
+- Lead capture: after giving value, ask one question at a time to learn business type, city, goal and which service; then invite them to WhatsApp or call 0321-2995766 or use the contact form.
+- Refuse unrelated, unsafe or illegal requests politely.
+Update chat suggested prompts, empty states, toasts and error messages (en + ur, simple Urdu). Update LeadForm placeholders and helper text with Pakistani examples (names, 03xx numbers, business types). Keep the honeypot and the honest development-state message if no endpoint is configured.
+
+=====================================================================
+PART 10 — NEW PAGES (PHASE C) AND GUIDES (PHASE D)
+=====================================================================
+
+PHASE C — add routes, nav/footer links, translations (en + ur), prerender, sitemap, schema:
+1. /services — Services hub: the full 40-service directory by category, with intro and CTA.
+2. /for-teachers — For Teachers, Tutors and Schools: dream, problems, offers (Part 3 persona 1), a simple "from empty batch to full class" path (no invented numbers), FAQ, CTA "Fill My Classes".
+3. /for-small-business — For Shops and Local Businesses: persona 2, "own your land, not rented pages" story, COD-ready store option, Google Maps + WhatsApp flow, FAQ, CTA "Start Selling Online".
+4. /for-large-business — For Companies and Exporters: persona 3, corporate website, B2B/LinkedIn, tracking and reporting, reputation, CTA "Request a Consultation".
+Each page: unique title/meta, one H1, answer-first sections, FAQ with FAQPage schema, links to the relevant service pages and the contact page.
+
+PHASE D (only after I say "continue") — /guides hub and 8 articles, each 800-1200 words, bilingual, answer-first, with a clear next-step CTA. Titles: 1) How to Get Your Shop on Google Maps in Pakistan 2) Do Teachers and Academies Need a Website? 3) Facebook Page vs Website: What Pakistani Businesses Should Own 4) How Much Should a Small Business Spend on Online Marketing? (framework, no invented prices) 5) What Is SEO? A Plain Guide for Business Owners 6) How to Choose a Digital Marketing Agency in Pakistan (honest checklist) 7) Selling on Daraz vs Your Own Online Store 8) A Simple Social Media Content Plan for a Local Business.
+
+=====================================================================
+PART 11 — FINAL QA BEFORE YOU FINISH EACH PHASE
+=====================================================================
+
+[ ] No forbidden claims (Part 1). Search all en.ts/ur.ts/chatService.ts/index.html for: guarantee, "page 1", "#1", best, top, leading, earn, lakhs, crores, millions, 10x, years of experience, clients served, certified, partner. Every hit must be aspirational, in the allowed form, or removed.
+[ ] Required honesty disclosure present in footer, service pages and FAQ (en + ur).
+[ ] Every English key has an Urdu key; tests pass; type-check passes.
+[ ] Urdu QA done (Part 6): short sentences, glossary words, no avoided words, phone numbers LTR.
+[ ] Canonical entity paragraph identical in About, home block, llms.txt, JSON-LD.
+[ ] All 40 services present with category, deliverables and CTA that pre-selects the form option.
+[ ] Every route in en and ur serves real prerendered HTML with unique title/meta/canonical/hreflang/JSON-LD.
+[ ] Language toggle moves between /path and /ur/path and sets lang/dir correctly.
+[ ] Contact details consistent: 0321-2995766, WhatsApp link, email from siteConfig.ts.
+[ ] No invented testimonials, logos, addresses, team members or statistics. proof.ts exists and is empty.
+[ ] Layout unchanged except for added sections; mobile and RTL checked; no overflow.
+
+Begin with PHASE A now. First list the files you read and a 10-line summary of the plan; then deliver Phase A files in full.

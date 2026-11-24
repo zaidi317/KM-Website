@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { HeroArchitectureVisual } from '../components/EditorialVisuals';
 import { FaqAccordion } from '../components/FaqAccordion';
 import { Reveal, RevealItem, RevealStagger } from '../components/MotionPrimitives';
-import { ServiceCatalogSection } from '../components/ServiceCatalogSection';
-import { TrustStandards } from '../components/TrustStandards';
+import { ProofSection } from '../components/ProofSection';
+import { SITE_CONFIG } from '../config/siteConfig';
 import type { Language, TranslationDictionary } from '../i18n/types';
 import type { ServiceOption } from '../utils/formValidation';
-import type { PageRoute } from '../utils/routing';
+import { buildLocalizedPath, type PageRoute } from '../utils/routing';
 
 interface HomePageProps {
   language?: Language;
@@ -25,10 +25,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   onRequestServiceScope,
   onBookCall,
 }) => {
-  const [activeTabId, setActiveTabId] = useState<'web' | 'seo' | 'social'>('web');
   const h = t.home;
-  const activeTab =
-    h.systemShowcase.tabs.find((tab) => tab.id === activeTabId) ?? h.systemShowcase.tabs[0];
 
   return (
     <div>
@@ -61,7 +58,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                 {h.hero.subheadline}
               </p>
 
-              <div className="mt-9 flex flex-wrap items-center gap-4">
+              <div className="mt-9 flex flex-wrap items-center gap-3.5">
                 <button
                   type="button"
                   onClick={onBookCall}
@@ -70,14 +67,23 @@ export const HomePage: React.FC<HomePageProps> = ({
                   {h.hero.primaryCta}
                 </button>
                 <a
+                  href={SITE_CONFIG.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3.5 rounded-md border border-[#2B4239] bg-[#16241F] text-[#F7F4EE] text-sm font-semibold hover:border-[#C58F38] transition-colors whitespace-nowrap shrink-0"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#C58F38] shrink-0" aria-hidden="true" />
+                  <span>{h.hero.whatsappCta}</span>
+                </a>
+                <a
                   href="#services-overview"
-                  className="inline-flex items-center gap-2 px-4 py-3 text-sm font-medium text-[#F7F4EE] hover:text-[#C58F38] transition-colors whitespace-nowrap shrink-0"
+                  className="inline-flex items-center gap-2 px-3 py-3 text-sm font-medium text-[#F7F4EE] hover:text-[#C58F38] transition-colors whitespace-nowrap shrink-0"
                 >
                   <span>{h.hero.secondaryCta}</span>
                   <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
                 </a>
                 <a
-                  href="/portfolio"
+                  href={buildLocalizedPath('portfolio', language)}
                   onClick={(e) => {
                     e.preventDefault();
                     onNavigate('portfolio');
@@ -106,13 +112,13 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 2. Positioning & Integrated Value Strip */}
+      {/* 2. Positioning, Canonical Entity Definition & Pillars */}
       <section className="bg-white border-b border-[#E2DDD3]">
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 py-16 sm:py-22">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 py-16 sm:py-22 space-y-10">
           <Reveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
-              <div className="lg:col-span-5">
-                <p className="text-xs font-semibold text-[#8A5E1B] mb-3">
+              <div className="lg:col-span-5 space-y-3">
+                <p className="text-xs font-semibold text-[#8A5E1B]">
                   {h.positioning.label}
                 </p>
                 <h2 className="font-display text-2xl sm:text-[2rem] font-medium tracking-tight text-[#111C18] leading-snug">
@@ -120,29 +126,101 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </h2>
               </div>
 
-              <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-6 lg:pt-2">
-                {h.positioning.pillars.map((pillar) => (
-                  <div
-                    key={pillar.title}
-                    className="border-t border-[#E2DDD3] pt-4 space-y-2"
-                  >
-                    <h3 className="text-base font-semibold text-[#111C18]">{pillar.title}</h3>
-                    <p className="text-sm text-[#4B5954] leading-relaxed">{pillar.text}</p>
-                  </div>
-                ))}
+              <div className="lg:col-span-7 space-y-6">
+                <div className="rounded-xl border border-[#E2DDD3] bg-[#FAF8F5] p-5 sm:p-6 space-y-1.5">
+                  <h3 className="text-xs font-semibold text-[#8A5E1B]">
+                    {h.positioning.heading}
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#111C18] leading-relaxed">
+                    {h.positioning.canonicalEntity}
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                  {h.positioning.pillars.map((pillar) => (
+                    <div
+                      key={pillar.title}
+                      className="border-t border-[#E2DDD3] pt-4 space-y-2"
+                    >
+                      <h3 className="text-base font-semibold text-[#111C18]">{pillar.title}</h3>
+                      <p className="text-sm text-[#4B5954] leading-relaxed">{pillar.text}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* 3. Trust & Industry Engineering Standards */}
-      <TrustStandards
-        eyebrow={h.trustStandards.eyebrow}
-        heading={h.trustStandards.heading}
-        note={h.trustStandards.note}
-        badges={h.trustStandards.badges}
-      />
+      {/* 3. Who We Help — Clear 3-Tier Audience Tracks */}
+      <section className="bg-[#FAF8F5] border-b border-[#E2DDD3] py-16 sm:py-20">
+        <div className="mx-auto max-w-[1200px] px-4 sm:px-6 space-y-10">
+          <Reveal>
+            <div className="max-w-2xl space-y-2.5">
+              <p className="text-xs font-semibold text-[#8A5E1B]">{h.whoWeHelp.eyebrow}</p>
+              <h2 className="font-display text-2xl sm:text-4xl font-medium tracking-tight text-[#111C18]">
+                {h.whoWeHelp.heading}
+              </h2>
+              <p className="text-sm sm:text-base text-[#4B5954] leading-relaxed">
+                {h.whoWeHelp.subheading}
+              </p>
+            </div>
+          </Reveal>
+
+          <RevealStagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {h.whoWeHelp.cards.map((card) => (
+              <RevealItem key={card.id}>
+                <article className="h-full rounded-2xl border border-[#E2DDD3] bg-white p-6 sm:p-7 flex flex-col justify-between gap-6">
+                  <div className="space-y-3">
+                    <span className="text-xs font-semibold text-[#8A5E1B]">
+                      {card.audience}
+                    </span>
+                    <h3 className="font-display text-xl sm:text-[1.4rem] font-medium text-[#111C18] leading-snug">
+                      {card.hook}
+                    </h3>
+                    <p className="text-sm text-[#4B5954] leading-relaxed">
+                      {card.description}
+                    </p>
+                    <ul className="space-y-2 pt-2 border-t border-[#F1EDE6] text-xs sm:text-sm text-[#111C18]">
+                      {card.offers.map((offer) => (
+                        <li key={offer} className="flex items-start gap-2.5">
+                          <span
+                            className="mt-2 w-2 h-px bg-[#C58F38] shrink-0"
+                            aria-hidden="true"
+                          />
+                          <span>{offer}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-[#F1EDE6]">
+                    <a
+                      href={buildLocalizedPath(card.route, language)}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate(card.route);
+                      }}
+                      className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#164237] hover:text-[#8A5E1B] transition-colors"
+                    >
+                      <span>{h.whoWeHelp.explorePageLabel}</span>
+                      <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => onRequestServiceScope(card.serviceOption)}
+                      className="text-xs font-semibold text-[#8A5E1B] hover:text-[#111C18] underline underline-offset-4 transition-colors cursor-pointer"
+                    >
+                      {card.ctaLabel}
+                    </button>
+                  </div>
+                </article>
+              </RevealItem>
+            ))}
+          </RevealStagger>
+        </div>
+      </section>
 
       {/* 4. Core Services Asymmetric Bento Showcase */}
       <section id="services-overview" className="bg-[#FAF8F5] py-20 sm:py-24">
@@ -208,7 +286,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 
                         <div>
                           <a
-                            href={`/services/${card.route}`}
+                            href={buildLocalizedPath(card.route, language)}
                             onClick={(e) => {
                               e.preventDefault();
                               onNavigate(card.route);
@@ -226,102 +304,6 @@ export const HomePage: React.FC<HomePageProps> = ({
               );
             })}
           </RevealStagger>
-        </div>
-      </section>
-
-      {/* 4B. Full 16-Service Pakistani Digital Marketing Directory */}
-      <ServiceCatalogSection
-        directory={h.fullServiceDirectory}
-        onSelectService={onRequestServiceScope}
-      />
-
-      {/* 5. Interactive Discipline Inspector */}
-      <section className="bg-white border-y border-[#E2DDD3] py-20 sm:py-24">
-        <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
-          <Reveal>
-            <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
-              <div className="max-w-2xl space-y-3">
-                <p className="text-xs font-semibold text-[#8A5E1B]">
-                  {h.systemShowcase.eyebrow}
-                </p>
-                <h2 className="font-display text-3xl sm:text-4xl font-medium tracking-tight text-[#111C18]">
-                  {h.systemShowcase.heading}
-                </h2>
-                <p className="text-sm sm:text-base text-[#4B5954]">
-                  {h.systemShowcase.subheading}
-                </p>
-              </div>
-
-              <div
-                className="inline-flex flex-wrap items-center gap-1 p-1 rounded-lg bg-[#F1EDE6] border border-[#E2DDD3] shrink-0"
-                role="tablist"
-                aria-label={h.systemShowcase.heading}
-              >
-                {h.systemShowcase.tabs.map((tab) => {
-                  const selected = tab.id === activeTab.id;
-                  return (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      role="tab"
-                      aria-selected={selected}
-                      onClick={() => setActiveTabId(tab.id)}
-                      className={`px-3.5 py-2 text-xs sm:text-sm font-medium rounded-md transition-colors whitespace-nowrap shrink-0 cursor-pointer ${
-                        selected
-                          ? 'bg-[#111C18] text-[#F7F4EE]'
-                          : 'text-[#4B5954] hover:text-[#111C18]'
-                      }`}
-                    >
-                      {tab.label}
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            <div
-              role="tabpanel"
-              className="rounded-2xl border border-[#E2DDD3] bg-[#FAF8F5] p-6 sm:p-10"
-            >
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="space-y-2.5">
-                  <h3 className="text-xs font-semibold text-[#8A5E1B]">
-                    {activeTab.problemTitle}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#111C18] leading-relaxed">
-                    {activeTab.problem}
-                  </p>
-                </div>
-                <div className="space-y-2.5 md:border-s md:border-[#E2DDD3] md:ps-8">
-                  <h3 className="text-xs font-semibold text-[#8A5E1B]">
-                    {activeTab.solutionTitle}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#111C18] leading-relaxed">
-                    {activeTab.solution}
-                  </p>
-                </div>
-                <div className="space-y-2.5 md:border-s md:border-[#E2DDD3] md:ps-8">
-                  <h3 className="text-xs font-semibold text-[#8A5E1B]">
-                    {activeTab.outcomeTitle}
-                  </h3>
-                  <p className="text-sm sm:text-base text-[#111C18] leading-relaxed">
-                    {activeTab.outcome}
-                  </p>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-[#E2DDD3] flex justify-end">
-                <button
-                  type="button"
-                  onClick={() => onNavigate(activeTab.route)}
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-md bg-[#164237] text-[#F7F4EE] text-sm font-semibold hover:bg-[#1D5547] transition-colors whitespace-nowrap cursor-pointer"
-                >
-                  <span>{activeTab.ctaLabel}</span>
-                  <ArrowRight className="w-4 h-4 rtl:rotate-180" aria-hidden="true" />
-                </button>
-              </div>
-            </div>
-          </Reveal>
         </div>
       </section>
 
@@ -357,7 +339,10 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 6. Why Choose Khans Marketing + FAQ */}
+      {/* 6. Client Feedback / Sample Testimonials */}
+      <ProofSection language={language} />
+
+      {/* 7. Why Choose Khan Marketings + FAQ */}
       <section className="bg-[#FAF8F5] py-20 sm:py-24">
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6 space-y-20">
           <div>
@@ -393,10 +378,13 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <p className="text-sm sm:text-base text-[#4B5954] leading-relaxed">
                   {h.faq.subheading}
                 </p>
+                <p className="text-xs font-mono-num text-[#6B7973] pt-1">
+                  {h.faq.lastUpdatedText}
+                </p>
               </div>
               <div className="lg:col-span-8">
                 <FaqAccordion
-                  items={h.faq.items}
+                  items={h.faq.items.slice(0, 6)}
                   categories={h.faq.categories}
                   filterAriaLabel={h.faq.heading}
                 />
@@ -406,7 +394,7 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* 7. Conversion Closing CTA */}
+      {/* 8. Conversion Closing CTA */}
       <section className="bg-white border-t border-[#E2DDD3] py-16 sm:py-20">
         <div className="mx-auto max-w-[1200px] px-4 sm:px-6">
           <Reveal>
@@ -428,6 +416,15 @@ export const HomePage: React.FC<HomePageProps> = ({
                 >
                   {h.closingCta.primaryCta}
                 </button>
+                <a
+                  href={SITE_CONFIG.whatsappHref}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-[#164237] text-[#F7F4EE] text-sm font-semibold hover:bg-[#1D5547] transition-colors whitespace-nowrap"
+                >
+                  <MessageCircle className="w-4 h-4 text-[#C58F38] shrink-0" aria-hidden="true" />
+                  <span>{h.closingCta.whatsappCta}</span>
+                </a>
                 <button
                   type="button"
                   onClick={onBookCall}
